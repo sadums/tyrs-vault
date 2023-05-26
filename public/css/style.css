@@ -1,0 +1,121 @@
+/* For landing Header */ 
+
+* {
+    font-family: 'Bangers', cursive;
+    font-family: 'Barlow', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Mono', monospace;
+    font-family: 'Tillana', cursive;
+    font-family: 'Turret Road', cursive;
+}
+
+:root {
+    --purple: #570bb7;
+    --lightpurple: #d042f8;
+    --lightblue: #2edbef;
+    --lightgreen: #3aefb6;
+    --hotpink: #f10983;
+    --moderngray: #5c5e60;
+}
+
+#landingHeader {
+    width: 100%;
+    padding: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+    display: flex;
+    width: 100%;
+    z-index: 5;
+    background-color: rgba(40, 40, 41, 0.8);
+}
+
+#titleCustom {
+    font-family: 'Bangers', cursive;
+    font-size: 34px;
+    color: var(--hotpink);
+    padding: 5px;
+    overflow: hidden;
+
+    background: linear-gradient(to right, var(--hotpink), var(--lightblue) 50%, var(--hotpink) 50%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+    transition: background-position 275ms ease;
+}
+
+
+#titleCustom:hover {
+    background-position: 0 100%;
+}
+
+#main {
+    background-image: url('../imgs/fortnite\ dark\ v2.jpg');
+    background-size: cover;
+    height: 100%;
+    transition: all 1.3s ease-out;
+}
+
+#signUpBtn {
+    font-size: 20px;
+    font-family: 'Bangers', cursive;
+    color: var(--hotpink);
+    border: solid rgb(255, 255, 255);
+    padding: 7%;
+    border-width: 0px 0px 3px 0px;
+    border-radius: 0px;
+}
+
+#loginBtn {
+    font-size: 20px;
+    font-family: 'Bangers', cursive;
+    color: rgb(253, 253, 253);
+    border: solid 3px var(--hotpink);
+    padding: 7%;
+    border-radius: 10px;
+}
+
+#welcomeTextDiv {
+    margin-top: 30%;
+    margin-left: 10%;
+    width: 80%;
+}
+
+#welcomeText {
+    font-family: 'Bangers', cursive;
+    color: white;
+    font-weight: 400;
+    font-size: 70px;
+}
+
+
+/* For Hover Elements */
+
+#loginBtn:hover {
+    transition: all .1s ease-in;
+    background-color: white;
+    color: rgb(219, 79, 212);
+}
+
+#signUpBtn:hover {
+    transition: all .1s ease-in;
+    background-color: rgb(219, 79, 212);
+    color: white;
+}
+
+#username-div{
+    display: none;
+}
+
+#confirm-password-div{
+    display: none;
+}
+
+#submit-signup{
+    display: none;
+}
+
+#switch-login{
+    display: none;
+}
