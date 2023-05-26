@@ -72,7 +72,6 @@ const submitSignup = async () => {
         }else{
             alert('Sign up failed');
         }
-        console.log(response);
     }else{
         alert('Please fill in all fields')
     }

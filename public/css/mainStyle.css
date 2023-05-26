@@ -104,6 +104,30 @@
     background-position: 0 100%;
 }
 
+#loginLink {
+    font-family: 'Bangers', cursive;
+    font-weight: 300;
+    color: white;
+    font-size: 26px;
+    border: solid var(--lightblue);
+    padding: 5px;
+    border-width: 0px 0px 3px 0px;
+    border-radius: 0px;
+
+    /* for hover to work */
+    background: linear-gradient(to right top, var(--lightblue), var(--lightblue) 40%, white 30%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 300% 200%;
+    background-position: 100%;
+    transition: background-position 300ms ease;
+}
+
+#loginLink:hover {
+    background-position: 0 100%;
+}
+
 
 #menuProfile {
     font-family: 'Bangers', cursive;
