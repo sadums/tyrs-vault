@@ -47,6 +47,8 @@ const switchLogin = (event) => {
 }
 
 const submitSignup = async (event) => {
+    event.preventDefault();
+
     const email = emailInput.value.trim()
     const username = usernameInput.value.trim()
     const password = passwordInput.value.trim()
@@ -75,8 +77,26 @@ const submitSignup = async (event) => {
 }
 
 const submitLogin = async(event) => {
-    console.log(emailInput.value.trim());
-    console.log(passwordInput.value.trim());
+    event.preventDefault();
+
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+
+    if(email && password){
+        const response = await fetch('/api/user/login', {
+            method: 'POST',
+            body: JSON.stringify({ email, password }),
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        if(response.ok){
+            document.location.replace('/');
+        }else{
+            alert('Login failed')
+        }
+    }else{
+        alert('Please fill in all fields');
+    }
 }
 
 submitSignupButton.addEventListener('click', submitSignup);

@@ -32,7 +32,9 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                is: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/i
+                len: [8,24],
+                isUppercase: true,
+                isLowercase: true
             }
         }
     },
