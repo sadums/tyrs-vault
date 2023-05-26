@@ -2,7 +2,11 @@ const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
-class User extends Model {}
+class User extends Model {
+    checkPassword(password){
+        return bcrypt.compare(password, this.password);
+    }
+}
 
 User.init(
     {
@@ -28,7 +32,7 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                is: ["^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"],
+                is: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/i
             }
         }
     },

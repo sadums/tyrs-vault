@@ -1,0 +1,15 @@
+#username-div{
+    display: none;
+}
+
+#confirm-password-div{
+    display: none;
+}
+
+#submit-signup{
+    display: none;
+}
+
+#switch-login{
+    display: none;
+}

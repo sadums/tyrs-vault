@@ -1,23 +1,26 @@
-{{!-- TODO: Put main html page here --}}
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>MAIN PAGE</title>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main Page</title>
+  {{#unless loggedIn}}
+  <link rel="stylesheet" href="./css/styles.css">
+  {{/unless}}
 </head>
 
 <body>
   <header>
-    <!-- place navbar here -->
   </header>
   <main>
-    
+    <div>
+      {{{body}}}
+    </div>
   </main>
+  {{#unless loggedIn}}
+  <script src="./js/login.js"></script>
+  {{/unless}}
 </body>
 
 </html>
