@@ -1,5 +1,8 @@
 // For dynamic landing page 
 
+// For login/signup modal 
+
+
 // For typing animation 
 // Created by mattboldt.com
 
@@ -38,6 +41,8 @@ let checkView = function() {
         $('#welcomeText').attr("style", "font-size: 70px;");
     }
 }
+
+
 
 
 
