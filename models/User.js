@@ -18,7 +18,8 @@ User.init(
         },
         username: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: true
         },
         email: {
             type: DataTypes.STRING,
@@ -32,7 +33,9 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                is: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/i
+                len: [8,24],
+                isUppercase: true,
+                isLowercase: true
             }
         }
     },
