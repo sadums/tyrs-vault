@@ -2,6 +2,7 @@ const sequelize = require('../config/connection');
 const User = require('./User');
 const Game = require('./Game');
 const UserGames = require('./userGames');
+const Friend = require('./Friend');
 
 User.hasMany(Game, {
     through: {
@@ -16,4 +17,17 @@ Game.belongsToMany(User, {
     }
 });
 
-module.exports = {User, Game, UserGames}
+User.hasMany(User, {
+    through: {
+        model: Friend,
+        unique: false
+    }
+});
+User.belongsToMany(User, {
+    through: {
+        model: Friend,
+        unique: false
+    }
+});
+
+module.exports = {User, Game, UserGames, Friend}
