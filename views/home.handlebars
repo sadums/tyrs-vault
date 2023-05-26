@@ -1,6 +1,6 @@
 <div class="ui secondary  menu" id="headerMain">
         <a class="item" id="titleCustom">
-          Omega Gamers 
+          Tyr's Vault 
         </a>
         <div class="right menu">
           <a class="ui item" id="friendsLink">
@@ -12,10 +12,22 @@
           <a class="ui item" id="menuProfile">
             Profile
           </a>
-          <a class="ui icon item" id="settingsBtn">
-            <i class="wrench inverted large icon"></i>
+
+          <a class="ui item" >
+            <div class="ui icon top left pointing dropdown button" id="themeBtn">
+            <i class="wrench icon"></i>
+              <div class="menu">
+                <div class="item">
+            
+                </div>
+              </div>
+            </div>
           </a>
-        </div>
+    <script>
+      $('#themeBtn')
+        .dropdown();
+    </script>
+  </div>
 </div>
 
 <div id="mainDiv">

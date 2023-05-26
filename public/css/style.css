@@ -77,9 +77,9 @@
 }
 
 #welcomeTextDiv {
-    margin-top: 30%;
+    margin-top: 25%;
     margin-left: 10%;
-    width: 80%;
+    width: 90%;
 }
 
 #welcomeText {
@@ -89,6 +89,19 @@
     font-size: 70px;
 }
 
+#landingDescription h2 {
+    color: white;
+    font-family: 'Turret Road', cursive;
+    font-weight: 300;
+}
+
+#landingDescription {
+    /* margin-left: 25%;
+    margin-top: 10%; */
+    /* border: solid 3px var(--hotpink);
+    border-radius: 10px; */
+    /* background-color: rgba(40, 40, 41, 0.8); */
+}
 
 /* For Hover Elements */
 
