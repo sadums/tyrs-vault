@@ -1,6 +1,7 @@
 const router = require('express').Router();
-// TODO: import required models
 
-// TODO: create required routes
+const userRoutes = require('./user-routes');
+
+router.use('/user', userRoutes);
 
 module.exports = router;

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main Page</title>
+  {{#unless loggedIn}}
+  <link rel="stylesheet" href="./css/styles.css">
+  {{/unless}}
+</head>
+
+<body>
+  <header>
+  </header>
+  <main>
+    <div>
+      {{{body}}}
+    </div>
+  </main>
+  {{#unless loggedIn}}
+  <script src="./js/login.js"></script>
+  {{/unless}}
+</body>
+
+</html>
