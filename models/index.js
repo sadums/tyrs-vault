@@ -1,7 +1,6 @@
-const sequelize = require('../config/connection');
 const User = require('./User');
 const Game = require('./Game');
-const UserGames = require('./userGames');
+const UserGames = require('./UserGames');
 const Friend = require('./Friend');
 
 User.hasMany(Game, {
