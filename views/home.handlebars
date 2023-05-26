@@ -1,24 +1,99 @@
-<div>
-    <div class="ui secondary  menu" id="landingHeader">
-        <h2 class="item" id="titleCustom">
+<div class="ui secondary  menu" id="headerMain">
+        <a class="item" id="titleCustom">
           Omega Gamers 
-        </h2>
+        </a>
         <div class="right menu">
-          <a class="ui item" id="loginBtn">
-            Login
+          <a class="ui item" id="friendsLink">
+            Friends
           </a>
-          <a class="ui item" id="signUpBtn">
-            Sign Up
+          <a class="ui item" id="statsLink">
+            Stats
+          </a>
+          <a class="ui item" id="menuProfile">
+            Profile
+          </a>
+          <a class="ui icon item" id="settingsBtn">
+            <i class="wrench inverted large icon"></i>
           </a>
         </div>
-      </div>
-      <!---->
-      <div id="welcomeTextDiv" class="ui grid container">
-        <div class="ui eight wide column">
-          <span id="welcomeText"></span>
+</div>
+
+<div id="mainDiv">
+    <div id="searchBarMain">
+        <h4 id="friendSearch">Search for a player</h4>
+        <div class="ui action input">
+            <input type="text" placeholder="Gamers Username...">
+            <button class="ui button">Find</button>
         </div>
-        <div class="ui eight wide column">
-          <h1>sdfadjshklfasdfds></h1>
+    </div>
+    <h1 id="yourFriendsTitle">Your friends</h1>
+    <div id="friendDisplayMain">
+        <div id="friendListDiv">
+            <section class="splide" id="splide1" aria-label="Splide Basic HTML Example" data-splide='{"type":"loop", "padding":"5rem", "perPage":"2", "perMove":"1", "focus":"0" }'>
+                <div class="splide__track">
+                      <ul class="splide__list">
+                          <li class="splide__slide">
+                            <div class="cardMain">
+                                
+                            </div>
+                         </li>
+                         <li class="splide__slide">
+                            <div class="cardMain">
+
+                            </div>
+                         </li>
+                         <li class="splide__slide">
+                            <div class="cardMain">
+
+                            </div>
+                         </li>
+                         <li class="splide__slide">
+                            <div class="cardMain">
+
+                            </div>
+                         </li>
+                      </ul>
+                </div>
+              </section>
         </div>
-      </div>
-  </div>
+    </div>
+    <h1 id="statsTitle">Your Stats</h1>
+    <div id="statsDisplayMain">
+        <section class="splide" id="splide2" aria-label="Splide Basic HTML Example"  data-splide='{"type":"loop", "padding":"8rem", "perPage":"3", "perMove":"1", "focus":"0"}'>
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <li class="splide__slide">
+                      <div class="cardMain">
+                          
+                      </div>
+                   </li>
+                   <li class="splide__slide">
+                      <div class="cardMain">
+
+                      </div>
+                   </li>
+                   <li class="splide__slide">
+                      <div class="cardMain">
+
+                      </div>
+                   </li>
+                   <li class="splide__slide">
+                      <div class="cardMain">
+
+                      </div>
+                   </li>
+                </ul>
+            </div>
+          </section>
+    </div>
+    <footer>
+        <div class="ui secondary centered menu">
+            <a class="ui icon item">
+                <i class="wrench large icon"></i>
+            </a>
+            <a class="ui icon item">
+                <i class="github large icon"></i>
+            </a>
+        </div>
+    </footer>
+    </div>
