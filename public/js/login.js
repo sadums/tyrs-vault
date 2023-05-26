@@ -5,47 +5,6 @@ const usernameInput = document.getElementById('username');
 const passwordInput = document.getElementById('password');
 const confirmPasswordInput = document.getElementById('confirm-password');
 
-const submitSignupButton = document.getElementById('submit-signup');
-const submitLoginButton = document.getElementById('submit-login');
-const switchSignupButton = document.getElementById('switch-signup');
-const switchLoginButton = document.getElementById('switch-login');
-
-const usernameDiv = document.getElementById('username-div');
-const confirmPasswordDiv = document.getElementById('confirm-password-div');
-
-
-const switchSignUp = (event) => {
-    loginHeader.textContent = "Sign-up:"
-
-    usernameDiv.setAttribute('style', 'display: block');
-    confirmPasswordDiv.setAttribute('style', 'display: block');
-    submitSignupButton.setAttribute('style', 'display: block');
-    switchLoginButton.setAttribute('style', 'display: block');
-
-    submitLoginButton.setAttribute('style', 'display: none');
-    switchSignupButton.setAttribute('style', 'display: none');
-
-    emailInput.value = '';
-    passwordInput.value = '';
-}
-
-const switchLogin = (event) => {
-    loginHeader.textContent = "Login:"
-
-    usernameDiv.setAttribute('style', 'display: none');
-    confirmPasswordDiv.setAttribute('style', 'display: none');
-    submitSignupButton.setAttribute('style', 'display: none');
-    switchLoginButton.setAttribute('style', 'display: none');
-
-    submitLoginButton.setAttribute('style', 'display: block');
-    switchSignupButton.setAttribute('style', 'display: block');
-
-    emailInput.value = '';
-    usernameInput.value = '';
-    passwordInput.value = '';
-    confirmPasswordInput.value = '';
-}
-
 const submitSignup = async (event) => {
     event.preventDefault();
 
@@ -77,29 +36,26 @@ const submitSignup = async (event) => {
 }
 
 const submitLogin = async(event) => {
-    event.preventDefault();
+    console.log(email);
+    console.log(password);
+    // event.preventDefault();
 
-    const email = emailInput.value.trim();
-    const password = passwordInput.value.trim();
+    // const email = emailInput.value.trim();
+    // const password = passwordInput.value.trim();
 
-    if(email && password){
-        const response = await fetch('/api/user/login', {
-            method: 'POST',
-            body: JSON.stringify({ email, password }),
-            headers: { 'Content-Type': 'application/json' }
-        });
+    // if(email && password){
+    //     const response = await fetch('/api/user/login', {
+    //         method: 'POST',
+    //         body: JSON.stringify({ email, password }),
+    //         headers: { 'Content-Type': 'application/json' }
+    //     });
 
-        if(response.ok){
-            document.location.replace('/');
-        }else{
-            alert('Login failed')
-        }
-    }else{
-        alert('Please fill in all fields');
-    }
+    //     if(response.ok){
+    //         document.location.replace('/');
+    //     }else{
+    //         alert('Login failed')
+    //     }
+    // }else{
+    //     alert('Please fill in all fields');
+    // }
 }
-
-submitSignupButton.addEventListener('click', submitSignup);
-submitLoginButton.addEventListener('click', submitLogin);
-switchSignupButton.addEventListener('click', switchSignUp);
-switchLoginButton.addEventListener('click', switchLogin);
