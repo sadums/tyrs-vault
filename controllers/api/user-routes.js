@@ -11,10 +11,9 @@ router.post('/signup', async(req, res) => {
             email: req.body.email,
             password: req.body.password
         });
-
         req.session.save(() => {
             req.session.loggedIn = true;
-            req.session.username = req.body.username;
+            req.session.userid = newUserData.dataValues.id
             res.status(200).json(newUserData);
         });
     }catch(e){
@@ -44,7 +43,7 @@ router.post('/login', async(req, res) => {
 
         req.session.save(() => {
             req.session.loggedIn = true;
-            req.session.username = req.body.username;
+            req.session.userid = userData.dataValues.id
             res.status(200).json({ user: userData, message: "Log in successful"});
         });
     }catch(e){
@@ -69,18 +68,40 @@ router.post('/logout', async(req, res) => {
 
 router.get('/add-friend/:username', async(req, res) => {
     try{
-        console.log(req.session);
-        // const addedUser = await User.findOne({ where: { username: req.params.username}});
-        // if(!addedUser){
-        //     res.status(404).json({ message : "No user found!"});
-        //     return;
-        // }
+        console.log(req.session.userid);
+        const user = await User.findByPk(req.session.userid);
+        if(!user){
+            res.status(404).json({ message : "Something went wrong, please try again"});
+            return;
+        }
 
-        // const friendship = await Friend.create({
-        //     user_id1: 
-        // });
-        
-        res.send('hello')
+        const addedUser = await User.findOne({ where: { username: req.params.username}});
+        if(!addedUser){
+            res.status(404).json({ message : "No user found!"});
+            return;
+        }
+
+        console.log(user);
+
+        console.log("-------------------------------");
+        console.log(addedUser);
+
+        if(addedUser.dataValues.username == user.dataValues.username){
+            res.status(400).json({ message : "You cannot add yourself as a friend."});
+            return;
+        }
+        const friendship = await Friend.create({
+            user_id1: user.dataValues.id,
+            user_id2: addedUser.dataValues.id
+        });
+        if(!friendship){
+            res.status(400).json({ message: "Failed to add friend"});
+            return
+        }
+        res.status(200).json({
+            friend: friendship,
+            message: "Friend added successfully"
+        })
     }catch(e){
         console.error(e);
         res.status(500).json(e)
