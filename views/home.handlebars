@@ -2,32 +2,40 @@
         <a class="item" id="titleCustom">
           Tyr's Vault 
         </a>
-        <div class="right menu">
-          <a class="ui item" id="friendsLink">
-            Friends
-          </a>
-          <a class="ui item" id="statsLink">
-            Stats
-          </a>
-          <a class="ui item" id="menuProfile">
-            Profile
-          </a>
+        {{#if loggedIn}}
+          <div class="right menu">
+            <a class="ui item" id="friendsLink">
+              Friends
+            </a>
+            <a class="ui item" id="statsLink">
+              Stats
+            </a>
+            <a class="ui item" id="menuProfile">
+              Profile
+            </a>
 
-          <a class="ui item" >
-            <div class="ui icon top left pointing dropdown button" id="themeBtn">
-            <i class="wrench icon"></i>
-              <div class="menu">
-                <div class="item">
-            
+            <a class="ui item" >
+              <div class="ui icon top left pointing dropdown button" id="themeBtn">
+              <i class="wrench icon"></i>
+                <div class="menu">
+                  <div class="item">
+                    <button id="logout">Logout</button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </a>
-    <script>
-      $('#themeBtn')
-        .dropdown();
-    </script>
-  </div>
+            </a>
+            <script>
+              $('#themeBtn')
+                .dropdown();
+            </script>
+          </div>
+        {{else}}
+          <div class="right menu">
+            <a class="ui item" id="loginLink" href="/login">
+              Login
+            </a>
+          </div>
+        {{/if}}
 </div>
 
 <div id="mainDiv">

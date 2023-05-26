@@ -54,7 +54,13 @@ router.post('/login', async(req, res) => {
 });
 router.post('/logout', async(req, res) => {
     try{
-        // TODO: Add functionality to route
+        if(req.session.loggedIn){
+            req.session.destroy(() => {
+                res.status(200).end();
+            });
+        } else {
+            res.status(404).end();
+        }
     }catch(e){
         console.error(e);
         res.status(500).json(e);
