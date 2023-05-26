@@ -28,9 +28,9 @@
           Omega Gamers 
         </h2>
         <div class="right menu">
-          <a class="ui item" id="loginBtn">
+          <button class="ui item button" id="loginBtn">
             Login
-          </a>
+          </button>
           <a class="ui item" id="signUpBtn">
             Sign Up
           </a>
@@ -46,3 +46,76 @@
         </div>
       </div>
   </div>
+
+<!-- Modal for login/signup-->
+
+  <div class="ui tiny modal">
+    <script>
+      $('.ui.modal')
+.modal('attach events', '#loginBtn', '#signUpBtn')
+  .modal('show')
+  ;
+    </script>
+  <i class="close icon"></i>
+  <div class="header">
+    <h2 id="titleCustom">
+          Omega Gamers</h2>
+  </div>
+  <div id="modalForm">
+    <style>
+      #modalForm {
+        width: 80%;
+        margin-left: 10%;
+      }
+      #loginH2Modal {
+        text-align: center;
+        color: #f10983;
+        padding: 2%;
+      }
+      #password {
+        margin-bottom: 2%;
+      }
+    </style>
+    <form class="ui form">
+      <div class="header">
+        <h2 id="loginH2Modal">Login</h2>
+      </div>
+  <div class="field">
+    <label>Email</label>
+    <input type="text" id="email" placeholder="email">
+  </div>
+  <div class="field">
+    <label>Password</label>
+    <input type="text" id="password" placeholder="password">
+  </div>
+</form>
+<form class="ui form">
+      <div class="header">
+        <h2 id="loginH2Modal">Sign Up</h2>
+      </div>
+  <div class="field">
+    <label>Username</label>
+    <input type="text" id="username" placeholder="username">
+  </div>
+  <div class="field">
+    <label>Email</label>
+    <input type="text" id="signUpEmail" placeholder="email">
+  </div>
+  <div class="field">
+    <label>Password</label>
+    <input type="text" id="signUpPassword" placeholder="password">
+  </div>
+  <div class="field">
+    <label>Confirm Password</label>
+    <input type="text" id="signUpPassword" placeholder="confirm password">
+  </div>
+</form>
+</div>
+
+  <div class="actions">
+    <button class="ui positive right labeled icon button">
+      Submit
+      <i class="checkmark icon"></i>
+    </button>
+  </div>
+</div>
