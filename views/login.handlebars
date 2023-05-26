@@ -7,9 +7,9 @@
           <button class="ui item button" id="loginBtn">
             Login
           </button>
-          <a class="ui item" id="signUpBtn">
+          <button class="ui item button" id="signUpBtn">
             Sign Up
-          </a>
+          </button>
         </div>
       </div>
       <!---->
@@ -34,9 +34,11 @@
   <div class="ui tiny modal">
     <script>
       $('.ui.modal')
-.modal('attach events', '#loginBtn', '#signUpBtn')
-  .modal('show')
-  ;
+      .modal('attach events', '#loginBtn')
+      .modal('show');
+      $('.ui.modal')
+      .modal('attach events', '#signUpBtn')
+      .modal('show');
     </script>
   <i class="close icon"></i>
   <div class="header">
@@ -61,42 +63,29 @@
     </style>
     <form class="ui form">
       <div class="header">
-        <h2 class="loginH2Modal">Login</h2>
+        <h2 class="loginH2Modal" id="modal-title">Login</h2>
       </div>
   <div class="field">
     <label>Email</label>
     <input type="text" id="email" placeholder="email">
   </div>
-  <div class="field">
-    <label>Password</label>
-    <input type="text" id="password" placeholder="password">
-  </div>
-</form>
-<form class="ui form">
-      <div class="header">
-        <h2 class="loginH2Modal">Sign Up</h2>
-      </div>
-  <div class="field">
+  <div class="field" id="username-div">
     <label>Username</label>
     <input type="text" id="username" placeholder="username">
   </div>
   <div class="field">
-    <label>Email</label>
-    <input type="text" id="signUpEmail" placeholder="email">
-  </div>
-  <div class="field">
     <label>Password</label>
-    <input type="text" id="signUpPassword" placeholder="password">
+    <input type="text" id="password" placeholder="password">
   </div>
-  <div class="field">
+  <div class="field" id="confirm-password-div">
     <label>Confirm Password</label>
-    <input type="text" id="signUpPassword" placeholder="confirm password">
+    <input type="text" id="confirm-password" placeholder="confirm password">
   </div>
 </form>
 </div>
 
   <div class="actions">
-    <button class="ui positive right labeled icon button">
+    <button class="ui positive right labeled icon button" id="submit-button">
       Submit
       <i class="checkmark icon"></i>
     </button>
