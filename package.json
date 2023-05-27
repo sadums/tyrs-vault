@@ -28,8 +28,7 @@
     "handlebars": "^4.7.6",
     "mysql2": "^2.2.5",
     "sequelize": "^6.3.5",
-    "yup": "^1.1.1"
+    "axios": "^1.4.0"
   },
-  "devDependencies": {},
   "description": ""
 }

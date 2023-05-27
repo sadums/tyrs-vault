@@ -98,7 +98,6 @@ router.post('/logout', async(req, res) => {
 
 router.get('/add-friend/:username', async(req, res) => {
     try{
-        console.log(req.session.userid);
         const user = await User.findByPk(req.session.userid);
         if(!user){
             res.status(404).json({ message : "Something went wrong, please try again"});
@@ -111,11 +110,6 @@ router.get('/add-friend/:username', async(req, res) => {
             return;
         }
 
-        console.log(user);
-
-        console.log("-------------------------------");
-        console.log(addedUser);
-
         if(addedUser.dataValues.username == user.dataValues.username){
             res.status(400).json({ message : "You cannot add yourself as a friend."});
             return;
@@ -124,10 +118,12 @@ router.get('/add-friend/:username', async(req, res) => {
             user_id1: user.dataValues.id,
             user_id2: addedUser.dataValues.id
         });
+
         if(!friendship){
             res.status(400).json({ message: "Failed to add friend"});
             return
         }
+
         res.status(200).json({
             friend: friendship,
             message: "Friend added successfully"
@@ -137,6 +133,5 @@ router.get('/add-friend/:username', async(req, res) => {
         res.status(500).json(e)
     }
 });
-
 
 module.exports = router;
