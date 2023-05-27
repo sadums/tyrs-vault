@@ -202,10 +202,11 @@
 
 
 
-.cardMain {
+.friendCard {
     height: 22vh;
     background-color: var(--moderngray);
-    width: 90%;
+    width: 35vh;
+    padding-right: 5%;
     /* border: solid 3px var(--lightpurple); */
     border-radius: 10px;
 }

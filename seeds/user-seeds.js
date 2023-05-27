@@ -100,6 +100,11 @@ const userSeedData = [
       username: "Lily Davis",
       email: "lilydavis@example.com",
       password: "Password456"
+    },
+    {
+      username: "Carreejoh",
+      email: "carreejoh4637@mailbox.org",
+      password: "Password123"
     }
   ];
   

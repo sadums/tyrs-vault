@@ -14,3 +14,13 @@ const logout = async() => {
 }
 
 logoutButton.addEventListener('click', logout);
+
+
+
+
+
+// Handlebars.registerPartial('friendCard-details', function() {
+//     for (i = 0; i < 10; i++) {
+
+//     }
+// });
