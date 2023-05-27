@@ -4,6 +4,36 @@ const Friend = require('../../models/Friend');
 const bcrypt = require('bcrypt');
 const sequelize = require('../../config/connection');
 
+//sends all data in the users table
+router.get('/', async (req, res) => {
+    try {
+      const response = await User.findAll({
+        //we should include the users friends
+        //include: [Friend]
+      });
+      res.status(200).json(response);
+    } catch (error) {
+      res.status(404).json(error);
+    }
+  });
+  
+  //sends the data of 1 user by id
+  router.get('/:id', async (req, res) => {
+    try {
+      const response = await User.findOne({
+        where: {
+          id: req.params.id
+        },
+        //we should include the users friends
+        //include: [Friend]
+      });
+      res.status(200).json(response);
+    } catch (error) {
+      res.status(404).json(error);
+    }
+  });
+  
+
 router.post('/signup', async(req, res) => {
     try{
         const newUserData = await User.create({

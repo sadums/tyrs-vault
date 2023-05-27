@@ -3,6 +3,7 @@ const sequelize = require('../config/connection');
 
 class UserFriends extends Model{}
 
+//how could we adjust the model so that the number of friends is variable?
 UserFriends.init(
     {
         id:{
