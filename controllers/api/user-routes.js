@@ -134,46 +134,4 @@ router.get('/add-friend/:username', async(req, res) => {
     }
 });
 
-
-// router.get('/add-game/:id', async(req, res) => {
-//     try{
-//         const user = await User.findByPk(req.session.userid);
-//         if(!user){
-//             res.status(404).json({ message : "Something went wrong, please try again"});
-//             return;
-//         }
-
-//         const game = await User.findByPk(req.params.id);
-//         if(!game){
-//             res.status(404).json({ message : "No game found!"});
-//             return;
-//         }
-
-//         console.log(user);
-
-//         console.log("-------------------------------");
-//         console.log(game);
-
-//         if(addedUser.dataValues.username == user.dataValues.username){
-//             res.status(400).json({ message : "You cannot add yourself as a friend."});
-//             return;
-//         }
-//         const friendship = await Friend.create({
-//             user_id1: user.dataValues.id,
-//             user_id2: addedUser.dataValues.id
-//         });
-//         if(!friendship){
-//             res.status(400).json({ message: "Failed to add friend"});
-//             return
-//         }
-//         res.status(200).json({
-//             friend: friendship,
-//             message: "Friend added successfully"
-//         })
-//     }catch(e){
-//         console.error(e);
-//         res.status(500).json(e)
-//     }
-// });
-
 module.exports = router;
