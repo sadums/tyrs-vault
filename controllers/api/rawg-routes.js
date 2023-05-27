@@ -13,7 +13,7 @@ const apiKey = process.env.API_KEY_RAWG;
 // ENDPOINT: "/api/rawg/games"
 router.get('/games', async(req, res) => {
     try{
-        const url = `https://api.rawg.io/api/games?key=${apiKey}"`;
+        const url = `https://api.rawg.io/api/games?key=${apiKey}`;
         axios.get(url)
         .then((response) => {
             console.log(response.data);
