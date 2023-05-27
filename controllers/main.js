@@ -29,6 +29,20 @@ router.get('/login', (req, res) => {
     }
 });
 
+router.get('/friends', (req, res) => {
+    try{
+        if(req.session.loggedIn){
+            res.render('friends');
+            return;
+        }
+
+        res.redirect('/');
+    }catch(e){
+        console.error(e);
+        res.status(500).json(e);
+    }
+});
+
 router.get('/test', async(req, res) => {
     try{
         res.render('test',{
