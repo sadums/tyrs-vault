@@ -5,7 +5,7 @@ require('dotenv').config();
 
 const apiKey = process.env.API_KEY_RAWG;
 
-// ENDPOINT: "/api/rawg/"
+/* ENDPOINT: "/api/rawg/" */
 
 
 

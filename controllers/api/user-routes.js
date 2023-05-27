@@ -1,10 +1,11 @@
 const router = require('express').Router();
 const User = require('../../models/User');
 const Friend = require('../../models/Friend');
-const bcrypt = require('bcrypt');
-const sequelize = require('../../config/connection');
+
+/* ENDPOINT: "/api/user/" */
 
 //sends all data in the users table
+// ENDPOINT: "/api/user/"
 router.get('/', async (req, res) => {
     try {
       const response = await User.findAll({
@@ -33,7 +34,8 @@ router.get('/', async (req, res) => {
     }
   });
   
-
+// Create a new user with signup
+// ENDPOINT: "/api/user/signup"
 router.post('/signup', async(req, res) => {
     try{
         const newUserData = await User.create({
@@ -51,6 +53,9 @@ router.post('/signup', async(req, res) => {
         res.status(500).json(e);
     }
 });
+
+// login a user
+// ENDPOINT: "/api/user/login"
 router.post('/login', async(req, res) => {
     try{
         const userData = await User.findOne({
@@ -81,6 +86,9 @@ router.post('/login', async(req, res) => {
         res.status(500).json(e);
     }
 });
+
+// Logout a user
+// ENDPOINT: "/api/user/logout"
 router.post('/logout', async(req, res) => {
     try{
         if(req.session.loggedIn){
@@ -96,7 +104,16 @@ router.post('/logout', async(req, res) => {
     }
 });
 
-router.get('/add-friend/:username', async(req, res) => {
+
+// Send a friend request
+// ENDPOINT: "/api/user/friend-request/:username"
+router.post('/friend-request/:username', async(req, res) => {
+
+});
+
+// Add a friend
+// ENDPOINT: "/api/user/add-friend/:username"
+router.post('/add-friend/:username', async(req, res) => {
     try{
         const user = await User.findByPk(req.session.userid);
         if(!user){
@@ -132,6 +149,12 @@ router.get('/add-friend/:username', async(req, res) => {
         console.error(e);
         res.status(500).json(e)
     }
+});
+
+// Remove a friend
+// ENDPOINT: "/api/user/remove-friend/:username"
+router.post('/remove-friend/:username', async(req, res) => {
+    
 });
 
 module.exports = router;
