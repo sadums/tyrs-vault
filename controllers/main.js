@@ -3,6 +3,7 @@ const router = require('express').Router();
 
 // TODO: create required routes
 
+<<<<<<< HEAD
 router.get('/', (req, res) => {
     try{
         console.log(req.session.loggedIn)
@@ -14,24 +15,70 @@ router.get('/', (req, res) => {
         console.error(e);
         res.status(500).json(e);
     }
+=======
+//For Handlebars if logged in on load 
+const User = require('../models/User');
+
+// router.get('/',  (req, res) => {
+//     try{
+
+//         const users = User.findAll({});
+
+//         res.render('home', {
+//             // loggedIn: req.session.loggedIn,
+//             users
+//         });
+
+//     }catch(e){
+//         console.error(e);
+//         res.status(500).json(e);
+//     }
+// });
+
+
+router.get('/', async (req, res) => {
+    const userData = await User.findAll().catch((err) => {
+        res.json(err);
+    });
+    const users = userData.map((user) => user.get({ plain: true }));
+    res.render('home', { users });
+>>>>>>> 9593fc2d92262c46dd97cff473d8643895420170
 });
 
+
+
 router.get('/login', (req, res) => {
-    try{
-        if(req.session.loggedIn){
+    try {
+        if (req.session.loggedIn) {
             res.redirect('/');
             return;
         }
+<<<<<<< HEAD
     
         res.render('login', {
             login: true
-        });
-    }catch(e){
+=======
+
+        res.render('login');
+    } catch (e) {
         console.error(e);
         res.status(500).json(e);
     }
 });
 
+router.get('/test', async (req, res) => {
+    try {
+        res.render('test', {
+            testing: true
+>>>>>>> 9593fc2d92262c46dd97cff473d8643895420170
+        });
+    } catch (e) {
+        console.error(e);
+        res.status(500).json(e);
+    }
+});
+
+<<<<<<< HEAD
 router.get('/friends', async (req, res) => {
     try{
         if(!req.session.loggedIn){
@@ -80,5 +127,29 @@ router.get('/profile/:id', async (req, res) => {
 });
 
 
+=======
+//Need a button that takes you to a custom url based on the user session
+router.get('/profile/:username', async (req, res) => {
+    try {
+        const loggedIn = req.session.loggedIn;
+        const loggedInUser = req.session.userid;
+        const requestUser = req.params.username
+        const selectUser = await User.findOne({ where: { username: requestUser}})
+        if (selectUser.username === loggedInUser){
+            res.render('profile-login', {
+                selectUser
+            })
+        }else{
+            res.render('profile-not-login', {
+                selectUser
+            })
+        }
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
+})
+>>>>>>> 9593fc2d92262c46dd97cff473d8643895420170
 
 module.exports = router

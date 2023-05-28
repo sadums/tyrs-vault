@@ -2,104 +2,109 @@ const User = require('../models/User')
 
 const userSeedData = [
     {
-      username: "John Doe",
+      username: "JohnDoe",
       email: "johndoe@example.com",
       password: "Password123"
     },
     {
-      username: "Jane Smith",
+      username: "JaneSmith",
       email: "janesmith@example.com",
       password: "Password456"
     },
     {
-      username: "Michael Johnson",
+      username: "MichaelJohnson",
       email: "michaeljohnson@example.com",
       password: "Password789"
     },
     {
-      username: "Emily Wilson",
+      username: "EmilyWilson",
       email: "emilywilson@example.com",
       password: "Password123"
     },
     {
-      username: "William Davis",
+      username: "WilliamDavis",
       email: "williamdavis@example.com",
       password: "Password456"
     },
     {
-      username: "Olivia Anderson",
+      username: "OliviaAnderson",
       email: "oliviaanderson@example.com",
       password: "Password789"
     },
     {
-      username: "James Brown",
+      username: "JamesBrown",
       email: "jamesbrown@example.com",
       password: "Password123"
     },
     {
-      username: "Sophia Miller",
+      username: "SophiaMiller",
       email: "sophiamiller@example.com",
       password: "Password456"
     },
     {
-      username: "Benjamin Wilson",
+      username: "BenjaminWilson",
       email: "benjaminwilson@example.com",
       password: "Password789"
     },
     {
-      username: "Ava Taylor",
+      username: "AvaTaylor",
       email: "avataylor@example.com",
       password: "Password123"
     },
     {
-      username: "Daniel Martinez",
+      username: "DanielMartinez",
       email: "danielmartinez@example.com",
       password: "Password456"
     },
     {
-      username: "Mia Thompson",
+      username: "MiaThompson",
       email: "miathompson@example.com",
       password: "Password789"
     },
     {
-      username: "Alexander Johnson",
+      username: "AlexanderJohnson",
       email: "alexanderjohnson@example.com",
       password: "Password123"
     },
     {
-      username: "Abigail Davis",
+      username: "AbigailDavis",
       email: "abigaildavis@example.com",
       password: "Password456"
     },
     {
-      username: "Ethan Anderson",
+      username: "EthanAnderson",
       email: "ethananderson@example.com",
       password: "Password789"
     },
     {
-      username: "Charlotte Martinez",
+      username: "CharlotteMartinez",
       email: "charlottemartinez@example.com",
       password: "Password123"
     },
     {
-      username: "Liam Wilson",
+      username: "LiamWilson",
       email: "liamwilson@example.com",
       password: "Password456"
     },
     {
-      username: "Harper Taylor",
+      username: "HarperTaylor",
       email: "harpertaylor@example.com",
       password: "Password789"
     },
     {
-      username: "Lucas Johnson",
+      username: "LucasJohnson",
       email: "lucasjohnson@example.com",
       password: "Password123"
     },
     {
-      username: "Lily Davis",
+      username: "LilyDavis",
       email: "lilydavis@example.com",
       password: "Password456"
+    },
+    {
+      username: "Carreejoh",
+      email: "carreejoh4637@mailbox.org",
+      password: "Password123"
     }
   ];
   

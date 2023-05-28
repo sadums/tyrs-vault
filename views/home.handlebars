@@ -49,70 +49,74 @@
     <h1 id="yourFriendsTitle">Your friends</h1>
     <div id="friendDisplayMain">
         <div id="friendListDiv">
-            <section class="splide" id="splide1" aria-label="Splide Basic HTML Example" data-splide='{"type":"loop", "padding":"5rem", "perPage":"2", "perMove":"1", "focus":"0" }'>
+            <section class="splide" id="splide1" aria-label="Splide Basic HTML Example" data-splide='{"type":"loop", "padding":"5rem", "perPage":"4", "perMove":"1", "focus":"0" }'>
                 <div class="splide__track">
-                      <ul class="splide__list">
+                      <ul class="splide__list" id="friendDisplay">
+                         
+                          {{!-- <li class="splide__slide">
+                            <div class="friendCard">
+                              {{#if users.[0] }}
+                              {{> friendCard-details users.[0] }}
+                              {{/if}}
+                            </div>
+                          </li>
                           <li class="splide__slide">
-                            <div class="cardMain">
-                                
+                            <div class="friendCard">
+                              {{#if users.[1] }}
+                              {{> friendCard-details users.[1] }}
+                              {{/if}}
                             </div>
-                         </li>
-                         <li class="splide__slide">
-                            <div class="cardMain">
-
+                          </li>
+                          <li class="splide__slide">
+                            <div class="friendCard">
+                              {{#if users.[2] }}
+                              {{> friendCard-details users.[2] }}
+                              {{/if}}
                             </div>
-                         </li>
-                         <li class="splide__slide">
-                            <div class="cardMain">
-
-                            </div>
-                         </li>
-                         <li class="splide__slide">
-                            <div class="cardMain">
-
-                            </div>
-                         </li>
+                          </li> --}}
                       </ul>
                 </div>
               </section>
         </div>
         <script>
-          new Splide( '#splide1' ).mount();
+          
+          
         </script>
     </div>
     <h1 id="statsTitle">Your Stats</h1>
     <div id="statsDisplayMain">
-        <section class="splide" id="splide2" aria-label="Splide Basic HTML Example"  data-splide='{"type":"loop", "padding":"8rem", "perPage":"3", "perMove":"1", "focus":"0"}'>
+        {{!-- <section class="splide" id="splide2" aria-label="Splide Basic HTML Example"  data-splide='{"type":"loop", "padding":"8rem", "perPage":"5", "perMove":"1", "focus":"0"}'>
             <div class="splide__track">
                 <ul class="splide__list">
                     <li class="splide__slide">
-                      <div class="cardMain">
-                          
+                      <div class="friendCard">
+                       
                       </div>
                    </li>
                    <li class="splide__slide">
-                      <div class="cardMain">
+                      <div class="friendCard">
 
                       </div>
                    </li>
                    <li class="splide__slide">
-                      <div class="cardMain">
+                      <div class="friendCard">
 
                       </div>
                    </li>
                    <li class="splide__slide">
-                      <div class="cardMain">
+                      <div class="friendCard">
 
                       </div>
                    </li>
                 </ul>
             </div>
-          </section>
+          </section> 
           <script>
             new Splide( '#splide2', {
-            focus: 'center',
+             : 'center',
             } ).mount();
-          </script>
+          </script> --}}
+          {{> splide users }}
     </div>
     <footer>
         <div class="ui secondary centered menu">
@@ -125,3 +129,5 @@
         </div>
     </footer>
     </div>
+
+    <script src="./js/index.js"></script>
