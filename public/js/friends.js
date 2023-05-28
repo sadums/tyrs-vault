@@ -1,5 +1,7 @@
 const friendsList = document.getElementById('friends-list');
-
+// const friendsList = document.getElementById('friends-request-list');
+const friendRequestSendButton = document.getElementById('friend-search-button');
+const friendRequestSearchText = document.getElementById('friend-search-text');
 
 const createFriendRequestEl = function(id, name, pfpSrc){
     const friendRequestEl = document.createElement('div');
