@@ -4,46 +4,44 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Landing</title>
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./css/mainStyle.css">
-  <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/splidejs/4.1.4/css/splide.min.css" integrity="sha512-KhFXpe+VJEu5HYbJyKQs9VvwGB+jQepqb4ZnlhUF/jQGxYJcjdxOTf6cr445hOc791FFLs18DKVpfrQnONOB1g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <title>{{title}}</title>
+
+  {{!-- site css --}}
+  <link rel="stylesheet" href="./css/login.css">
+  <link rel="stylesheet" href="./css/home.css">
+  
+
+  {{!-- CDN --}}
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Barlow:ital,wght@1,300&family=Roboto+Mono&family=Roboto:wght@500&family=Tillana:wght@600&family=Turret+Road:wght@500&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.2/dist/semantic.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.2/dist/semantic.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
-    <script src="
-https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js
-"></script>
+  
+  <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.2/dist/semantic.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 </head>
 
 <body>
-  
-  <!--For Modal signup/login-->
-  
-
   <main id="main">
-    <div>
-      {{{body}}}
-    </div>
+    {{{body}}}
   </main>
 
-  {{#unless loggedIn}}
+  {{!-- site javascript --}}
+  {{#if login}}
   <script src="./js/login.js"></script>
-  {{/unless}}
+  {{/if}}
+  {{#if home}}
   {{#if loggedIn}}
-  <script src="./js/mainStyle.js"></script>
+  <script src="./js/home.js"></script>
   {{/if}}
-  {{#if testing}}
-  <script src="./js/testing.js"></script>
   {{/if}}
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.2/dist/semantic.min.css">
-  <script src="./js/renderFrontEnd.js"></script>
+  {{#if friends}}
+  <script src="./js/friends.js"></script>
+  {{/if}}
+
 </body>
 
 </html>
