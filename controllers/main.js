@@ -3,19 +3,6 @@ const router = require('express').Router();
 
 // TODO: create required routes
 
-<<<<<<< HEAD
-router.get('/', (req, res) => {
-    try{
-        console.log(req.session.loggedIn)
-        res.render('home', {
-            loggedIn: req.session.loggedIn,
-            home: true
-        });
-    }catch(e){
-        console.error(e);
-        res.status(500).json(e);
-    }
-=======
 //For Handlebars if logged in on load 
 const User = require('../models/User');
 
@@ -42,7 +29,6 @@ router.get('/', async (req, res) => {
     });
     const users = userData.map((user) => user.get({ plain: true }));
     res.render('home', { users });
->>>>>>> 9593fc2d92262c46dd97cff473d8643895420170
 });
 
 
@@ -53,24 +39,9 @@ router.get('/login', (req, res) => {
             res.redirect('/');
             return;
         }
-<<<<<<< HEAD
     
         res.render('login', {
             login: true
-=======
-
-        res.render('login');
-    } catch (e) {
-        console.error(e);
-        res.status(500).json(e);
-    }
-});
-
-router.get('/test', async (req, res) => {
-    try {
-        res.render('test', {
-            testing: true
->>>>>>> 9593fc2d92262c46dd97cff473d8643895420170
         });
     } catch (e) {
         console.error(e);
@@ -78,7 +49,6 @@ router.get('/test', async (req, res) => {
     }
 });
 
-<<<<<<< HEAD
 router.get('/friends', async (req, res) => {
     try{
         if(!req.session.loggedIn){
@@ -126,8 +96,6 @@ router.get('/profile/:id', async (req, res) => {
     });
 });
 
-
-=======
 //Need a button that takes you to a custom url based on the user session
 router.get('/profile/:username', async (req, res) => {
     try {
@@ -149,7 +117,8 @@ router.get('/profile/:username', async (req, res) => {
         console.log(err)
         res.status(500).json(err)
     }
-})
->>>>>>> 9593fc2d92262c46dd97cff473d8643895420170
+});
+
+
 
 module.exports = router
