@@ -28,9 +28,6 @@ const switchSignUp = (event) => {
 
     usernameSection.setAttribute('style', 'display: block');
     confirmPasswordSection.setAttribute('style', 'display: block');
-
-    emailInput.value = '';
-    passwordInput.value = '';
 }
 
 // Switch to login modal
@@ -41,11 +38,6 @@ const switchLogin = (event) => {
 
     usernameSection.setAttribute('style', 'display: none');
     confirmPasswordSection.setAttribute('style', 'display: none');
-
-    emailInput.value = '';
-    usernameInput.value = '';
-    passwordInput.value = '';
-    confirmPasswordInput.value = '';
 }
 
 // Submit sign up form
@@ -75,6 +67,11 @@ const submitSignup = async () => {
     }else{
         alert('Please fill in all fields')
     }
+
+    emailInput.value = '';
+    usernameInput.value = '';
+    passwordInput.value = '';
+    confirmPasswordInput.value = '';
 }
 
 // Submit login form
@@ -98,6 +95,11 @@ const submitLogin = async() => {
     }else{
         alert('Please fill in all fields');
     }
+
+    emailInput.value = '';
+    usernameInput.value = '';
+    passwordInput.value = '';
+    confirmPasswordInput.value = '';
 }
 
 // Determine which form to submit

@@ -7,6 +7,7 @@ const FriendRequest = require('../../models/FriendRequest');
 
 
 
+
 //sends all data in the userfriends table
 router.get('/', async (req, res) => {
   try {
@@ -16,25 +17,10 @@ router.get('/', async (req, res) => {
     res.status(500).json(error);
   }
 });
-  
-//sends the data of 1 useruriends by id
-router.get('/:id', async (req, res) => {
-  try {
-    const response = await UserFriends.findOne({
-      where: {
-        id: req.params.id
-      },
-    });
-    res.status(200).json(response);
-  } catch (error) {
-    res.status(500).json(error);
-  }
-});
-
 
 // Get all of a users friends
 // ENDPOINT: "/api/userfriends/friends"
-router.get('/friends', async(req, res) => {
+router.get('/friends', async (req, res) => {
   try{
     const friends1 = await UserFriends.findAll({
       where: {
@@ -47,35 +33,10 @@ router.get('/friends', async(req, res) => {
       }
     });
 
-    if(!friends1 && !friends2){
-      res.status(404).json({ message : "You have no friends😔"});
-      return;
-    }
-
-    if(friends1 && friends2){
-      res.status(200).json({ 
-        message: "found friends1 and friends2",
-        friends1: friends1,
-        friends2: friends2
-      });
-      return;
-    }else if(friends1){
-      res.status(200).json({ 
-        message: "found friends1",
-        friends1: friends1
-      });
-      return;
-    }else if(friends2){
-      res.status(200).json({ 
-        message: "found friends2",
-        friends2: friends2
-      });
-      return;
-    }else{
-      res.status(404).json({ message : "You have no friends😔"});
-      return;
-    }
-
+    res.status(200).json({ 
+      friends1: friends1,
+      friends2: friends2
+    });
   }catch(e){
     console.error(e);
     res.status(500).json(e);
@@ -91,7 +52,6 @@ router.post('/friend-request/:username', async(req, res) => {
         res.status(404).json({ message : "Something went wrong, please try again"});
         return;
     }
-  
     
     const requestedUser = await User.findOne({ where: { username: req.params.username}});
     if(!requestedUser){
@@ -127,12 +87,14 @@ router.post('/friend-request/:username', async(req, res) => {
 // receive all of a users friend requests
 // ENDPOINT: "/api/userfriends/get-requests/"
 router.get('/get-requests', async(req, res) => {
+  console.log("TESTING");
   try {
     const friendRequests = await FriendRequest.findAll({
       where: {
         targetUserId: req.session.userid
       }
     });
+    console.log(friendRequests);
   
     if(!friendRequests){
       res.status(400).json({message: "Nobody wants to be your friend! LOL!"});
@@ -268,5 +230,20 @@ router.delete('/remove-friend/:username', async(req, res) => {
     res.status(500).json(e);
   }
 });
+
+// This route is literally a virus and makes half the other routes break
+// //sends the data of 1 userfriends by id
+// router.get('/:id', async (req, res) => {
+//   try {
+//     const response = await UserFriends.findOne({
+//       where: {
+//         id: req.params.id
+//       },
+//     });
+//     res.status(200).json(response);
+//   } catch (error) {
+//     res.status(500).json(error);
+//   }
+// });
 
 module.exports = router;

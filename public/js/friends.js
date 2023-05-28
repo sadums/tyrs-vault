@@ -1,5 +1,23 @@
 const friendsList = document.getElementById('friends-list');
 
+
+const createFriendRequestEl = function(id, name, pfpSrc){
+    const friendRequestEl = document.createElement('div');
+    friendRequestEl.setAttribute("class", "col-md-12");
+    friendRequestEl.setAttribute("id", id);
+    friendRequestEl.innerHTML = `
+        <div class="card text-white bg-dark">
+          <div class="card-body">
+            <img class="card-img-top" src="${pfpSrc}" style="width: 200px; height: 200px" alt="Profile">
+            <h4 class="card-title">Friend request from ${name}</h4>
+            <button>Accept</button>
+            <button>Request</button>
+          </div>
+        </div>
+    `;
+    friendsList.appendChild(friendRequestEl);
+}
+
 const createFriendEl = function(id, name, pfpSrc){
     if(!pfpSrc){
         const random = Math.floor(Math.random() * 3)
@@ -33,13 +51,7 @@ const createFriendEl = function(id, name, pfpSrc){
 }
 
 
-
-fetch('/api/userfriends/friend-request/<username>', {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    }
-})
+fetch('/api/userfriends/get-requests/')
 .then((response) => response.json())
 .then((data) => {
     console.log(data);
