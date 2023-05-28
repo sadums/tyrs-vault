@@ -81,36 +81,51 @@ router.get('/profile', async (req, res) => {
 // Render a specific users profile
 router.get('/profile/:id', async (req, res) => {
     const user = await User.findByPk(req.params.id);
-
     if(!user){
         res.status(404).json({ message : "Something went wrong, please try again"});
         return;
     }
-    res.render('profile', {
-        user: user.dataValues
-    });
+    const loggedIn = req.session.loggedIn;
+    // const loggedInUser = req.session.userid;
+    // const requestUser = req.params.username;
+    //res.send('profile-login')
+    try {
+        if (loggedIn){ //change the validation here
+            res.send('profile-login')
+        }else{
+            console.log('it got to not login')
+            res.send('profile-not-login')
+        }
+    }
+    catch (err){
+        console.log(err)
+        res.status(500).json()
+    }
 });
 
 //Need a button that takes you to a custom url based on the user session
+
+
 router.get('/profile/:username', async (req, res) => {
     try {
         const loggedIn = req.session.loggedIn;
         const loggedInUser = req.session.userid;
-        const requestUser = req.params.username
+        const requestUser = req.params.username;
         const selectUser = await User.findOne({ where: { username: requestUser}})
+        console.log(selectUser)
+        console.log(requestUser)
+        console.log(loggedInUser)
+        res.json(selectUser)
         if (selectUser.username === loggedInUser){
-            res.render('profile-login', {
-                selectUser
-            })
+            res.send('profile-login')
         }else{
-            res.render('profile-not-login', {
-                selectUser
-            })
+            console.log('it got to not login')
+            res.send('profile-not-login')
         }
     }
     catch (err) {
         console.log(err)
-        res.status(500).json(err)
+        res.status(500).json('err')
     }
 });
 
