@@ -6,29 +6,24 @@ const router = require('express').Router();
 //For Handlebars if logged in on load 
 const User = require('../models/User');
 
-// router.get('/',  (req, res) => {
-//     try{
-
-//         const users = User.findAll({});
-
-//         res.render('home', {
-//             // loggedIn: req.session.loggedIn,
-//             users
-//         });
-
-//     }catch(e){
-//         console.error(e);
-//         res.status(500).json(e);
-//     }
-// });
-
-
 router.get('/', async (req, res) => {
+    try{
+
     const userData = await User.findAll().catch((err) => {
         res.json(err);
     });
     const users = userData.map((user) => user.get({ plain: true }));
-    res.render('home', { users });
+
+    res.render('home', {
+        home: true,
+        loggedIn: req.session.loggedIn,
+        users
+    });
+
+    }catch(e){
+        console.error(e);
+        res.status(500).json(e);
+    }
 });
 
 
