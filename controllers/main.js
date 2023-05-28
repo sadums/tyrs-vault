@@ -3,17 +3,35 @@ const router = require('express').Router();
 
 // TODO: create required routes
 
-router.get('/', (req, res) => {
-    try{
-        console.log(req.session.loggedIn)
-        res.render('home', {
-            loggedIn: req.session.loggedIn
-        });
-    }catch(e){
-        console.error(e);
-        res.status(500).json(e);
-    }
+//For Handlebars if logged in on load 
+const User = require('../models/User');
+
+// router.get('/',  (req, res) => {
+//     try{
+
+//         const users = User.findAll({});
+
+//         res.render('home', {
+//             // loggedIn: req.session.loggedIn,
+//             users
+//         });
+
+//     }catch(e){
+//         console.error(e);
+//         res.status(500).json(e);
+//     }
+// });
+
+
+router.get('/', async (req, res) => {
+    const userData = await User.findAll().catch((err) => {
+        res.json(err);
+    });
+    const users = userData.map((user) => user.get({ plain: true}));
+    res.render('home', { users });
 });
+
+
 
 router.get('/login', (req, res) => {
     try{
