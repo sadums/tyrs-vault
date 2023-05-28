@@ -16,11 +16,15 @@ const logout = async() => {
 logoutButton.addEventListener('click', logout);
 
 
-
-
-
-// Handlebars.registerPartial('friendCard-details', function() {
-//     for (i = 0; i < 10; i++) {
-
+// const renderUserList = async() => {
+//     const status = await fetch('/', {
+//         method: 'GET'
+//     });
+//     if(status.ok) {
+//         let users = document.querySelector('.userListItems');
+//         users.classList.add("splide__slide");
+//         console.log("SDFSDFDSFSDFsd");
 //     }
-// });
+// }
+
+// window.addEventListener('load', renderUserList, console.log("Im reached"));

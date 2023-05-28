@@ -200,15 +200,26 @@
     /* background-color: var(--moderngray); */
 }
 
-
+/* For Cards */
 
 .friendCard {
-    height: 22vh;
+    height: 32vh;
     background-color: var(--moderngray);
-    width: 35vh;
-    padding-right: 5%;
-    /* border: solid 3px var(--lightpurple); */
+    width: 90%;
+    border: solid 2px var(--lightgreen);
     border-radius: 10px;
+}
+
+.friendCard h2 {
+    font-family: 'Bangers', cursive;
+    font-weight: 200;
+    text-align: center;
+    color: black;
+}
+
+.friendsCardFacts {
+    width: 90%;
+    margin-left: 5%;
 }
 
 /* for displaying stats */

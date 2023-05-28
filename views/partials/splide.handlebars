@@ -1,0 +1,18 @@
+<section class="splide" id="splide2" aria-label="Splide Basic HTML Example"  data-splide='{"type":"loop", "padding":"8rem", "perPage":"5", "perMove":"1", "focus":"0"}'>
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <li class="splide__slide">
+                      <div class="friendCard">
+                        {{#each user as |users|}}
+                       <p>{{ username }}</p>
+                        {{/each}}
+                      </div>
+                   </li>
+                </ul>
+            </div>
+          </section> 
+          <script>
+            new Splide( '#splide2', {
+             focus: 'center',
+            } ).mount();
+          </script>

@@ -37,7 +37,7 @@ User.init(
                 isUppercase: true,
                 isLowercase: true
             }
-        }
+        },
     },
     {
         hooks: {
