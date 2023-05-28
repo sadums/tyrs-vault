@@ -7,7 +7,8 @@ router.get('/', (req, res) => {
     try{
         console.log(req.session.loggedIn)
         res.render('home', {
-            loggedIn: req.session.loggedIn
+            loggedIn: req.session.loggedIn,
+            home: true
         });
     }catch(e){
         console.error(e);
@@ -22,7 +23,9 @@ router.get('/login', (req, res) => {
             return;
         }
     
-        res.render('login');
+        res.render('login', {
+            login: true
+        });
     }catch(e){
         console.error(e);
         res.status(500).json(e);
@@ -36,7 +39,10 @@ router.get('/friends', async (req, res) => {
             return;
         }
 
-        res.render('friends');
+        res.render('friends', {
+            loggedIn: req.session.loggedIn,
+            friends: true
+        });
     }catch(e){
         console.error(e);
         res.status(500).json(e);
