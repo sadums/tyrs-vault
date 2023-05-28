@@ -5,6 +5,12 @@ class FriendRequest extends Model{}
 
 FriendRequest.init(
     {
+        id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            autoIncrement: true,
+            primaryKey: true
+        },
         targetUserID: {
             type: DataTypes.INTEGER,
             allowNull: false,
