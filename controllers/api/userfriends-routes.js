@@ -31,6 +31,57 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+
+// Get all of a users friends
+// ENDPOINT: "/api/userfriends/friends"
+router.get('/friends', async(req, res) => {
+  try{
+    const friends1 = await UserFriends.findAll({
+      where: {
+        user_id1: req.session.userid,
+      }
+    });
+    const friends2 = await UserFriends.findAll({
+      where: {
+        user_id2: req.session.userid
+      }
+    });
+
+    if(!friends1 && !friends2){
+      res.status(404).json({ message : "You have no friends😔"});
+      return;
+    }
+
+    if(friends1 && friends2){
+      res.status(200).json({ 
+        message: "found friends1 and friends2",
+        friends1: friends1,
+        friends2: friends2
+      });
+      return;
+    }else if(friends1){
+      res.status(200).json({ 
+        message: "found friends1",
+        friends1: friends1
+      });
+      return;
+    }else if(friends2){
+      res.status(200).json({ 
+        message: "found friends2",
+        friends2: friends2
+      });
+      return;
+    }else{
+      res.status(404).json({ message : "You have no friends😔"});
+      return;
+    }
+
+  }catch(e){
+    console.error(e);
+    res.status(500).json(e);
+  }
+});
+
 // Send a friend request
 // ENDPOINT: "/api/userfriends/friend-request/:username"
 router.post('/friend-request/:username', async(req, res) => {
@@ -73,9 +124,9 @@ router.post('/friend-request/:username', async(req, res) => {
   }
 });
 
-// Send a friend request
+// receive all of a users friend requests
 // ENDPOINT: "/api/userfriends/get-requests/"
-router.get('/get-requests/', async(req, res) => {
+router.get('/get-requests', async(req, res) => {
   try {
     const friendRequests = await FriendRequest.findAll({
       where: {
@@ -95,8 +146,40 @@ router.get('/get-requests/', async(req, res) => {
   }
 });
 
+// Delete a friend request
+// ENDPOINT: "/api/userfriends/delete-request/:id"
+router.delete('/delete-request/:id', async(req, res) => {
+  try{
+    const friendRequest = await FriendRequest.findOne({
+      where: {
+        id: req.params.id
+      }
+    });
 
-// Send a friend request
+    if(!friendRequest){
+      res.status(404).json({message: "Could not find specified friend request"});
+      return;
+    }
+
+    const deleted = await friendRequest.destroy();
+
+    if(!deleted){
+      res.status(400).json({message: "Failed to delete friend request"});
+      return;
+    }
+
+    res.status(200).json({
+      message: "Friend request has been deleted",
+      deleted: deleted
+    });
+
+  }catch(e){
+    console.error(e);
+    res.status(500).json(e);
+  }
+});
+
+// Accept a users friend request
 // ENDPOINT: "/api/userfriends/accept-friend/:id"
 router.post('/accept-friend/:id', async(req, res) => {
   try{
@@ -138,7 +221,7 @@ router.post('/accept-friend/:id', async(req, res) => {
 
 // Remove a friend
 // ENDPOINT: "/api/userfriends/remove-friend/:username"
-router.post('/remove-friend/:username', async(req, res) => {
+router.delete('/remove-friend/:username', async(req, res) => {
   try {
     const user = await User.findByPk(req.session.userid);
     if(!user){
@@ -150,13 +233,13 @@ router.post('/remove-friend/:username', async(req, res) => {
       where: { username: req.params.username }
     });
 
-    const friendshipTest1 = UserFriends.findOne({
+    const friendshipTest1 = await UserFriends.findOne({
       where: {
         user_id1: user.dataValues.id,
         user_id2: addedUser.dataValues.id
       }
     });
-    const friendshipTest2 = UserFriends.findOne({
+    const friendshipTest2 = await UserFriends.findOne({
       where: {
         user_id1: addedUser.dataValues.id,
         user_id2: user.dataValues.id
