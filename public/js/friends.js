@@ -1,23 +1,58 @@
 const friendsList = document.getElementById('friends-list');
-// const friendsList = document.getElementById('friends-request-list');
+const friendRequestList = document.getElementById('friends-request-list');
 const friendRequestSendButton = document.getElementById('friend-search-button');
 const friendRequestSearchText = document.getElementById('friend-search-text');
 
 const createFriendRequestEl = function(id, name, pfpSrc){
     const friendRequestEl = document.createElement('div');
     friendRequestEl.setAttribute("class", "col-md-12");
-    friendRequestEl.setAttribute("id", id);
-    friendRequestEl.innerHTML = `
-        <div class="card text-white bg-dark">
-          <div class="card-body">
-            <img class="card-img-top" src="${pfpSrc}" style="width: 200px; height: 200px" alt="Profile">
-            <h4 class="card-title">Friend request from ${name}</h4>
-            <button>Accept</button>
-            <button>Request</button>
-          </div>
-        </div>
-    `;
-    friendsList.appendChild(friendRequestEl);
+
+
+    const cardElement = document.createElement('div');
+    cardElement.setAttribute('class', 'card text-white bg-dark');
+    cardElement.setAttribute('id', id);
+
+    const cardBody = document.createElement('div');
+    cardBody.setAttribute('class', 'card-body');
+    cardBody.setAttribute('id', id);
+
+    const pfp = document.createElement('img');
+    pfp.setAttribute('class', 'card-img-top');
+    pfp.setAttribute('style', 'width: 200px; height: 200px');
+    pfp.setAttribute('alt', 'Profile');
+    pfp.setAttribute('id', id);
+    pfp.addEventListener('click', viewProfile);
+
+    const title = document.createElement('h4');
+    title.setAttribute('id', id);
+    title.setAttribute('class', 'card-title');
+    title.textContent = `Friend request from ${name}`
+
+    const form = document.createElement('form');
+
+    const acceptButton = document.createElement('button');
+    acceptButton.textContent = "Accept";
+    acceptButton.addEventListener('click', acceptFriendRequest);
+    acceptButton.setAttribute('id', id);
+    
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = "Delete";
+    deleteButton.addEventListener('click', deleteFriendRequest);
+    deleteButton.setAttribute('id', id);
+
+    form.appendChild(acceptButton);
+    form.appendChild(deleteButton);
+
+    cardBody.appendChild(pfp);
+    cardBody.appendChild(title);
+    cardBody.appendChild(form)
+
+
+    cardElement.appendChild(cardBody);
+
+    friendRequestEl.appendChild(cardElement);
+
+    friendRequestList.appendChild(friendRequestEl);
 }
 
 const createFriendEl = function(id, name, pfpSrc){
@@ -32,33 +67,138 @@ const createFriendEl = function(id, name, pfpSrc){
                 break;
             case 2:
                 pfpSrc = "https://e0.pxfuel.com/wallpapers/251/27/desktop-wallpaper-giga-chad-ideas-chad-memes-muscle-men.jpg";
-                break;
-                    
+                break;         
         }
     }
 
     const friendEl = document.createElement('div');
     friendEl.setAttribute("class", "col-md-12");
-    friendEl.setAttribute("id", id);
-    friendEl.innerHTML = `
-        <div class="card text-white bg-dark">
-          <div class="card-body">
-            <img class="card-img-top" src="${pfpSrc}" style="width: 200px; height: 200px" alt="Profile">
-            <h4 class="card-title">${name}</h4>
-          </div>
-        </div>
-    `;
+
+
+    const cardElement = document.createElement('div');
+    cardElement.setAttribute('class', 'card text-white bg-dark');
+    cardElement.setAttribute('id', id);
+
+    const cardBody = document.createElement('div');
+    cardBody.setAttribute('class', 'card-body');
+    cardBody.setAttribute('id', id);
+
+    const pfp = document.createElement('img');
+    pfp.setAttribute('class', 'card-img-top');
+    pfp.setAttribute('style', 'width: 200px; height: 200px');
+    pfp.setAttribute('alt', 'Profile');
+    pfp.setAttribute('src', pfpSrc);
+    pfp.setAttribute('id', id);
+    pfp.addEventListener('click', viewProfile);
+
+    const title = document.createElement('h4');
+    title.setAttribute('class', 'card-title');
+    title.textContent = name;
+    title.setAttribute('id', id);
+
+    const form = document.createElement('form');
+
+    const removeFriendButton = document.createElement('button');
+    removeFriendButton.setAttribute('id', id);
+    removeFriendButton.textContent = "Remove Friend";
+    removeFriendButton.addEventListener("click", removeFriend);
+
+    form.appendChild(removeFriendButton);
+
+    cardBody.appendChild(pfp);
+    cardBody.appendChild(title);
+    cardBody.appendChild(form);
+
+    cardElement.appendChild(cardBody);
+
+    friendEl.appendChild(cardElement);
 
     friendsList.appendChild(friendEl);
 }
 
-
-fetch('/api/userfriends/get-requests/')
-.then((response) => response.json())
-.then((data) => {
-    console.log(data);
+friendRequestSendButton.addEventListener('click', function(event){
+    event.preventDefault();
+    const getUsername = friendRequestSearchText.value;
+    fetch(`/api/userfriends/friend-request/${getUsername}`,{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data);
+    });
 });
 
 
+const deleteFriendRequest = async function(event){
+    let id = event.target.id;
+    console.log(id);
+    await fetch(`/api/userfriends/delete-request/${id}`,{
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data);
+    });
+}
+
+const acceptFriendRequest = async function(event){
+    let id = event.target.id;
+    await fetch(`/api/userfriends/accept-friend/${id}`,{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data);
+    });
+}
 
 
+const getFriendRequests = function(){
+    fetch(`/api/userfriends/get-requests`)
+    .then((response) => response.json())
+    .then((data) => {
+        data.forEach((request) => {
+            let id = request.user.id
+            let name = request.user.username
+            createFriendRequestEl(id, name)
+        });
+    });
+}
+
+const getFriends = function(){
+    fetch(`/api/userfriends/friends`)
+    .then((response) => response.json())
+    .then((data) => {
+        data.forEach((friend) => {
+            createFriendEl(friend.id, friend.username);
+        })
+    });
+}
+
+const removeFriend = function(event){
+    let id = event.target.id;
+    fetch(`/api/userfriends/remove-friend/${id}`,{
+        method: "DELETE",
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data);
+    });
+}
+
+const viewProfile = function(event){
+    let id = event.target.id;
+    location.href = `/profile/${id}`;
+}
+
+getFriends();
+getFriendRequests();

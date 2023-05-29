@@ -31,12 +31,9 @@ User.belongsToMany(User, {
 });
 
 User.hasMany(FriendRequest, {
-    foreignKey: 'id',
     onDelete: 'CASCADE'
 });
 
-FriendRequest.belongsTo(User, {
-    foreignKey: 'id'
-});
+FriendRequest.belongsTo(User);
 
 module.exports = {User, Game, UserGames, Friend}
