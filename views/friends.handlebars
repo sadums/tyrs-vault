@@ -66,12 +66,16 @@
           <input type="text" placeholder="Username">
         </div>
         <div class="three wide field">
+
+          <label>Profile Pic</label>
+
           <form id="imageUploadForm">
             <input type="file" id="imageInput" accept="image/*">
             <button type="submit">Upload</button>
           </form>
 
           <div id="preview"></div>
+
         </div>
         <div class="three wide field">
           <label>Theme</label>
@@ -83,6 +87,7 @@
       </div>
       <div class="three fields">
         <div class="field">
+
           <label>Steam Username</label>
           <input type="text" placeholder="Steam Username">
         </div>
@@ -92,16 +97,19 @@
         </div>
         <div class="field">
           <label>Playstation Username</label>
+
           <input type="text" placeholder="Playstation Username">
         </div>
       </div>
       <label>
         <h2 id="otherLabelModal">Other</h2>
       </label>
+
       <div class="three fields">
         <div class="field">
           <label>Chess.com Username</label>
           <input id="chess-input" type="text" placeholder="Chess.com Username">
+
         </div>
         <div class="field">
           <label>Fortnite Username</label>
@@ -142,8 +150,6 @@
 
 
 
-
-
 <div id="mainProfileDiv">
   <div id="profileSection">
 
@@ -157,35 +163,6 @@
           <h1 id="profileUsername">Carreejoh</h1>
         </div>
         <div class="ui secondary right menu">
-          <div class="ui item">
-            <div class="ui list">
-              <div class="item">
-                <i class="users icon"></i>
-                <div class="content" id='profileHeaderExtra'>
-                  Xbox
-                </div>
-              </div>
-              <div class="item">
-                <i class="marker icon"></i>
-                <div class="content" id='profileHeaderExtra'>
-                  Steam
-                </div>
-              </div>
-              <div class="item">
-                <i class="mail icon"></i>
-                <div class="content" id='profileHeaderExtra'>
-                  PC
-                </div>
-              </div>
-              <div class="item">
-                <i class="linkify icon"></i>
-                <div class="content" id='profileHeaderExtra'>
-                  Playstation 4
-                </div>
-              </div>
-            </div>
-          </div>
-
           {{!-- {{ ADD LOGIC HERE FOR IF YOUR PROFILE}} --}}
           <button class="ui item button" id="editProfileBtn">Edit Profile</button>
           <script>
@@ -195,12 +172,29 @@
           </script>
 
         </div>
+
       </div>
-
-
-      <div class="ui secondary menu">
+    </div>
+    <div id="profileDescriptionDiv">
+      <h2>Description</h2>
+      <div id="profileDescription">
+        <p>As a dedicated gamer, I find solace in the boundless realms of virtual adventures, where pixels intertwine to
+          create mesmerizing tapestries of imagination. Games have become my refuge, offering an escape from the mundane
+          and granting me the power to transcend the limits of reality. Within these digital landscapes, I become an
+          architect of destiny, forging narratives and shaping destinies with the deft strokes of a controller.</p>
+      </div>
+    </div>
+    <div id="profileGamesDiv">
+      <h2>Platforms</h2>
+      <div class="ui secondary horizontal relaxed list">
         <div class="ui item">
-          <h1>sdfdsf</h1>
+          <i class="ui large steam icon"></i>
+        </div>
+        <div class="ui item">
+          <h2>sdfsdf</h2>
+        </div>
+        <div class="ui item">
+          <h2>sdfsdf</h2>
         </div>
       </div>
     </div>
