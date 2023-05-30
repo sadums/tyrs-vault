@@ -101,3 +101,20 @@
     color: white;
     font-size: 18px;
 }
+
+#editProfileBtn {
+    background-color: white;
+
+}
+
+/* For edit profile modal */
+
+#editProfileModuleMain {
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 2%;
+}
+
+#otherLabelModal {
+    margin-bottom: 2%;
+}

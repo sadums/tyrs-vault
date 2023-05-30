@@ -47,6 +47,90 @@
           </div>
 </div>
 
+
+{{!-- {{ FOR EDIT PROFILE MODAL}} --}}
+<div class="ui modal profile">
+  <i class="close icon"></i>
+  <div class="header">
+    Edit Profile
+  </div>
+
+  <div id="editProfileModuleMain">
+    <div class="ui form">
+      <label><h2 id="otherLabelModal">Main</h2></label>
+      <div class="three fields">
+      <div class="eight wide field">
+      <label>Username</label>
+      <input type="text" placeholder="Username">
+      </div>
+      <div class="three wide field">
+      <label>Profile Pic</label>
+      </div>
+      <div class="three wide field">
+      <label>Theme</label>
+      </div>
+      </div>
+      <div class="field">
+      <label>Description</label>
+      <textarea rows="3"></textarea>
+      </div>
+      <div class="three fields">
+        <div class="field">
+        <label>Steam Username</label>
+        <input type="text" placeholder="Steam Username">
+        </div>
+        <div class="field">
+        <label>Xbox Username</label>
+        <input type="text" placeholder="Xbox Username">
+        </div>
+        <div class="field">
+        <label>Playstation Username</label>
+        <input type="text" placeholder="Playstation Username">
+        </div>
+      </div>
+      <label><h2 id="otherLabelModal">Other</h2></label>
+      <div class="two fields">
+        <div class="eight wide field">
+          <label>Chess.com Username</label>
+          <input type="text" placeholder="Chess.com Username">
+        </div>
+        <div class="eight wide field">
+          <label>Steam ID #</label>
+          <input type="text" placeholder="Steam ID">
+        </div>
+      </div>
+      <div class="three fields">
+        <div class="six wide field">
+          <label>Favorite Game</label>
+          <input type="text" placeholder="#1 Favorite Game"></input>
+        </div>
+        <div class="five wide field">
+          <label>2nd Favorite Game</label>
+          <input type="text" placeholder="#2 Favorite Game"></input>
+        </div>
+        <div class="five wide field">
+          <label>3rd Favorite Game</label>
+          <input type="text" placeholder="#3 Favorite Game"></input>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="actions">
+    <button class="ui black deny button">
+      Cancel
+    </button>
+    <button class="ui positive right labeled icon button">
+      Confirm
+      <i class="checkmark icon"></i>
+    </button>
+  </div>
+</div>
+
+
+
+
+
 <div id="mainProfileDiv">
   <div id="profileSection">
 
@@ -87,13 +171,22 @@
   </div>
 </div>
         </div>
+
+        {{!-- {{ ADD LOGIC HERE FOR IF YOUR PROFILE}} --}}
+        <button class="ui item button" id="editProfileBtn">Edit Profile</button>
+      <script>
+        $('.ui.modal')
+      .modal('attach events', '#editProfileBtn')
+      .modal('show');
+      </script>
+      
       </div>
       </div>
 
 
       <div class="ui secondary menu">
         <div class="ui item">
-
+          <h1>sdfdsf</h1>
         </div>
       </div>
     </div>
