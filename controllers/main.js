@@ -5,6 +5,7 @@ const router = require('express').Router();
 
 //For Handlebars if logged in on load 
 const User = require('../models/User');
+const Game = require('../models/Game')
 
 router.get('/', async (req, res) => {
     try{
@@ -133,6 +134,17 @@ router.get('/profile/:username', async (req, res) => {
         res.status(500).json('err')
     }
 });
+
+router.get('/games', async (req, res) => {
+    const gameData = await Game.findAll().catch((err) => {
+        res.json(err);
+    });
+    const games = gameData.map((user) => user.get({ plain: true }));
+
+    res.render('games', {
+        games
+    })
+})
 
 
 
