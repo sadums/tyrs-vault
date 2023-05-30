@@ -1,50 +1,50 @@
 {{!-- <section class="col-md-12">
-    
+
 </section>
 <section class="col-md-12 m-5">
-    <form class="d-flex m-5">
-      <input class="form-control me-sm-2" type="text" placeholder="Enter username" id="friend-search-text">
-      <button class="btn btn-outline-success my-2 my-sm-0" id="friend-search-button">Add Friend</button>
-    </form>
-    <h2 class="col-md-12">Friend Requests: </h2>
-    <div class="row justify-content-center align-items-center g-2" id="friends-request-list" style="width: 50%">
-    </div>
-    <h2 class="col-md-12">Friends: </h2>
-    <div class="row justify-content-center align-items-center g-2" id="friends-list" style="width: 50%">
-    </div>
+  <form class="d-flex m-5">
+    <input class="form-control me-sm-2" type="text" placeholder="Enter username" id="friend-search-text">
+    <button class="btn btn-outline-success my-2 my-sm-0" id="friend-search-button">Add Friend</button>
+  </form>
+  <h2 class="col-md-12">Friend Requests: </h2>
+  <div class="row justify-content-center align-items-center g-2" id="friends-request-list" style="width: 50%">
+  </div>
+  <h2 class="col-md-12">Friends: </h2>
+  <div class="row justify-content-center align-items-center g-2" id="friends-list" style="width: 50%">
+  </div>
 </section> --}}
 
 
 <div class="ui secondary  menu" id="headerProfile">
-        <a class="item" id="titleCustom">
-          Tyr's Vault 
-        </a>
-          <div class="right menu">
-            <a class="ui item" id="friendsLink" href="/friends">
-              Friends
-            </a>
-            <a class="ui item" id="statsLink">
-              Stats
-            </a>
-            <a class="ui item" id="menuProfile">
-              Profile
-            </a>
+  <a class="item" id="titleCustom">
+    Tyr's Vault
+  </a>
+  <div class="right menu">
+    <a class="ui item" id="friendsLink" href="/friends">
+      Friends
+    </a>
+    <a class="ui item" id="statsLink">
+      Stats
+    </a>
+    <a class="ui item" id="menuProfile">
+      Profile
+    </a>
 
-            <a class="ui item" >
-              <div class="ui icon top left pointing dropdown inverted button" id="themeBtn">
-              <i class="wrench icon"></i>
-                <div class="menu">
-                  <div class="item">
-                    <button id="logout">Logout</button>
-                  </div>
-                </div>
-              </div>
-            </a>
-            <script>
-              $('#themeBtn')
-                .dropdown();
-            </script>
+    <a class="ui item">
+      <div class="ui icon top left pointing dropdown inverted button" id="themeBtn">
+        <i class="wrench icon"></i>
+        <div class="menu">
+          <div class="item">
+            <button id="logout">Logout</button>
           </div>
+        </div>
+      </div>
+    </a>
+    <script>
+      $('#themeBtn')
+        .dropdown();
+    </script>
+  </div>
 </div>
 
 
@@ -57,41 +57,45 @@
 
   <div id="editProfileModuleMain">
     <div class="ui form">
-      <label><h2 id="otherLabelModal">Main</h2></label>
+      <label>
+        <h2 id="otherLabelModal">Main</h2>
+      </label>
       <div class="three fields">
-      <div class="eight wide field">
-      <label>Username</label>
-      <input type="text" placeholder="Username">
-      </div>
-      <div class="three wide field">
-      <label>Profile Pic</label>
-      </div>
-      <div class="three wide field">
-      <label>Theme</label>
-      </div>
+        <div class="eight wide field">
+          <label>Username</label>
+          <input type="text" placeholder="Username">
+        </div>
+        <div class="three wide field">
+          <label>Profile Pic</label>
+        </div>
+        <div class="three wide field">
+          <label>Theme</label>
+        </div>
       </div>
       <div class="field">
-      <label>Description</label>
-      <textarea rows="3"></textarea>
+        <label>Description</label>
+        <textarea rows="3"></textarea>
       </div>
       <div class="three fields">
         <div class="field">
-        <label>Steam Username</label>
-        <input type="text" placeholder="Steam Username">
+          <label><i class="steam icon"></i>Steam Username</label>
+          <input type="text" placeholder="Steam Username">
         </div>
         <div class="field">
-        <label>Xbox Username</label>
-        <input type="text" placeholder="Xbox Username">
+          <label><i class="xbox icon"></i>Xbox Username</label>
+          <input type="text" placeholder="Xbox Username">
         </div>
         <div class="field">
-        <label>Playstation Username</label>
-        <input type="text" placeholder="Playstation Username">
+          <label><i class="playstation icon"></i>Playstation Username</label>
+          <input type="text" placeholder="Playstation Username">
         </div>
       </div>
-      <label><h2 id="otherLabelModal">Other</h2></label>
+      <label>
+        <h2 id="otherLabelModal">Other</h2>
+      </label>
       <div class="two fields">
         <div class="eight wide field">
-          <label>Chess.com Username</label>
+          <label><i class="chess icon"></i>Chess.com Username</label>
           <input type="text" placeholder="Chess.com Username">
         </div>
         <div class="eight wide field">
@@ -115,7 +119,7 @@
       </div>
     </div>
   </div>
- 
+
   <div class="actions">
     <button class="ui black deny button">
       Cancel
@@ -129,67 +133,58 @@
 
 
 
-
-
 <div id="mainProfileDiv">
   <div id="profileSection">
 
     <div id="profileHeader">
       <div class="ui secondary menu">
         <div class="ui item">
-          <img id="userProfilePic" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.1RN7WGcqqqRWWyAME6fWlAHaHa%26pid%3DApi&f=1&ipt=469458bba1c4759f37645150deee4b028ad884e75f85cbca2f15aa59fdc1a67d&ipo=images">
+          <img id="userProfilePic"
+            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.1RN7WGcqqqRWWyAME6fWlAHaHa%26pid%3DApi&f=1&ipt=469458bba1c4759f37645150deee4b028ad884e75f85cbca2f15aa59fdc1a67d&ipo=images">
         </div>
         <div class="ui item">
           <h1 id="profileUsername">Carreejoh</h1>
         </div>
-        <div class="ui secondary right menu" >
-          <div class="ui item">
-          <div class="ui list">
-          <div class="item">
-          <i class="users icon"></i>
-          <div class="content" id='profileHeaderExtra'>
-          Xbox
-          </div>
-        </div>
-        <div class="item">
-        <i class="marker icon"></i>
-        <div class="content" id='profileHeaderExtra'>
-        Steam
+        <div class="ui secondary right menu">
+          {{!-- {{ ADD LOGIC HERE FOR IF YOUR PROFILE}} --}}
+          <button class="ui item button" id="editProfileBtn">Edit Profile</button>
+          <script>
+            $('.ui.modal')
+              .modal('attach events', '#editProfileBtn')
+              .modal('show');
+          </script>
+
         </div>
       </div>
-        <div class="item">
-        <i class="mail icon"></i>
-        <div class="content" id='profileHeaderExtra'>
-        PC
-      </div>
-  </div>
-  <div class="item">
-    <i class="linkify icon"></i>
-    <div class="content" id='profileHeaderExtra'>
-      Playstation 4
     </div>
-  </div>
-</div>
-        </div>
-
-        {{!-- {{ ADD LOGIC HERE FOR IF YOUR PROFILE}} --}}
-        <button class="ui item button" id="editProfileBtn">Edit Profile</button>
-      <script>
-        $('.ui.modal')
-      .modal('attach events', '#editProfileBtn')
-      .modal('show');
-      </script>
-      
+    <div id="profileDescriptionDiv">
+      <h2>Description</h2>
+      <div id="profileDescription">
+        <p>As a dedicated gamer, I find solace in the boundless realms of virtual adventures, where pixels intertwine to
+          create mesmerizing tapestries of imagination. Games have become my refuge, offering an escape from the mundane
+          and granting me the power to transcend the limits of reality. Within these digital landscapes, I become an
+          architect of destiny, forging narratives and shaping destinies with the deft strokes of a controller.</p>
       </div>
+    </div>
+    {{!-- <div id="profileGamesDiv">
+      <h2>Platforms</h2>
+      <div id="profileDescription">
+        <p>I'm so jewish Im a jew Im gay and retarded</p>
       </div>
-
-
-      <div class="ui secondary menu">
+    </div> --}}
+    <div id="profileGamesDiv">
+      <h2>Platforms</h2>
+      <div class="ui secondary horizontal relaxed list">
         <div class="ui item">
-          <h1>sdfdsf</h1>
+          <i class="ui large steam icon"></i>
+        </div>
+        <div class="ui item">
+          <h2>sdfsdf</h2>
+        </div>
+        <div class="ui item">
+          <h2>sdfsdf</h2>
         </div>
       </div>
     </div>
-
   </div>
 </div>
