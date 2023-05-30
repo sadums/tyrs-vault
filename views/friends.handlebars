@@ -1,4 +1,4 @@
-<section class="col-md-12">
+{{!-- <section class="col-md-12">
     
 </section>
 <section class="col-md-12 m-5">
@@ -12,4 +12,91 @@
     <h2 class="col-md-12">Friends: </h2>
     <div class="row justify-content-center align-items-center g-2" id="friends-list" style="width: 50%">
     </div>
-</section>
+</section> --}}
+
+
+<div class="ui secondary  menu" id="headerProfile">
+        <a class="item" id="titleCustom">
+          Tyr's Vault 
+        </a>
+          <div class="right menu">
+            <a class="ui item" id="friendsLink" href="/friends">
+              Friends
+            </a>
+            <a class="ui item" id="statsLink">
+              Stats
+            </a>
+            <a class="ui item" id="menuProfile">
+              Profile
+            </a>
+
+            <a class="ui item" >
+              <div class="ui icon top left pointing dropdown inverted button" id="themeBtn">
+              <i class="wrench icon"></i>
+                <div class="menu">
+                  <div class="item">
+                    <button id="logout">Logout</button>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <script>
+              $('#themeBtn')
+                .dropdown();
+            </script>
+          </div>
+</div>
+
+<div id="mainProfileDiv">
+  <div id="profileSection">
+
+    <div id="profileHeader">
+      <div class="ui secondary menu">
+        <div class="ui item">
+          <img id="userProfilePic" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.1RN7WGcqqqRWWyAME6fWlAHaHa%26pid%3DApi&f=1&ipt=469458bba1c4759f37645150deee4b028ad884e75f85cbca2f15aa59fdc1a67d&ipo=images">
+        </div>
+        <div class="ui item">
+          <h1 id="profileUsername">Carreejoh</h1>
+        </div>
+        <div class="ui secondary right menu" >
+          <div class="ui item">
+          <div class="ui list">
+          <div class="item">
+          <i class="users icon"></i>
+          <div class="content" id='profileHeaderExtra'>
+          Xbox
+          </div>
+        </div>
+        <div class="item">
+        <i class="marker icon"></i>
+        <div class="content" id='profileHeaderExtra'>
+        Steam
+        </div>
+      </div>
+        <div class="item">
+        <i class="mail icon"></i>
+        <div class="content" id='profileHeaderExtra'>
+        PC
+      </div>
+  </div>
+  <div class="item">
+    <i class="linkify icon"></i>
+    <div class="content" id='profileHeaderExtra'>
+      Playstation 4
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+      </div>
+
+
+      <div class="ui secondary menu">
+        <div class="ui item">
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
