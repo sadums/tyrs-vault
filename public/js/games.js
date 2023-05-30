@@ -42,3 +42,25 @@ fortniteButton.addEventListener('click', () =>{
     }))
     .catch(err => console.log(err))
 })
+
+
+
+//FILE UPLOAD
+const imageUploadForm = document.getElementById('imageUploadForm');
+        const imageInput = document.getElementById('imageInput');
+        const preview = document.getElementById('preview');
+
+        imageUploadForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const file = imageInput.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+              const imageUrl = event.target.result;
+              const imageElement = document.createElement('img');
+              imageElement.src = imageUrl;
+              preview.appendChild(imageElement);
+            };
+            reader.readAsDataURL(file);
+          }
+        });
