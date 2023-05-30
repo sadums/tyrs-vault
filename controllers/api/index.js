@@ -15,12 +15,14 @@ router.use('/game', gameRoutes);
 //external apis
 const rawgRoutes = require('./rawg-routes');
 const steamRoutes = require('./steam-routes');
+const chessRoutes = require('./chess-routes');
 
 // proxy server to resolve CORS requests
 // router.use((req, res, next) => {
 //     res.header('Access-Control-Allow-Origin', '*');
 //     next();
 // });
+router.use('/chess', chessRoutes);
 router.use('/rawg', rawgRoutes);
 router.use('/steam', steamRoutes);
 
