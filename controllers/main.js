@@ -90,11 +90,16 @@ router.get('/profile/:id', async (req, res) => {
     // const requestUser = req.params.username;
     //res.send('profile-login')
     try {
-        if (loggedIn){ //change the validation here
-            res.send('profile-login')
+        if (loggedIn){ //change the validation here because if loggedIn = ture then you can login to all profiles
+            console.log(user.dataValues)
+            res.render('profile-login', {
+                user: user.dataValues
+            })
+            //res.json(user)
         }else{
-            console.log('it got to not login')
-            res.send('profile-not-login')
+            res.render('profile-not-login', {
+                user
+            })
         }
     }
     catch (err){
