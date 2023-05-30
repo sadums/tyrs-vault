@@ -161,7 +161,8 @@
     padding-top: 6%;
     /* background-image: linear-gradient(20deg, var(--darkblue), 60%, var(--lightpurple)); */
     /* background-color: #333232; */
-    background-image: url('https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fhdwpro.com%2Fwp-content%2Fuploads%2F2017%2F10%2FFree-Space-Background.png&f=1&nofb=1&ipt=6f1cf7ecbd789ac814a930726a9bc8e9ae831404fa8593ce2a45557a404ec6e5&ipo=images');
+    /* background-image: url('https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fhdwpro.com%2Fwp-content%2Fuploads%2F2017%2F10%2FFree-Space-Background.png&f=1&nofb=1&ipt=6f1cf7ecbd789ac814a930726a9bc8e9ae831404fa8593ce2a45557a404ec6e5&ipo=images'); */
+    background-color: #0f2364;
     background-size: cover;
 }
 
@@ -193,7 +194,7 @@
 
 #friendDisplayMain {
     width: 100%;
-    height: 35%;
+    height: 33vh;
     margin-bottom: 5%;
     border: solid var(--lightgreen);
     border-width: 4px 0px 4px 0px;
@@ -203,7 +204,7 @@
 /* For Cards */
 
 .friendCard {
-    height: 32vh;
+    height: 32.5vh;
     background-color: var(--moderngray);
     width: 90%;
     border: solid 2px var(--lightgreen);
@@ -225,8 +226,7 @@
 /* for displaying stats */
 
 #statsDisplayMain {
-    width: 100%;
-    height: 35%;
+    height: 33vh;
     border: solid var(--lightblue);
     border-width: 4px 0px 4px 0px;
     /* background-color: var(--moderngray); */
@@ -244,7 +244,6 @@
 
 footer {
     padding: 1.2%;
-    margin-top: 8%;
     width: 100%;
     background-color: var(--moderngray);
 }

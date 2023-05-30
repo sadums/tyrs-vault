@@ -46,6 +46,7 @@
             <button class="ui button">Find</button>
         </div>
     </div>
+
     <h1 id="yourFriendsTitle">Your friends</h1>
     <div id="friendDisplayMain">
         <div id="friendListDiv">
@@ -63,12 +64,13 @@
     </div>
     <h1 id="statsTitle">Your Stats</h1>
     <div id="statsDisplayMain">
-        {{!-- <section class="splide" id="splide2" aria-label="Splide Basic HTML Example"  data-splide='{"type":"loop", "padding":"8rem", "perPage":"5", "perMove":"1", "focus":"0"}'>
+      <div>
+        <section class="splide" id="splide2" aria-label="Splide Basic HTML Example"  data-splide='{"type":"loop", "padding":"8rem", "perPage":"5", "perMove":"1", "focus":"0"}'>
             <div class="splide__track">
                 <ul class="splide__list">
                     <li class="splide__slide">
                       <div class="friendCard">
-                       
+                       <h2>asdfdef</h2>
                       </div>
                    </li>
                    <li class="splide__slide">
@@ -89,12 +91,13 @@
                 </ul>
             </div>
           </section> 
+          </div>
           <script>
             new Splide( '#splide2', {
-             : 'center',
+           
             } ).mount();
-          </script> --}}
-          {{> splide users }}
+          </script>
+          {{!-- {{> splide users }} --}}
     </div>
     <footer>
         <div class="ui secondary centered menu">
@@ -108,4 +111,3 @@
     </footer>
     </div>
 
-    <script src="./js/index.js"></script>
