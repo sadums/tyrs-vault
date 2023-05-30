@@ -66,7 +66,16 @@
           <input type="text" placeholder="Username">
         </div>
         <div class="three wide field">
+
           <label>Profile Pic</label>
+
+          <form id="imageUploadForm">
+            <input type="file" id="imageInput" accept="image/*">
+            <button type="submit">Upload</button>
+          </form>
+
+          <div id="preview"></div>
+
         </div>
         <div class="three wide field">
           <label>Theme</label>
@@ -78,29 +87,37 @@
       </div>
       <div class="three fields">
         <div class="field">
-          <label><i class="steam icon"></i>Steam Username</label>
+
+          <label>Steam Username</label>
           <input type="text" placeholder="Steam Username">
         </div>
         <div class="field">
-          <label><i class="xbox icon"></i>Xbox Username</label>
+          <label>Xbox Username</label>
           <input type="text" placeholder="Xbox Username">
         </div>
         <div class="field">
-          <label><i class="playstation icon"></i>Playstation Username</label>
+          <label>Playstation Username</label>
+
           <input type="text" placeholder="Playstation Username">
         </div>
       </div>
       <label>
         <h2 id="otherLabelModal">Other</h2>
       </label>
-      <div class="two fields">
-        <div class="eight wide field">
-          <label><i class="chess icon"></i>Chess.com Username</label>
-          <input type="text" placeholder="Chess.com Username">
+
+      <div class="three fields">
+        <div class="field">
+          <label>Chess.com Username</label>
+          <input id="chess-input" type="text" placeholder="Chess.com Username">
+
         </div>
-        <div class="eight wide field">
+        <div class="field">
+          <label>Fortnite Username</label>
+          <input id="fortnite-input" type="text" placeholder="Fortnite Username">
+        </div>
+        <div class="field">
           <label>Steam ID #</label>
-          <input type="text" placeholder="Steam ID">
+          <input id="steam-input" type="text" placeholder="Steam ID">
         </div>
       </div>
       <div class="three fields">
@@ -124,7 +141,7 @@
     <button class="ui black deny button">
       Cancel
     </button>
-    <button class="ui positive right labeled icon button">
+    <button id="submit-form-button" class="ui positive right labeled icon button">
       Confirm
       <i class="checkmark icon"></i>
     </button>
@@ -155,6 +172,7 @@
           </script>
 
         </div>
+
       </div>
     </div>
     <div id="profileDescriptionDiv">
@@ -166,12 +184,6 @@
           architect of destiny, forging narratives and shaping destinies with the deft strokes of a controller.</p>
       </div>
     </div>
-    {{!-- <div id="profileGamesDiv">
-      <h2>Platforms</h2>
-      <div id="profileDescription">
-        <p>I'm so jewish Im a jew Im gay and retarded</p>
-      </div>
-    </div> --}}
     <div id="profileGamesDiv">
       <h2>Platforms</h2>
       <div class="ui secondary horizontal relaxed list">
@@ -186,5 +198,6 @@
         </div>
       </div>
     </div>
+    <script src="./js/games.js"></script>
   </div>
 </div>
