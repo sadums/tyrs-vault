@@ -162,14 +162,14 @@
     /* background-image: linear-gradient(20deg, var(--darkblue), 60%, var(--lightpurple)); */
     /* background-color: #333232; */
     /* background-image: url('https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fhdwpro.com%2Fwp-content%2Fuploads%2F2017%2F10%2FFree-Space-Background.png&f=1&nofb=1&ipt=6f1cf7ecbd789ac814a930726a9bc8e9ae831404fa8593ce2a45557a404ec6e5&ipo=images'); */
-    background-color: #0f2364;
+    background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapercave.com%2Fwp%2Fwp6921358.jpg&f=1&nofb=1&ipt=7084be12803305bcde72b5b015d296b8ee1e8bdd314fd17e80b366c1557074db&ipo=images');
     background-size: cover;
 }
 
 /* for search bar */
 
 #friendSearch {
-    color: white;
+    color: black;
     font-family: 'Bangers', cursive;
     font-weight: 200;
     font-size: 30px;
@@ -179,7 +179,8 @@
     text-align: center;
     width: 100%;
     padding-top: 2%;
-    padding-bottom: 2%;
+    /* Original padding-bottom: 2%;*/
+    padding-bottom: 12%;
 }
 
 /* for displaying friends list */
