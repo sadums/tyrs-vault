@@ -1,23 +1,35 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Game extends Model{}
+class UserGames extends Model{}
 
-Game.init(
+UserGames.init(
     {
-        id: {
+        id:{
             type: DataTypes.INTEGER,
             allowNull: false,
-            autoIncrement: true,
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement: true
         },
         title: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull:false,
         },
-        description: {
+        image: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true,
+        },
+        apiUrl: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        user_id:{
+            type:DataTypes.INTEGER,
+            references:{
+                model: 'user',
+                key: 'id',
+                unique: false
+            }
         }
     },
     {
@@ -27,6 +39,6 @@ Game.init(
         underscored: true,
         modelName: 'game',
     }
-);
+)
 
-module.exports = Game;
+module.exports = UserGames;
