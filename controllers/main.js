@@ -10,19 +10,19 @@ const FriendRequest = require('../models/FriendRequest');
 const Game = require('../models/Game')
 
 router.get('/', async (req, res) => {
-    try{
-    const userData = await User.findAll().catch((err) => {
-        res.json(err);
-    });
-    const users = userData.map((user) => user.get({ plain: true }));
+    try {
+        const userData = await User.findAll().catch((err) => {
+            res.json(err);
+        });
+        const users = userData.map((user) => user.get({ plain: true }));
 
-    res.render('home', {
-        home: true,
-        loggedIn: req.session.loggedIn,
-        users
-    });
+        res.render('home', {
+            home: true,
+            loggedIn: req.session.loggedIn,
+            users
+        });
 
-    }catch(e){
+    } catch (e) {
         console.error(e);
         res.status(500).json(e);
     }
@@ -36,7 +36,7 @@ router.get('/login', (req, res) => {
             res.redirect('/');
             return;
         }
-    
+
         res.render('login', {
             login: true
         });
@@ -46,70 +46,95 @@ router.get('/login', (req, res) => {
     }
 });
 
+const generateRandomValues = (min, max) => {
+    const availableValues = max - min;
+    const randomValues = new Set();
+  
+    while (randomValues.size < 5 && randomValues.size < availableValues) {
+      const randomValue = Math.floor(Math.random() * availableValues) + min;
+      randomValues.add(randomValue);
+    }
+  
+    return Array.from(randomValues);
+  };
+
 router.get('/friends', async (req, res) => {
-    try{
-        
-        if(!req.session.loggedIn){
+    try {
+
+        if (!req.session.loggedIn) {
             res.redirect('/');
             return;
         }
         const friends1 = await UserFriends.findAll({
             where: {
-              user_id1: req.session.userid,
+                user_id1: req.session.userid,
             }
-          });
-          const friends2 = await UserFriends.findAll({
+        });
+        const friends2 = await UserFriends.findAll({
             where: {
-              user_id2: req.session.userid
+                user_id2: req.session.userid
             }
-          });
-      
-      
-      
-          const data = []
-      
-          for(let i = 0; i < friends1.length; i++){
+        });
+        //
+        sendDataList = []
+        const gameList = await Game.findAll({
+            where: {
+                user_id: req.session.userid
+            }
+        })
+    
+        const indexOfGames = generateRandomValues(0, gameList.length)
+    
+        for(let i=0; i<indexOfGames.length; i++){
+            sendDataList.push(gameList[indexOfGames[i]].dataValues)
+        }
+
+        //
+
+        const data = []
+
+        for (let i = 0; i < friends1.length; i++) {
             let currentFriend = friends1[i];
-      
-            if(currentFriend.dataValues.user_id1 === req.session.userid){
-              // the friend is user_id2
-              const friend = await User.findByPk(currentFriend.dataValues.user_id2, {
-                attributes: { exclude: ['password', 'email']}
-              });
-              data.push(friend.dataValues);
-            }else{
-              // the friend is user_id1
-              const friend = await User.findByPk(currentFriend.dataValues.user_id1, {
-                attributes: { exclude: ['password', 'email']}
-              });
-              data.push(friend.dataValues);
+
+            if (currentFriend.dataValues.user_id1 === req.session.userid) {
+                // the friend is user_id2
+                const friend = await User.findByPk(currentFriend.dataValues.user_id2, {
+                    attributes: { exclude: ['password', 'email'] }
+                });
+                data.push(friend.dataValues);
+            } else {
+                // the friend is user_id1
+                const friend = await User.findByPk(currentFriend.dataValues.user_id1, {
+                    attributes: { exclude: ['password', 'email'] }
+                });
+                data.push(friend.dataValues);
             }
-          }
-      
-          for(let i = 0; i < friends2.length; i++){
+        }
+
+        for (let i = 0; i < friends2.length; i++) {
             let currentFriend = friends2[i];
-      
-            if(currentFriend.dataValues.user_id1 === req.session.userid){
-              // the friend is user_id2
-              const friend = await User.findByPk(currentFriend.dataValues.user_id2, {
-                attributes: { exclude: ['password', 'email']}
-              });
-              data.push(friend.dataValues);
-            }else{
-              // the friend is user_id1
-              const friend = await User.findByPk(currentFriend.dataValues.user_id1, {
-                attributes: { exclude: ['password', 'email']}
-              });
-              data.push(friend.dataValues);
+
+            if (currentFriend.dataValues.user_id1 === req.session.userid) {
+                // the friend is user_id2
+                const friend = await User.findByPk(currentFriend.dataValues.user_id2, {
+                    attributes: { exclude: ['password', 'email'] }
+                });
+                data.push(friend.dataValues);
+            } else {
+                // the friend is user_id1
+                const friend = await User.findByPk(currentFriend.dataValues.user_id1, {
+                    attributes: { exclude: ['password', 'email'] }
+                });
+                data.push(friend.dataValues);
             }
-          }
-          
+        }
         res.render('friends', {
             loggedIn: req.session.loggedIn,
             friends: true,
-            data: data
+            data: data,
+            favoriteGame: sendDataList
         });
-    }catch(e){
+    } catch (e) {
         console.error(e);
         res.status(500).json(e);
     }
@@ -117,14 +142,14 @@ router.get('/friends', async (req, res) => {
 
 // Renders the users profile
 router.get('/profile', async (req, res) => {
-    if(!req.session.loggedIn){
+    if (!req.session.loggedIn) {
         res.redirect('/');
         return;
     }
 
     const user = await User.findByPk(req.session.userid);
-    if(!user){
-        res.status(404).json({ message : "Something went wrong, please try again"});
+    if (!user) {
+        res.status(404).json({ message: "Something went wrong, please try again" });
         return;
     }
     res.render('profile', {
@@ -135,8 +160,8 @@ router.get('/profile', async (req, res) => {
 // Render a specific users profile
 router.get('/profile/:id', async (req, res) => {
     const user = await User.findByPk(req.params.id);
-    if(!user){
-        res.status(404).json({ message : "Something went wrong, please try again"});
+    if (!user) {
+        res.status(404).json({ message: "Something went wrong, please try again" });
         return;
     }
     const loggedIn = req.session.loggedIn;
@@ -144,19 +169,19 @@ router.get('/profile/:id', async (req, res) => {
     // const requestUser = req.params.username;
     //res.send('profile-login')
     try {
-        if (loggedIn){ //change the validation here because if loggedIn = ture then you can login to all profiles
+        if (loggedIn) { //change the validation here because if loggedIn = ture then you can login to all profiles
             console.log(user.dataValues)
             res.render('profile-login', {
                 user: user.dataValues
             })
             //res.json(user)
-        }else{
+        } else {
             res.render('profile-not-login', {
                 user
             })
         }
     }
-    catch (err){
+    catch (err) {
         console.log(err)
         res.status(500).json()
     }
@@ -170,14 +195,14 @@ router.get('/profile/:username', async (req, res) => {
         const loggedIn = req.session.loggedIn;
         const loggedInUser = req.session.userid;
         const requestUser = req.params.username;
-        const selectUser = await User.findOne({ where: { username: requestUser}})
+        const selectUser = await User.findOne({ where: { username: requestUser } })
         console.log(selectUser)
         console.log(requestUser)
         console.log(loggedInUser)
         res.json(selectUser)
-        if (selectUser.username === loggedInUser){
+        if (selectUser.username === loggedInUser) {
             res.send('profile-login')
-        }else{
+        } else {
             console.log('it got to not login')
             res.send('profile-not-login')
         }
@@ -188,9 +213,11 @@ router.get('/profile/:username', async (req, res) => {
     }
 });
 
+
+
 router.get('/games', async (req, res) => {
     res.render('games', {
-        games: true
+        games: true,
     })
 })
 
