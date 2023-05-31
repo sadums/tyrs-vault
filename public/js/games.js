@@ -65,3 +65,5 @@ const imageUploadForm = document.getElementById('imageUploadForm');
             reader.readAsDataURL(file);
           }
         });
+
+

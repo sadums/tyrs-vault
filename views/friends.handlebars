@@ -184,19 +184,115 @@
           architect of destiny, forging narratives and shaping destinies with the deft strokes of a controller.</p>
       </div>
     </div>
-    <div id="profileGamesDiv">
-      <h2>Platforms</h2>
-      <div class="ui secondary horizontal relaxed list">
-        <div class="ui item">
-          <i class="ui large steam icon"></i>
-        </div>
-        <div class="ui item">
-          <h2>sdfsdf</h2>
-        </div>
-        <div class="ui item">
-          <h2>sdfsdf</h2>
+    <div id="profileGamesDiv" class="ui stackable grid">
+      <div class="five wide column">
+        <h2 id="profilePlatformsH2">Platforms</h2>
+        <div class="ui relaxed list">
+          <div class="ui item">
+            <i class="steam large inverted icon"></i>
+            <div class="content">
+              <div class="header" id="steamUsername">@CRJ4637</div>
+            </div>
+          </div>
+          <div class="ui item">
+            <i class="playstation inverted large icon"></i>
+            <div class="content">
+              <div class="header" id="ps4Username">@Carreejoh</div>
+            </div>
+          </div>
+          <div class="ui item">
+            <i class="xbox inverted large icon"></i>
+            <div class="content">
+              <div class="header" id="xboxUsername">@Whater_idk</div>
+            </div>
+          </div>
         </div>
       </div>
+      <div class="eleven wide column">
+        <h2 id="profilePlatformsH2">Friends</h2>
+        <div class="ui horizontal list">
+          <a class="ui item">
+            <h1 id="friendsHotLink">@Carreejoh</h1>
+          </a>
+          <a class="ui item">
+            <h1 id="friendsHotLink">@Sadums</h1>
+          </a>
+          <a class="ui item">
+            <h1 id="friendsHotLink">@XtraGoldfish</h1>
+          </a>
+          <a class="ui item">
+            <h1 id="friendsHotLink">@Lowbrowkid</h1>
+          </a>
+          <a class="ui item">
+            <h1 id="friendsHotLink">@SussyJew</h1>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div id="favoriteGamesProfile">
+      <h2 id="favoriteGamesTitle">Favorite Games</h2>
+      <ul id="favoriteGamesList">
+        <li class="listItemGame">
+          <div class="ui horizontal relaxed list listItemGameDiv">
+            <div class="item">
+              <img class="gameListImg" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flogodix.com%2Flogo%2F45400.jpg&f=1&nofb=1&ipt=eac416f1f82b5dec9a748cd538310e1058f54adcdd592eb9c8503aad88780308&ipo=images">
+            </div>
+            <div class="item">
+              <h2 class="gameListTitle">Fornite</h2>
+            </div>
+            <div class="item">
+              <h2 class="gameListUsername">Username: Carreejoh6</h2>
+            </div>
+          </div>
+        </li>
+        <li class="listItemGame">
+          <div class="ui horizontal relaxed list listItemGameDiv">
+            <div class="item">
+              <img class="gameListImg" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flogodix.com%2Flogo%2F45400.jpg&f=1&nofb=1&ipt=eac416f1f82b5dec9a748cd538310e1058f54adcdd592eb9c8503aad88780308&ipo=images">
+            </div>
+            <div class="item">
+              <h2 class="gameListTitle">Fornite</h2>
+            </div>
+            <div class="item">
+              <h2 class="gameListUsername">Username: Carreejoh6</h2>
+            </div>
+          </div>
+        </li>
+        <li class="listItemGame">
+          <div class="ui horizontal relaxed list listItemGameDiv">
+            <div class="item">
+              <img class="gameListImg" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flogodix.com%2Flogo%2F45400.jpg&f=1&nofb=1&ipt=eac416f1f82b5dec9a748cd538310e1058f54adcdd592eb9c8503aad88780308&ipo=images">
+            </div>
+            <div class="item">
+              <h2 class="gameListTitle">Fornite</h2>
+            </div>
+            <div class="item">
+              <h2 class="gameListUsername">Username: Carreejoh6</h2>
+            </div>
+          </div>
+        </li>
+        <li class="listItemGame">
+          <div class="ui horizontal relaxed list listItemGameDiv">
+            <div class="item">
+              <img class="gameListImg" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flogodix.com%2Flogo%2F45400.jpg&f=1&nofb=1&ipt=eac416f1f82b5dec9a748cd538310e1058f54adcdd592eb9c8503aad88780308&ipo=images">
+            </div>
+            <div class="item">
+              <h2 class="gameListTitle">Fornite</h2>
+            </div>
+            <div class="item">
+              <h2 class="gameListUsername">Username: Carreejoh6</h2>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <script>
+        let gamesList = document.querySelector("#favoriteGamesList");
+        new Sortable(gamesList, {
+          animation: 150
+        });
+      </script>
+
     </div>
     <script src="./js/games.js"></script>
   </div>
