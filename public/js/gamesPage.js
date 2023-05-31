@@ -4,6 +4,22 @@ const getElement = function(className){
 
 const gameListChildren = [getElement("gameCard1"),getElement("gameCard2"),getElement("gameCard3"),getElement("gameCard4"),getElement("gameCard5"),getElement("gameCard6"),getElement("gameCard7"),getElement("gameCard8"),getElement("gameCard9"),getElement("gameCard10"),getElement("gameCard11"),getElement("gameCard12"),getElement("gameCard13"),getElement("gameCard14"),getElement("gameCard15"),];
 
+const sendData = (favGame) => {
+    fetch('/api/game/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ favGame }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Array added successfully:', data);
+        })
+        .catch((error) => {
+          console.error('Error adding array:', error);
+        });
+}
 
 console.log(gameListChildren);
 
@@ -22,7 +38,15 @@ const setCards = function(){
     
                 const title = document.createElement('h2');
                 title.textContent = data.results[i].name
+
+                const addButton = document.createElement('button');
+                addButton.textContent = 'Add';
+                addButton.addEventListener('click', () => {
+                    const favGame = [title.textContent, image.src]
+                    sendData(favGame)
+                })
     
+                currentClone.appendChild(addButton);
                 currentClone.appendChild(title);
                 currentClone.appendChild(image);
             }
