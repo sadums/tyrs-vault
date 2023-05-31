@@ -11,13 +11,17 @@ UserGames.init(
             primaryKey: true,
             autoIncrement: true
         },
-        game_id:{
-            type: DataTypes.INTEGER,
-            references:{
-                model: 'game',
-                key: 'id',
-                unique: false
-            }
+        title: {
+            type: DataTypes.STRING,
+            allowNull:false,
+        },
+        image: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        apiUrl: {
+            type: DataTypes.STRING,
+            allowNull: true,
         },
         user_id:{
             type:DataTypes.INTEGER,

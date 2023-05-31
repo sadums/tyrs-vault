@@ -31,4 +31,9 @@ router.get('/', async (req, res) => {
     }
   });
 
+  router.post('/add', (req, res) => {
+    const { favGame } = req.body;
+    console.log(favGame)
+  })
+
 module.exports = router;
