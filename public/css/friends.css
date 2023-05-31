@@ -200,19 +200,19 @@
 }
 
 .listItemGameDiv {
-    width: 93%;
-    height: 40px;
+    width: 60%;
+    border: solid 2px black;
 }
 
 .gameListImg {
-    padding-top: 6%;
+    padding: 0%;
     width: 40px;
     height: 40px;
 }
 
 .gameListTitle {
     color: white;
-    font-size: 20px;
+    font-size: 30px;
 }
 
 .gameListUsername {
