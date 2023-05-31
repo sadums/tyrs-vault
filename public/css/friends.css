@@ -59,7 +59,7 @@
 /* FOR MAIN CONTENT (profile) */
 
 #mainProfileDiv {
-    background-image: url('../imgs/jellyfish\ dark.jpg');
+    /* background-image: url('../imgs/jellyfish\ dark.jpg'); */
     height: 100%;
     background-size: cover;
 }
