@@ -180,9 +180,42 @@
 /* for favorite games */
 
 #favoriteGamesProfile {
-    padding: 3%;
+    padding-left: 3%;
 }
 
 #favoriteGamesList {
-    
+
+}
+
+#favoriteGamesTitle {
+    margin-left: 2%;
+    color: white;
+    font-family: 'Bangers', cursive;
+    font-weight: 300;
+}
+
+.listItemGame {
+    margin-bottom: 1%;
+    margin-top: 1%;
+}
+
+.listItemGameDiv {
+    width: 93%;
+    height: 40px;
+}
+
+.gameListImg {
+    padding-top: 6%;
+    width: 40px;
+    height: 40px;
+}
+
+.gameListTitle {
+    color: white;
+    font-size: 20px;
+}
+
+.gameListUsername {
+    color: white;
+    font-size: 20px;
 }
