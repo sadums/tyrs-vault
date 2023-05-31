@@ -5,6 +5,8 @@ const router = require('express').Router();
 
 //For Handlebars if logged in on load 
 const User = require('../models/User');
+const UserFriends = require('../models/Friend');
+const FriendRequest = require('../models/FriendRequest');
 
 router.get('/', async (req, res) => {
     try{
@@ -46,14 +48,66 @@ router.get('/login', (req, res) => {
 
 router.get('/friends', async (req, res) => {
     try{
+        
         if(!req.session.loggedIn){
             res.redirect('/');
             return;
         }
-
+        const friends1 = await UserFriends.findAll({
+            where: {
+              user_id1: req.session.userid,
+            }
+          });
+          const friends2 = await UserFriends.findAll({
+            where: {
+              user_id2: req.session.userid
+            }
+          });
+      
+      
+      
+          const data = []
+      
+          for(let i = 0; i < friends1.length; i++){
+            let currentFriend = friends1[i];
+      
+            if(currentFriend.dataValues.user_id1 === req.session.userid){
+              // the friend is user_id2
+              const friend = await User.findByPk(currentFriend.dataValues.user_id2, {
+                attributes: { exclude: ['password', 'email']}
+              });
+              data.push(friend.dataValues);
+            }else{
+              // the friend is user_id1
+              const friend = await User.findByPk(currentFriend.dataValues.user_id1, {
+                attributes: { exclude: ['password', 'email']}
+              });
+              data.push(friend.dataValues);
+            }
+          }
+      
+          for(let i = 0; i < friends2.length; i++){
+            let currentFriend = friends2[i];
+      
+            if(currentFriend.dataValues.user_id1 === req.session.userid){
+              // the friend is user_id2
+              const friend = await User.findByPk(currentFriend.dataValues.user_id2, {
+                attributes: { exclude: ['password', 'email']}
+              });
+              data.push(friend.dataValues);
+            }else{
+              // the friend is user_id1
+              const friend = await User.findByPk(currentFriend.dataValues.user_id1, {
+                attributes: { exclude: ['password', 'email']}
+              });
+              data.push(friend.dataValues);
+            }
+          }
+          
         res.render('friends', {
             loggedIn: req.session.loggedIn,
-            friends: true
+            friends: true,
+            data: data
         });
     }catch(e){
         console.error(e);
@@ -134,6 +188,17 @@ router.get('/profile/:username', async (req, res) => {
     }
 });
 
+router.get('/games', async (req,res) => {
+    try{
+        res.render('games', {
+            games: true,
+            loggedIn: req.session.loggedIn
+        });
+    }catch(e){
+        console.error(e);
+        res.status(500).json(e)
+    }
+});
 
 
 module.exports = router
