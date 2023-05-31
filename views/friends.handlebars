@@ -232,58 +232,9 @@
     <div id="favoriteGamesProfile">
       <h2 id="favoriteGamesTitle">Favorite Games</h2>
       <ul id="favoriteGamesList">
-        <li class="listItemGame">
-          <div class="ui horizontal relaxed list listItemGameDiv">
-            <div class="item">
-              <img class="gameListImg" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flogodix.com%2Flogo%2F45400.jpg&f=1&nofb=1&ipt=eac416f1f82b5dec9a748cd538310e1058f54adcdd592eb9c8503aad88780308&ipo=images">
-            </div>
-            <div class="item">
-              <h2 class="gameListTitle">Fornite</h2>
-            </div>
-            <div class="item">
-              <h2 class="gameListUsername">Username: Carreejoh6</h2>
-            </div>
-          </div>
-        </li>
-        <li class="listItemGame">
-          <div class="ui horizontal relaxed list listItemGameDiv">
-            <div class="item">
-              <img class="gameListImg" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flogodix.com%2Flogo%2F45400.jpg&f=1&nofb=1&ipt=eac416f1f82b5dec9a748cd538310e1058f54adcdd592eb9c8503aad88780308&ipo=images">
-            </div>
-            <div class="item">
-              <h2 class="gameListTitle">Fornite</h2>
-            </div>
-            <div class="item">
-              <h2 class="gameListUsername">Username: Carreejoh6</h2>
-            </div>
-          </div>
-        </li>
-        <li class="listItemGame">
-          <div class="ui horizontal relaxed list listItemGameDiv">
-            <div class="item">
-              <img class="gameListImg" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flogodix.com%2Flogo%2F45400.jpg&f=1&nofb=1&ipt=eac416f1f82b5dec9a748cd538310e1058f54adcdd592eb9c8503aad88780308&ipo=images">
-            </div>
-            <div class="item">
-              <h2 class="gameListTitle">Fornite</h2>
-            </div>
-            <div class="item">
-              <h2 class="gameListUsername">Username: Carreejoh6</h2>
-            </div>
-          </div>
-        </li>
-        <li class="listItemGame">
-          <div class="ui horizontal relaxed list listItemGameDiv">
-            <div class="item">
-              <img class="gameListImg" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flogodix.com%2Flogo%2F45400.jpg&f=1&nofb=1&ipt=eac416f1f82b5dec9a748cd538310e1058f54adcdd592eb9c8503aad88780308&ipo=images">
-            </div>
-            <div class="item">
-              <h2 class="gameListTitle">Fornite</h2>
-            </div>
-            <div class="item">
-              <h2 class="gameListUsername">Username: Carreejoh6</h2>
-            </div>
-          </div>
-        </li>
+        {{#each favoriteGame as |game|}}
+        {{>favGame-details}}
+        {{/each}}
       </ul>
 
       <script>

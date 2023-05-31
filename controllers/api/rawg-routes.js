@@ -16,7 +16,7 @@ router.get('/games', async(req, res) => {
         const url = `https://api.rawg.io/api/games?key=${apiKey}`;
         axios.get(url)
         .then((response) => {
-            console.log(response.data);
+            //console.log(response.data);
             res.json(response.data);
         });
     }catch(e){
@@ -34,7 +34,7 @@ router.get('/search/:game', async(req, res) => {
         const url = `https://api.rawg.io/api/games?key=${apiKey}&search="${req.params.game}"`;
         axios.get(url)
         .then((response) => {
-            console.log(response.data);
+            //console.log(response.data);
             res.json(response.data);
         });
     }catch(e){
