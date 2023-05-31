@@ -5,19 +5,31 @@ class Game extends Model{}
 
 Game.init(
     {
-        id: {
+        id:{
             type: DataTypes.INTEGER,
             allowNull: false,
-            autoIncrement: true,
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement: true
         },
         title: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull:false,
         },
-        description: {
+        image: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true,
+        },
+        apiUrl: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        user_id:{
+            type:DataTypes.INTEGER,
+            references:{
+                model: 'user',
+                key: 'id',
+                unique: false
+            }
         }
     },
     {
@@ -25,8 +37,8 @@ Game.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'game',
+        modelName: 'userGames',
     }
-);
+)
 
 module.exports = Game;

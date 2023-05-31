@@ -42,7 +42,10 @@ const setCards = function(){
                 const addButton = document.createElement('button');
                 addButton.textContent = 'Add';
                 addButton.addEventListener('click', () => {
-                    const favGame = [title.textContent, image.src]
+                    const favGame = {
+                        title: title.textContent, 
+                        image: image.src,
+                    }
                     sendData(favGame)
                 })
     
