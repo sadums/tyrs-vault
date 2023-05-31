@@ -231,8 +231,18 @@
     </div>
     <div id="favoriteGamesProfile">
       <ul id="favoriteGamesList">
-        
+        <li>asdfasdfasdfasdf</li>
+        <li>ajskdfuyicuxjdsdjs</li>
+        <li>asdfasdf</li>
       </ul>
+
+      <script>
+        let gamesList = document.querySelector("#favoriteGamesList");
+        new Sortable(gamesList, {
+          animation: 150
+        });
+      </script>
+      
     </div>
     <script src="./js/games.js"></script>
   </div>
