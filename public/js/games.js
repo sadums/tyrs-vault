@@ -1,25 +1,12 @@
-const chessButton = document.querySelector('#chess-button')
 const chessInput = document.querySelector('#chess-input')
-
-const steamButton = document.querySelector('#steam-button')
 const steamInput = document.querySelector('#steam-input')
-
-const fortniteButton = document.querySelector('#fortnite-button')
 const fortniteInput = document.querySelector('#fortnite-input')
 
-chessButton.addEventListener('click', () =>{
-    const username = chessInput.value
-    const requestUrl = `http://localhost:3001/api/chess/${username}` //will have to change once its deployed
+const formSubmitButton = document.querySelector('#submit-form-button')
 
-    fetch(requestUrl)
-    .then((data) => data.json())
-    .then((data => {
-        console.log(data)
-    }))
-    .catch(err => console.log(err))
-})
 
-steamButton.addEventListener('click', () =>{
+formSubmitButton.addEventListener('click', () => {
+  if(steamInput.value !== ''){
     const steamid = steamInput.value
     const requestUrl = `http://localhost:3001/api/steam/user/${steamid}` //will have to change once its deployed
 
@@ -29,9 +16,19 @@ steamButton.addEventListener('click', () =>{
         console.log(data.response.players[0])
     }))
     .catch(err => console.log(err))
-})
+  }
+  if(chessInput.value !== ''){
+    const username = chessInput.value
+    const requestUrl = `http://localhost:3001/api/chess/${username}` //will have to change once its deployed
 
-fortniteButton.addEventListener('click', () =>{
+    fetch(requestUrl)
+    .then((data) => data.json())
+    .then((data => {
+        console.log(data)
+    }))
+    .catch(err => console.log(err))
+  }
+  if(fortniteInput.value.value !== ''){
     const account = fortniteInput.value
     const requestUrl = `http://localhost:3001/api/fortnite/${account}` //will have to change once its deployed
 
@@ -41,7 +38,10 @@ fortniteButton.addEventListener('click', () =>{
         console.log(data.data)
     }))
     .catch(err => console.log(err))
+  }
+
 })
+
 
 
 
@@ -51,6 +51,7 @@ const imageUploadForm = document.getElementById('imageUploadForm');
         const preview = document.getElementById('preview');
 
         imageUploadForm.addEventListener('submit', (e) => {
+          preview.innerHTML = ''
           e.preventDefault();
           const file = imageInput.files[0];
           if (file) {

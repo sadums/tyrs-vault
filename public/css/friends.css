@@ -12,7 +12,7 @@
     --purple: #570bb7;
     --lightpurple: #d042f8;
     --lightblue: #2edbef;
-    --darkblue: #0f2364;
+    --darkblue: rgb(12, 20, 51);
     --lightgreen: #3aefb6;
     --hotpink: #f10983;
     --moderngray: #5c5e60;
@@ -59,7 +59,7 @@
 /* FOR MAIN CONTENT (profile) */
 
 #mainProfileDiv {
-    background-image: url('../imgs/jellyfish\ dark.jpg');
+    /* background-image: url('../imgs/jellyfish\ dark.jpg'); */
     height: 100%;
     background-size: cover;
 }
@@ -80,7 +80,7 @@
     margin-top: 2%;
     width: 90%;
     margin-left: 5%;
-    /* background-color: #0f1d49; */
+    background-color: rgb(12, 20, 51);
 }
 
 #userProfilePic {
@@ -100,4 +100,66 @@
 #profileHeaderExtra {
     color: white;
     font-size: 18px;
+}
+
+#editProfileBtn {
+    background-color: white;
+
+}
+
+/* For edit profile modal */
+
+#editProfileModuleMain {
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 2%;
+}
+
+#otherLabelModal {
+    margin-bottom: 2%;
+}
+
+/* profile main */
+
+#profileDescriptionDiv {
+    margin-top: 3%;
+    width: 90%;
+    margin-left: 5%;
+}
+
+#profileDescriptionDiv h2 {
+    width: 12%;
+    margin-left: 5%;
+    font-family: 'Bangers', cursive;
+    color: white;
+    font-weight: 300;
+    border: solid var(--hotpink);
+    border-width: 0px 0px 3px 0px;
+}
+
+#profileDescription {
+    color: #ffffff;
+    font-size: 16px;
+    background-color: var(--darkblue);
+}
+
+
+#profileGamesDiv {
+    margin-top: 3%;
+    width: 90%;
+    margin-left: 5%;
+}
+
+#profileGamesDiv h2 {
+    width: 11%;
+    margin-left: 5%;
+    font-family: 'Bangers', cursive;
+    color: white;
+    font-weight: 300;
+    border: solid var(--hotpink);
+    border-width: 0px 0px 3px 0px;
+}
+
+.steam.icon {
+    color: white;
 }
