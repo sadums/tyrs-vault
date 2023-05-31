@@ -44,4 +44,4 @@ Platform.init(
     }
 );
 
-module.exports = User;
+module.exports = Platform;

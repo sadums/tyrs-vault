@@ -3,6 +3,7 @@ const Game = require('./Game');
 const UserGames = require('./UserGames');
 const Friend = require('./Friend');
 const FriendRequest = require('./FriendRequest');
+const Platform = require('./Platform')
 
 User.hasMany(Game, {
     through: {
@@ -31,9 +32,21 @@ User.belongsToMany(User, {
 });
 
 User.hasMany(FriendRequest, {
-    onDelete: 'CASCADE'
+    foreignKey: 'targetUserID'
+});
+FriendRequest.hasMany(User, {
+    foreignKey: 'targetUserID'
 });
 
-FriendRequest.belongsTo(User);
+User.hasMany(Platform, {
+    foreignKey: 'user_id'
+});
+Platform.belongsTo(User, {
+    foreignKey: 'user_id'
+});
 
-module.exports = {User, Game, UserGames, Friend}
+
+
+
+
+module.exports = {User, Game, UserGames, Friend, FriendRequest, Platform}
