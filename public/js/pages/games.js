@@ -34,13 +34,15 @@ const setCards = function(){
                 const currentClone = currentCard[j];
                 const image = document.createElement('img');
                 image.setAttribute('src', data.results[i].background_image);
-                image.setAttribute('style', 'width: 200px; height: 200px');
     
+                // image.setAttribute("style", "width: 100%;");
+
                 const title = document.createElement('h2');
-                title.textContent = data.results[i].name
+                title.textContent = data.results[i].name;
 
                 const addButton = document.createElement('button');
                 addButton.textContent = 'Add';
+                addButton.className = "addGame";
                 addButton.addEventListener('click', () => {
                     const favGame = {
                         title: title.textContent, 
@@ -53,8 +55,26 @@ const setCards = function(){
                 currentClone.appendChild(title);
                 currentClone.appendChild(image);
             }
+       
         }
     });
 }
 
 setCards();
+
+// var i = 0;
+
+// function rotateLandingImg() { setInterval(function() {
+//     if(i === 4) {
+//         i = 0;
+//         $('#gamesMain').attr("style", "background-image: url('../imgs/fortnite\ dark\ v2.jpg')");
+//     } else if (i == 1){
+//         $('#gamesMain').attr("style", "background-image: url('../imgs/steam\ lib\ dark\ v2.jpg')");
+//     } else if (i == 2) {
+//         $('#gamesMain').attr("style", "background-image: url('../imgs/call\ of\ duty\ dark.jpg')");
+//     } 
+//     i++;
+// }, 6500);
+// };
+
+// window.addEventListener('load', rotateLandingImg());
