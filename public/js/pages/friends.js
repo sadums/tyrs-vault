@@ -194,10 +194,10 @@ let mainFriendSplide = document.querySelector('#friendDisplay');
             } else {
             friendPFP.src = data[i].pfp;
             }
-            
             friendUsername.innerHTML = data[i].username;
 
             
+
             };
 
             let splide1 = document.querySelector("#splide1");
