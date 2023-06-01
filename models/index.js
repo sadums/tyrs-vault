@@ -2,7 +2,11 @@ const User = require('./User');
 const Game = require('./Game');
 const Friend = require('./Friend');
 const FriendRequest = require('./FriendRequest');
-const Platform = require('./Platform')
+const Platform = require('./Platform');
+const sequelize = require('../config/connection');
+
+
+
 
 User.hasMany(User, {
     through: {
@@ -30,6 +34,7 @@ User.hasMany(Platform, {
 Platform.belongsTo(User, {
     foreignKey: 'user_id'
 });
+
 
 User.hasMany(Game, {
     foreignKey: 'user_id'
