@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
 // Get all of a users friends
 // ENDPOINT: "/api/userfriends/friends"
 router.get('/friends', async (req, res) => {
-  try{
+  try {
     const friends1 = await UserFriends.findAll({
       where: {
         user_id1: req.session.userid,
@@ -37,44 +37,44 @@ router.get('/friends', async (req, res) => {
 
     const data = []
 
-    for(let i = 0; i < friends1.length; i++){
+    for (let i = 0; i < friends1.length; i++) {
       let currentFriend = friends1[i];
 
-      if(currentFriend.dataValues.user_id1 === req.session.userid){
+      if (currentFriend.dataValues.user_id1 === req.session.userid) {
         // the friend is user_id2
         const friend = await User.findByPk(currentFriend.dataValues.user_id2, {
-          attributes: { exclude: ['password', 'email']}
+          attributes: { exclude: ['password', 'email'] }
         });
         data.push(friend.dataValues);
-      }else{
+      } else {
         // the friend is user_id1
         const friend = await User.findByPk(currentFriend.dataValues.user_id1, {
-          attributes: { exclude: ['password', 'email']}
+          attributes: { exclude: ['password', 'email'] }
         });
         data.push(friend.dataValues);
       }
     }
 
-    for(let i = 0; i < friends2.length; i++){
+    for (let i = 0; i < friends2.length; i++) {
       let currentFriend = friends2[i];
 
-      if(currentFriend.dataValues.user_id1 === req.session.userid){
+      if (currentFriend.dataValues.user_id1 === req.session.userid) {
         // the friend is user_id2
         const friend = await User.findByPk(currentFriend.dataValues.user_id2, {
-          attributes: { exclude: ['password', 'email']}
+          attributes: { exclude: ['password', 'email'] }
         });
         data.push(friend.dataValues);
-      }else{
+      } else {
         // the friend is user_id1
         const friend = await User.findByPk(currentFriend.dataValues.user_id1, {
-          attributes: { exclude: ['password', 'email']}
+          attributes: { exclude: ['password', 'email'] }
         });
         data.push(friend.dataValues);
       }
     }
 
     res.status(200).json(data);
-  }catch(e){
+  } catch (e) {
     console.error(e);
     res.status(500).json(e);
   }
@@ -82,20 +82,20 @@ router.get('/friends', async (req, res) => {
 
 // Send a friend request
 // ENDPOINT: "/api/userfriends/friend-request/:username"
-router.post('/friend-request/:username', async(req, res) => {
+router.post('/friend-request/:username', async (req, res) => {
   try {
     const user = await User.findByPk(req.session.userid);
-    if(!user){
-        res.status(404).json({ message : "Something went wrong, please try again"});
-        return;
+    if (!user) {
+      res.status(404).json({ message: "Something went wrong, please try again" });
+      return;
     }
-    
-    const requestedUser = await User.findOne({ where: { username: req.params.username}});
-    if(!requestedUser){
-        res.status(404).json({ message : "No user found!"});
-        return;
+
+    const requestedUser = await User.findOne({ where: { username: req.params.username } });
+    if (!requestedUser) {
+      res.status(404).json({ message: "No user found!" });
+      return;
     }
-    
+
     const alreadyFriendRequest = await FriendRequest.findOne({
       where: {
         targetUserID: requestedUser.dataValues.id,
@@ -103,29 +103,48 @@ router.post('/friend-request/:username', async(req, res) => {
       }
     });
 
-    if(alreadyFriendRequest){
-      res.status(400).json({ message : "You have already sent this user a friend request"});
+    if (alreadyFriendRequest) {
+      res.status(400).json({ message: "You have already sent this user a friend request" });
       return;
     }
 
-    if(requestedUser.dataValues.username == user.dataValues.username){
-      res.status(400).json({ message : "You cannot add yourself as a friend."});
+    if (requestedUser.dataValues.username == user.dataValues.username) {
+      res.status(400).json({ message: "You cannot add yourself as a friend." });
       return;
     }
-  
+
+    const alreadyFriend1 = await UserFriends.findOne({
+      where: {
+        user_id1: user.dataValues.id,
+        user_id2: requestedUser.dataValues.id
+      }
+    });
+
+    const alreadyFriend2 = await UserFriends.findOne({
+      where: {
+        user_id1: requestedUser.dataValues.id,
+        user_id2: user.dataValues.id
+      }
+    })
+
+    if(alreadyFriend1 || alreadyFriend2){
+      res.status(400).json({ message: "You are already friends with this user"});
+      return;
+    }
+
     const friendRequest = await FriendRequest.create({
       sentUserID: user.dataValues.id,
       targetUserID: requestedUser.dataValues.id,
     });
-  
-    if(!friendRequest){
-      res.status(400).json({ message: "Failed to send friend request"});
+
+    if (!friendRequest) {
+      res.status(400).json({ message: "Failed to send friend request" });
       return
     }
-  
+
     res.status(200).json({
-        friendRequest: friendRequest,
-        message: "Friend request sent successfully"
+      friendRequest: friendRequest,
+      message: "Friend request sent successfully"
     });
   } catch (e) {
     console.error(e);
@@ -135,7 +154,7 @@ router.post('/friend-request/:username', async(req, res) => {
 
 // receive all of a users friend requests
 // ENDPOINT: "/api/userfriends/get-requests/"
-router.get('/get-requests', async(req, res) => {
+router.get('/get-requests', async (req, res) => {
   try {
     const friendRequests = await FriendRequest.findAll({
       where: {
@@ -144,10 +163,10 @@ router.get('/get-requests', async(req, res) => {
     });
     const data = []
 
-    for(let i = 0; i < friendRequests.length; i++){
+    for (let i = 0; i < friendRequests.length; i++) {
       let currentRequest = friendRequests[i];
       let sentUser = await User.findByPk(currentRequest.dataValues.sentUserID, {
-        attributes: { exclude: ['password', 'email']}
+        attributes: { exclude: ['password', 'email'] }
       })
       data.push({
         request: currentRequest.dataValues,
@@ -155,8 +174,8 @@ router.get('/get-requests', async(req, res) => {
       });
     }
 
-    if(!friendRequests){
-      res.status(400).json({message: "Nobody wants to be your friend! LOL!"});
+    if (!friendRequests) {
+      res.status(400).json({ message: "Nobody wants to be your friend! LOL!" });
       return;
     }
 
@@ -169,16 +188,16 @@ router.get('/get-requests', async(req, res) => {
 
 // Delete a friend request
 // ENDPOINT: "/api/userfriends/delete-request/:id"
-router.delete('/delete-request/:username', async(req, res) => {
-  try{
+router.delete('/delete-request/:username', async (req, res) => {
+  try {
     const sentUser = await User.findOne({
       where: {
         username: req.params.username
       }
     });
 
-    if(!sentUser){
-      res.status(400).json({ message: "Could not find that user"});
+    if (!sentUser) {
+      res.status(400).json({ message: "Could not find that user" });
     }
 
     const friendRequest = await FriendRequest.findOne({
@@ -187,15 +206,15 @@ router.delete('/delete-request/:username', async(req, res) => {
       }
     });
 
-    if(!friendRequest){
-      res.status(404).json({message: "Could not find specified friend request"});
+    if (!friendRequest) {
+      res.status(404).json({ message: "Could not find specified friend request" });
       return;
     }
 
     const deleted = await friendRequest.destroy();
 
-    if(!deleted){
-      res.status(400).json({message: "Failed to delete friend request"});
+    if (!deleted) {
+      res.status(400).json({ message: "Failed to delete friend request" });
       return;
     }
 
@@ -204,7 +223,7 @@ router.delete('/delete-request/:username', async(req, res) => {
       deleted: deleted
     });
 
-  }catch(e){
+  } catch (e) {
     console.error(e);
     res.status(500).json(e);
   }
@@ -212,12 +231,12 @@ router.delete('/delete-request/:username', async(req, res) => {
 
 // Accept a users friend request
 // ENDPOINT: "/api/userfriends/accept-friend/:id"
-router.post('/accept-friend/:username', async(req, res) => {
-  try{
+router.post('/accept-friend/:username', async (req, res) => {
+  try {
     const user = await User.findByPk(req.session.userid);
-    if(!user){
-        res.status(404).json({ message : "Something went wrong, please try again"});
-        return;
+    if (!user) {
+      res.status(404).json({ message: "Something went wrong, please try again" });
+      return;
     }
 
     const sentUser = await User.findOne({
@@ -226,25 +245,25 @@ router.post('/accept-friend/:username', async(req, res) => {
       }
     });
 
-    if(!sentUser){
-      res.status(400).json({ message: "Could not find that user"});
+    if (!sentUser) {
+      res.status(400).json({ message: "Could not find that user" });
     }
-    
+
     const friendRequest = await FriendRequest.findOne({
       where: {
         sentUserID: sentUser.dataValues.id
       }
     });
 
-    if(!friendRequest){
-        res.status(404).json({ message : "Friend request not found"});
-        return;
+    if (!friendRequest) {
+      res.status(404).json({ message: "Friend request not found" });
+      return;
     }
-    
+
     const addedUser = await User.findByPk(friendRequest.dataValues.sentUserID);
-    if(!addedUser){
-        res.status(404).json({ message : "User you are trying to add was not found!"});
-        return;
+    if (!addedUser) {
+      res.status(404).json({ message: "User you are trying to add was not found!" });
+      return;
     }
 
     await friendRequest.destroy();
@@ -259,22 +278,22 @@ router.post('/accept-friend/:username', async(req, res) => {
       message: "Friend added successfully"
     });
 
-  }catch(e){
-      console.error(e);
-      res.status(500).json(e)
+  } catch (e) {
+    console.error(e);
+    res.status(500).json(e)
   }
 });
 
 // Remove a friend
 // ENDPOINT: "/api/userfriends/remove-friend/:username"
-router.delete('/remove-friend/:id', async(req, res) => {
+router.delete('/remove-friend/:id', async (req, res) => {
   try {
     const user = await User.findByPk(req.session.userid);
-    if(!user){
-      res.status(404).json({ message : "Something went wrong, please try again"});
+    if (!user) {
+      res.status(404).json({ message: "Something went wrong, please try again" });
       return;
     }
-    
+
     const addedUser = await User.findByPk(req.params.id);
 
     const friendshipTest1 = await UserFriends.findOne({
@@ -290,28 +309,82 @@ router.delete('/remove-friend/:id', async(req, res) => {
       }
     });
 
-    if(!friendshipTest1 && !friendshipTest2){
-      res.status(404).json({ message : "Friend you are trying to remove is already not your friend!"});
+    if (!friendshipTest1 && !friendshipTest2) {
+      res.status(404).json({ message: "Friend you are trying to remove is already not your friend!" });
       return;
     }
 
-    if(friendshipTest1){
+    if (friendshipTest1) {
       // 😔
       friendshipTest1.destroy();
       return;
     }
-    if(friendshipTest2){
+    if (friendshipTest2) {
       // 😔
       friendshipTest2.destroy();
       return;
     }
 
-    res.status(200).json({message: "Friend has been removed."});
+    res.status(200).json({ message: "Friend has been removed." });
   } catch (e) {
     console.error(e);
     res.status(500).json(e);
   }
 });
+
+router.get('/check-request/:username', async (req, res) => {
+  try {
+    const targetUser = await User.findOne({
+      where: {
+        username: req.params.username
+      }
+    });
+
+    if (!targetUser) {
+      res.status(400).json({ message: "No user found" });
+      return;
+    }
+
+
+    const alreadyFriend1 = await UserFriends.findOne({
+      where: {
+        user_id1: targetUser.dataValues.id,
+        user_id2: req.session.userid
+      }
+    });
+
+    const alreadyFriend2 = await UserFriends.findOne({
+      where: {
+        user_id1: targetUser.dataValues.id,
+        user_id2: req.session.userid
+      }
+    })
+
+    if(alreadyFriend1 || alreadyFriend2){
+      res.status(200).json({ message: "You are already friends with this user"});
+      return;
+    }
+
+    const request = await FriendRequest.findOne({
+      where: {
+        targetUserID: targetUser.dataValues.id,
+        sentUserID: req.session.userid
+      }
+    });
+
+    if (!request) {
+      res.status(200).json({ message: "No request found" });
+      return;
+    }
+
+    res.status(200).json({ message: "Friend request found" });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json(e);
+  }
+});
+
+
 
 // This route is literally a virus and makes half the other routes break
 // //sends the data of 1 userfriends by id
