@@ -7,12 +7,13 @@ const User = require('../models/User');
 // Renders the main page
 router.get('/', async (req, res) => {
     try {
-// <<<<<<< HEAD
+
+
 //         res.render('home', {
 //             home: true,
 //             loggedIn: req.session.loggedIn,
 //         });
-// =======
+
         const userData = await User.findAll().catch((err) => {
             res.json(err);
         });
@@ -23,6 +24,7 @@ router.get('/', async (req, res) => {
             loggedIn: req.session.loggedIn,
             users
         });
+
 
     } catch (e) {
         console.error(e);
