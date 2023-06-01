@@ -248,7 +248,10 @@
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 500;
     text-align: center;
-    color: black;
+    color: rgb(0, 0, 0);
+    font-size: 40px;
+    margin-top: 3%;
+    margin-left: 5%;
 }
 
 .friendsCardFacts {
@@ -256,21 +259,19 @@
     margin-left: 5%;
 }
 
-/* for displaying stats */
-
-#statsDisplayMain {
-    height: 33vh;
-    border: solid var(--lightblue);
-    border-width: 4px 0px 4px 0px;
-    /* background-color: var(--moderngray); */
+.friendCard img {
+    width: 60px;
+    height: 60px;
+    border: solid 2px black;
+    border-radius: 100%;
+    margin-left: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
-#statsTitle {
-    color: var(--lightblue);
-    font-family: 'Bangers', cursive;
-    font-weight: 200;
-    font-size: 30px;
-    margin-left: 10%;
+.friendCardHeader {
+    display: flex;
+    flex-direction: row;
 }
 
 /* For footer */

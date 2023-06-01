@@ -1,16 +1,22 @@
 const router = require('express').Router();
 const User = require('../../models/User');
 const Friend = require('../../models/Friend');
+const Game = require('../../models/Game');
 
 /* ENDPOINT: "/api/user/" */
-
+// How I fixed the "EagerLoadingError"
+User.hasMany(Game, {
+    foreignKey: 'user_id'
+});
+Game.belongsTo(User, {
+    foreignKey: 'user_id'
+});
 //sends all data in the users table
 // ENDPOINT: "/api/user/"
 router.get('/', async (req, res) => {
     try {
       const response = await User.findAll({
-        //we should include the users friends
-        //include: [Friend]
+        include: [Game]
       });
       res.status(200).json(response);
     } catch (error) {
