@@ -36,9 +36,13 @@ User.init(
                 len: [8,24],
             }
         },
-        bio: {
+        description: {
             type: DataTypes.STRING,
             allowNull: true
+        },
+        pfp: {
+            type: DataTypes.STRING,
+            allowNull: true,
         }
     },
     {
