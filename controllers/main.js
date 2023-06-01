@@ -1,16 +1,18 @@
 const router = require('express').Router();
-// TODO: import required models
 
-// TODO: create required routes
-
-//For Handlebars if logged in on load 
 const User = require('../models/User');
-const UserFriends = require('../models/Friend');
-const FriendRequest = require('../models/FriendRequest');
-const Game = require('../models/Game')
 
+
+// Endpoint: '/'
+// Renders the main page
 router.get('/', async (req, res) => {
     try {
+<<<<<<< HEAD
+        res.render('home', {
+            home: true,
+            loggedIn: req.session.loggedIn,
+        });
+=======
         const userData = await User.findAll().catch((err) => {
             res.json(err);
         });
@@ -22,14 +24,15 @@ router.get('/', async (req, res) => {
             users
         });
 
+>>>>>>> a23a1a2e239ffce2525decc91b643322d59ee028
     } catch (e) {
         console.error(e);
         res.status(500).json(e);
     }
 });
 
-
-
+// Endpoint: '/login'
+// Renders the login page
 router.get('/login', (req, res) => {
     try {
         if (req.session.loggedIn) {
@@ -46,6 +49,12 @@ router.get('/login', (req, res) => {
     }
 });
 
+<<<<<<< HEAD
+// Endpoint: '/friends'
+// Renders the friends page
+router.get('/friends', async (req, res) => {
+    try {
+=======
 const generateRandomValues = (min, max) => {
     const availableValues = max - min;
     const randomValues = new Set();
@@ -61,10 +70,14 @@ const generateRandomValues = (min, max) => {
 router.get('/friends', async (req, res) => {
     try {
 
+>>>>>>> a23a1a2e239ffce2525decc91b643322d59ee028
         if (!req.session.loggedIn) {
             res.redirect('/');
             return;
         }
+<<<<<<< HEAD
+
+=======
         const friends1 = await UserFriends.findAll({
             where: {
                 user_id1: req.session.userid,
@@ -128,11 +141,14 @@ router.get('/friends', async (req, res) => {
                 data.push(friend.dataValues);
             }
         }
+>>>>>>> a23a1a2e239ffce2525decc91b643322d59ee028
         res.render('friends', {
-            loggedIn: req.session.loggedIn,
             friends: true,
+<<<<<<< HEAD
+=======
             data: data,
             favoriteGame: sendDataList
+>>>>>>> a23a1a2e239ffce2525decc91b643322d59ee028
         });
     } catch (e) {
         console.error(e);
@@ -140,6 +156,7 @@ router.get('/friends', async (req, res) => {
     }
 });
 
+// Endpoint: '/profile'
 // Renders the users profile
 router.get('/profile', async (req, res) => {
     if (!req.session.loggedIn) {
@@ -147,16 +164,42 @@ router.get('/profile', async (req, res) => {
         return;
     }
 
+<<<<<<< HEAD
+    const user = await User.findByPk(req.session.userid, {
+        attributes: { exclude: ['password', 'email'] }
+    });
+=======
     const user = await User.findByPk(req.session.userid);
+>>>>>>> a23a1a2e239ffce2525decc91b643322d59ee028
     if (!user) {
         res.status(404).json({ message: "Something went wrong, please try again" });
         return;
     }
+    const data = user.dataValues;
     res.render('profile', {
-        user: user.dataValues
+        data,
+        platforms: false, // change to actually send platforms
+        favorites: false, //change to actually send favorites
+        profile: true,
+        ownPage: true
     });
 });
 
+<<<<<<< HEAD
+// Endpoint: '/profile/:username'
+// Renders a specific users profile
+router.get('/profile/:username', async (req, res) => {
+    try {
+        const user = await User.findOne({
+            where: {
+                username: req.params.username
+            },
+            attributes: { exclude: ['password', 'email'] }
+        });
+
+        if (!user) {
+            res.status(400).json({ message: "No user found!" });
+=======
 // Render a specific users profile
 router.get('/profile/:id', async (req, res) => {
     const user = await User.findByPk(req.params.id);
@@ -205,16 +248,35 @@ router.get('/profile/:username', async (req, res) => {
         } else {
             console.log('it got to not login')
             res.send('profile-not-login')
+>>>>>>> a23a1a2e239ffce2525decc91b643322d59ee028
         }
-    }
-    catch (err) {
-        console.log(err)
-        res.status(500).json('err')
+
+        if (user.dataValues.id === req.session.userid) {
+            res.redirect('/profile');
+        }
+
+        const data = user.dataValues;
+        console.log(data);
+        res.render('profile', {
+            data,
+            platforms: false, // change to actually send platforms
+            favorites: false, //change to actually send favorites
+            profile: true,
+            ownPage: false
+        });
+    } catch (e) {
+        console.error(e);
+        res.status(500).json(e);
     }
 });
 
+<<<<<<< HEAD
+// Endpoint: '/games'
+// Renders the games page
+=======
 
 
+>>>>>>> a23a1a2e239ffce2525decc91b643322d59ee028
 router.get('/games', async (req, res) => {
     res.render('games', {
         games: true,

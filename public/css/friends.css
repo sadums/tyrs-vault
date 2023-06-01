@@ -18,7 +18,7 @@
     --moderngray: #5c5e60;
 }
 
-/* for header */ 
+/* for header */
 #headerProfile {
     width: 101%;
     padding: 1%;
@@ -54,7 +54,12 @@
     background-position: 0 100%;
 }
 
-
+#addIconContainer{
+    margin-right: 2%;
+}
+#addIcon{
+    color: white
+}
 
 /* FOR MAIN CONTENT (profile) */
 
@@ -72,6 +77,16 @@
     background-image: linear-gradient(to bottom right, rgba(12, 20, 51, 0.8), 80%, rgba(76, 20, 179, 0.8));
     border: solid 3px var(--darkblue);
     padding-top: 5%;
+}
+
+#descriptionCard {
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 5%;
+    height: fit-content;
+    background-color: rgb(12, 20, 51);
+    border: solid 2px var(--hotpink);
+    padding: 5px;
 }
 
 /* for profile header */
@@ -183,9 +198,7 @@
     padding-left: 3%;
 }
 
-#favoriteGamesList {
-
-}
+#favoriteGamesList {}
 
 #favoriteGamesTitle {
     margin-left: 2%;
