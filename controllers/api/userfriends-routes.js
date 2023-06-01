@@ -169,11 +169,21 @@ router.get('/get-requests', async(req, res) => {
 
 // Delete a friend request
 // ENDPOINT: "/api/userfriends/delete-request/:id"
-router.delete('/delete-request/:id', async(req, res) => {
+router.delete('/delete-request/:username', async(req, res) => {
   try{
+    const sentUser = await User.findOne({
+      where: {
+        username: req.params.username
+      }
+    });
+
+    if(!sentUser){
+      res.status(400).json({ message: "Could not find that user"});
+    }
+
     const friendRequest = await FriendRequest.findOne({
       where: {
-        sentUserID: req.params.id
+        sentUserID: sentUser.dataValues.id
       }
     });
 
@@ -202,19 +212,30 @@ router.delete('/delete-request/:id', async(req, res) => {
 
 // Accept a users friend request
 // ENDPOINT: "/api/userfriends/accept-friend/:id"
-router.post('/accept-friend/:id', async(req, res) => {
+router.post('/accept-friend/:username', async(req, res) => {
   try{
     const user = await User.findByPk(req.session.userid);
     if(!user){
         res.status(404).json({ message : "Something went wrong, please try again"});
         return;
     }
+
+    const sentUser = await User.findOne({
+      where: {
+        username: req.params.username
+      }
+    });
+
+    if(!sentUser){
+      res.status(400).json({ message: "Could not find that user"});
+    }
     
     const friendRequest = await FriendRequest.findOne({
       where: {
-        sentUserID: req.params.id
+        sentUserID: sentUser.dataValues.id
       }
     });
+
     if(!friendRequest){
         res.status(404).json({ message : "Friend request not found"});
         return;

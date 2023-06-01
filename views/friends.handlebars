@@ -1,21 +1,4 @@
-{{!-- <section class="col-md-12">
-
-</section>
-<section class="col-md-12 m-5">
-  <form class="d-flex m-5">
-    <input class="form-control me-sm-2" type="text" placeholder="Enter username" id="friend-search-text">
-    <button class="btn btn-outline-success my-2 my-sm-0" id="friend-search-button">Add Friend</button>
-  </form>
-  <h2 class="col-md-12">Friend Requests: </h2>
-  <div class="row justify-content-center align-items-center g-2" id="friends-request-list" style="width: 50%">
-  </div>
-  <h2 class="col-md-12">Friends: </h2>
-  <div class="row justify-content-center align-items-center g-2" id="friends-list" style="width: 50%">
-  </div>
-</section> --}}
-
-
-<div class="ui secondary  menu" id="headerProfile">
+<div class="ui secondary  menu" id="headerMain">
   <a class="item" id="titleCustom">
     Tyr's Vault
   </a>
@@ -24,9 +7,9 @@
       Friends
     </a>
     <a class="ui item" id="statsLink">
-      Stats
+      Games
     </a>
-    <a class="ui item" id="menuProfile">
+    <a class="ui item" id="menuProfile" href="/profile">
       Profile
     </a>
 
@@ -48,203 +31,85 @@
 </div>
 
 
-{{!-- {{ FOR EDIT PROFILE MODAL}} --}}
-<div class="ui modal profile">
-  <i class="close icon"></i>
-  <div class="header">
-    Edit Profile
-  </div>
-
-  <div id="editProfileModuleMain">
-    <div class="ui form">
-      <label>
-        <h2 id="otherLabelModal">Main</h2>
-      </label>
-      <div class="three fields">
-        <div class="eight wide field">
-          <label>Username</label>
-          <input type="text" placeholder="Username">
-        </div>
-        <div class="three wide field">
-
-          <label>Profile Pic</label>
-
-          <form id="imageUploadForm">
-            <input type="file" id="imageInput" accept="image/*">
-            <button type="submit">Upload</button>
-          </form>
-
-          <div id="preview"></div>
-
-        </div>
-        <div class="three wide field">
-          <label>Theme</label>
-        </div>
-      </div>
-      <div class="field">
-        <label>Description</label>
-        <textarea rows="3"></textarea>
-      </div>
-      <div class="three fields">
-        <div class="field">
-
-          <label>Steam Username</label>
-          <input type="text" placeholder="Steam Username">
-        </div>
-        <div class="field">
-          <label>Xbox Username</label>
-          <input type="text" placeholder="Xbox Username">
-        </div>
-        <div class="field">
-          <label>Playstation Username</label>
-
-          <input type="text" placeholder="Playstation Username">
-        </div>
-      </div>
-      <label>
-        <h2 id="otherLabelModal">Other</h2>
-      </label>
-
-      <div class="three fields">
-        <div class="field">
-          <label>Chess.com Username</label>
-          <input id="chess-input" type="text" placeholder="Chess.com Username">
-
-        </div>
-        <div class="field">
-          <label>Fortnite Username</label>
-          <input id="fortnite-input" type="text" placeholder="Fortnite Username">
-        </div>
-        <div class="field">
-          <label>Steam ID #</label>
-          <input id="steam-input" type="text" placeholder="Steam ID">
-        </div>
-      </div>
-      <div class="three fields">
-        <div class="six wide field">
-          <label>Favorite Game</label>
-          <input type="text" placeholder="#1 Favorite Game"></input>
-        </div>
-        <div class="five wide field">
-          <label>2nd Favorite Game</label>
-          <input type="text" placeholder="#2 Favorite Game"></input>
-        </div>
-        <div class="five wide field">
-          <label>3rd Favorite Game</label>
-          <input type="text" placeholder="#3 Favorite Game"></input>
-        </div>
-      </div>
+<div id="mainDiv">
+  <div id="searchBarMain">
+    <h4 id="friendSearch">Search for a player</h4>
+    <div class="ui action input">
+      <input type="text" placeholder="Gamers Username..." id="searchBar">
+      <button class="ui button" id="searchButton">Find</button>
     </div>
   </div>
 
-  <div class="actions">
-    <button class="ui black deny button">
-      Cancel
-    </button>
-    <button id="submit-form-button" class="ui positive right labeled icon button">
-      Confirm
-      <i class="checkmark icon"></i>
-    </button>
+<section id="friendRequestList">
+  <div class="ui raised rounded card" id="mainFriendRequestCard">
+    <div class="content" id="friendRequests">
+      <h4 class="header" style="color: white;">Friend Requests:</h4>
+    </div>
   </div>
-</div>
+</section>
+  <h1 id="yourFriendsTitle">Your friends</h1>
+  <div id="friendDisplayMain">
+    <div id="friendListDiv">
+      <section class="splide" id="splide1" aria-label="Splide Basic HTML Example"
+        data-splide='{"type":"loop", "padding":"5rem", "perPage":"4", "perMove":"1", "focus":"0" }'>
+        <div class="splide__track">
+          <ul class="splide__list" id="friendDisplay">
 
-
-
-<div id="mainProfileDiv">
-  <div id="profileSection">
-
-    <div id="profileHeader">
-      <div class="ui secondary menu">
-        <div class="ui item">
-          <img id="userProfilePic"
-            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.1RN7WGcqqqRWWyAME6fWlAHaHa%26pid%3DApi&f=1&ipt=469458bba1c4759f37645150deee4b028ad884e75f85cbca2f15aa59fdc1a67d&ipo=images">
+          </ul>
         </div>
-        <div class="ui item">
-          <h1 id="profileUsername">Carreejoh</h1>
-        </div>
-        <div class="ui secondary right menu">
-          {{!-- {{ ADD LOGIC HERE FOR IF YOUR PROFILE}} --}}
-          <button class="ui item button" id="editProfileBtn">Edit Profile</button>
-          <script>
-            $('.ui.modal')
-              .modal('attach events', '#editProfileBtn')
-              .modal('show');
-          </script>
-
-        </div>
-
-      </div>
+      </section>
     </div>
-    <div id="profileDescriptionDiv">
-      <h2>Description</h2>
-      <div id="profileDescription">
-        <p>As a dedicated gamer, I find solace in the boundless realms of virtual adventures, where pixels intertwine to
-          create mesmerizing tapestries of imagination. Games have become my refuge, offering an escape from the mundane
-          and granting me the power to transcend the limits of reality. Within these digital landscapes, I become an
-          architect of destiny, forging narratives and shaping destinies with the deft strokes of a controller.</p>
-      </div>
-    </div>
-    <div id="profileGamesDiv" class="ui stackable grid">
-      <div class="five wide column">
-        <h2 id="profilePlatformsH2">Platforms</h2>
-        <div class="ui relaxed list">
-          <div class="ui item">
-            <i class="steam large inverted icon"></i>
-            <div class="content">
-              <div class="header" id="steamUsername">@CRJ4637</div>
-            </div>
-          </div>
-          <div class="ui item">
-            <i class="playstation inverted large icon"></i>
-            <div class="content">
-              <div class="header" id="ps4Username">@Carreejoh</div>
-            </div>
-          </div>
-          <div class="ui item">
-            <i class="xbox inverted large icon"></i>
-            <div class="content">
-              <div class="header" id="xboxUsername">@Whater_idk</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="eleven wide column">
-        <h2 id="profilePlatformsH2">Friends</h2>
-        <div class="ui horizontal list">
-          <a class="ui item">
-            <h1 id="friendsHotLink">@Carreejoh</h1>
-          </a>
-          <a class="ui item">
-            <h1 id="friendsHotLink">@Sadums</h1>
-          </a>
-          <a class="ui item">
-            <h1 id="friendsHotLink">@XtraGoldfish</h1>
-          </a>
-          <a class="ui item">
-            <h1 id="friendsHotLink">@Lowbrowkid</h1>
-          </a>
-          <a class="ui item">
-            <h1 id="friendsHotLink">@SussyJew</h1>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div id="favoriteGamesProfile">
-      <h2 id="favoriteGamesTitle">Favorite Games</h2>
-      <ul id="favoriteGamesList">
-        {{#each favoriteGame as |game|}}
-        {{>favGame-details}}
-        {{/each}}
-      </ul>
+    <script>
 
-      <script>
-        let gamesList = document.querySelector("#favoriteGamesList");
-        new Sortable(gamesList, {
-          animation: 150
-        });
-      </script>
-
-    </div>
-    <script src="./js/games.js"></script>
+    </script>
   </div>
+  {{!-- <h1 id="statsTitle">Your Stats</h1>
+  <div id="statsDisplayMain">
+    <div>
+      <section class="splide" id="splide2" aria-label="Splide Basic HTML Example"
+        data-splide='{"type":"loop", "padding":"8rem", "perPage":"5", "perMove":"1", "focus":"0"}'>
+        <div class="splide__track">
+          <ul class="splide__list">
+            <li class="splide__slide">
+              <div class="friendCard">
+                <h2>asdfdef</h2>
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="friendCard">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="friendCard">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="friendCard">
+
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+    <script>
+      new Splide('#splide2', {
+
+      }).mount();
+    </script> --}}
+    {{!-- {{> splide users }} --}}
+  </div>
+
+  <footer>
+    <div class="ui secondary centered menu">
+      <a class="ui icon item">
+        <i class="wrench large icon"></i>
+      </a>
+      <a class="ui icon item">
+        <i class="github large icon"></i>
+      </a>
+    </div>
+  </footer>
 </div>

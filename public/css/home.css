@@ -168,6 +168,35 @@
     background-size: cover;
 }
 
+/* For Friend Request cards */
+
+#mainFriendRequestCard {
+    width: fit-content;
+    margin-left: 25%;
+    margin-top: 5%;
+    height: fit-content;
+    background-color: rgb(12, 20, 51);
+    border: solid 2px var(--hotpink);
+    padding: 5px;
+}
+.friendRequestCard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+.friendRequestTitle{
+    color: white;
+    size: 15px;
+}
+.friendRequestProfilePicture{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+
 /* for search bar */
 
 #friendSearch {
@@ -182,7 +211,6 @@
     width: 100%;
     padding-top: 2%;
     /* Original padding-bottom: 2%;*/
-    padding-bottom: 12%;
 }
 
 /* for displaying friends list */
