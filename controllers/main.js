@@ -11,7 +11,7 @@ const Friend = require('../models/Friend');
 //         model: Friend,
 //         as: 'friends',
 //         unique: false
-        
+
 //     }
 // });
 // User.hasMany(User, {
@@ -42,17 +42,19 @@ router.get('/', async (req, res) => {
     try {
 
 
-//         res.render('home', {
-//             home: true,
-//             loggedIn: req.session.loggedIn,
-//         });
+        //         res.render('home', {
+        //             home: true,
+        //             loggedIn: req.session.loggedIn,
+        //         });
+
 
         const userData = await User.findAll().catch((err) => {
             res.json(err);
         });
         const users = userData.map((user) => user.get({ plain: true }));
 
-        res.render('home', {
+        res.render('games', {
+            games: true,
             home: true,
             loggedIn: req.session.loggedIn,
             users
@@ -162,11 +164,7 @@ router.get('/profile/:username', async (req, res) => {
 
 // Endpoint: '/games'
 // Renders the games page
-router.get('/games', async (req, res) => {
-    res.render('games', {
-        games: true,
-    })
-})
+
 
 
 
