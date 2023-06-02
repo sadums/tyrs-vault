@@ -1,6 +1,39 @@
 const router = require('express').Router();
 
 const User = require('../models/User');
+const Game = require('../models/Game');
+const Platform = require('../models/Platform');
+const Friend = require('../models/Friend');
+
+
+// User.belongsToMany(User, {
+//     through: {
+//         model: Friend,
+//         as: 'friends',
+//         unique: false
+        
+//     }
+// });
+// User.hasMany(User, {
+//     through: {
+//         model: Friend,
+//         as: 'friends',
+//         unique: false,
+//     }
+// });
+// User.hasMany(Platform, {
+//     foreignKey: 'user_id'
+// });
+// Platform.belongsTo(User, {
+//     foreignKey: 'user_id'
+// });
+User.hasMany(Game, {
+    foreignKey: 'user_id'
+});
+Game.belongsTo(User, {
+    foreignKey: 'user_id'
+});
+
 
 
 // Endpoint: '/'
@@ -19,14 +52,7 @@ router.get('/', async (req, res) => {
         });
         const users = userData.map((user) => user.get({ plain: true }));
 
-        // router.get('/games', async (req, res) => {
-        //     res.render('games', {
-        //         games: true,
-        //     })
-        // })
-
-        res.render('games', {
-            games: true,
+        res.render('home', {
             home: true,
             loggedIn: req.session.loggedIn,
             users
@@ -107,7 +133,8 @@ router.get('/profile/:username', async (req, res) => {
             where: {
                 username: req.params.username
             },
-            attributes: { exclude: ['password', 'email'] }
+            attributes: { exclude: ['password', 'email'] },
+            // include: [Game]
         });
 
         if (!user) {
@@ -135,7 +162,11 @@ router.get('/profile/:username', async (req, res) => {
 
 // Endpoint: '/games'
 // Renders the games page
-
+router.get('/games', async (req, res) => {
+    res.render('games', {
+        games: true,
+    })
+})
 
 
 
