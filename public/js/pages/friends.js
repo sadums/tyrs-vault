@@ -4,73 +4,73 @@ const logoutButton = document.getElementById('logout');
 const friendRequests = document.getElementById('friendRequests');
 
 
-const deleteFriendRequest = async function(event){
+const deleteFriendRequest = async function (event) {
     let name = event.target.id;
     console.log(name);
-    await fetch(`/api/userfriends/delete-request/${name}`,{
+    await fetch(`/api/userfriends/delete-request/${name}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
         }
     })
-    .then((response) => response.json())
-    .then((data) => {
-        console.log(data);
-    });
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+        });
 }
 
-const acceptFriendRequest = async function(event){
+const acceptFriendRequest = async function (event) {
     let name = event.target.id;
-    await fetch(`/api/userfriends/accept-friend/${name}`,{
+    await fetch(`/api/userfriends/accept-friend/${name}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         }
     })
-    .then((response) => response.json())
-    .then((data) => {
-        console.log(data);
-    });
-}
-
-
-const getFriendRequests = function(){
-    fetch(`/api/userfriends/get-requests`)
-    .then((response) => response.json())
-    .then((data) => {
-        console.log(data)
-        data.forEach((request) => {
-            let name = request.user.username
-            let pfp = request.user.pfp
-            createFriendRequest(name, pfp)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
         });
-    });
 }
 
-const getFriends = function(){
+
+const getFriendRequests = function () {
+    fetch(`/api/userfriends/get-requests`)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data)
+            data.forEach((request) => {
+                let name = request.user.username
+                let pfp = request.user.pfp
+                createFriendRequest(name, pfp)
+            });
+        });
+}
+
+const getFriends = function () {
     fetch(`/api/userfriends/friends`)
-    .then((response) => response.json())
-    .then((data) => {
-        data.forEach((friend) => {
-            createFriendEl(friend.id, friend.username);
-        })
-    });
+        .then((response) => response.json())
+        .then((data) => {
+            data.forEach((friend) => {
+                createFriendEl(friend.id, friend.username);
+            })
+        });
 }
 
-const removeFriend = function(event){
+const removeFriend = function (event) {
     let id = event.target.id;
-    fetch(`/api/userfriends/remove-friend/${id}`,{
+    fetch(`/api/userfriends/remove-friend/${id}`, {
         method: "DELETE",
     })
-    .then((response) => response.json())
-    .then((data) => {
-        console.log(data);
-    });
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+        });
 }
 
 
 
-const createFriendRequest = function(username, pfpSrc){
+const createFriendRequest = function (username, pfpSrc) {
     const friendRequestContainer = document.createElement('div');
     friendRequestContainer.setAttribute('class', 'friendRequestCard');
 
@@ -113,30 +113,14 @@ getFriendRequests();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const logout = async() => {
+const logout = async () => {
     const response = await fetch('/api/user/logout', {
         method: 'POST'
     });
 
-    if(response.ok){
+    if (response.ok) {
         document.location.replace('/login');
-    }else{
+    } else {
         alert('Something went wrong, please try again');
     }
 }
@@ -152,86 +136,81 @@ logoutButton.addEventListener('click', logout);
 let mainFriendSplide = document.querySelector('#friendDisplay');
 
 
-        function fetchUserData () {
-    
-        fetch('/api/user', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then((response) => {
-            return response.json()
-        }).then((data) => {
-            appendFriendData(data);
-        });
-        };
-    
-        function appendFriendData(data) {
-            console.log(data);
+function fetchUserData() {
 
-            for(i=0; i<data.length; i++) {
-            console.log(data[i]);
+    fetch('/api/user', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then((response) => {
+        return response.json()
+    }).then((data) => {
+        appendFriendData(data);
+    });
+};
 
-            let friendSlide = document.createElement("li");
-            let friendDiv = document.createElement("div");
-            let friendHeader = document.createElement("div");
-            let friendUsername = document.createElement("h2");
-            let friendPFP = document.createElement("img");
-            let friendGameDiv = document.createElement("div");
-            let friendGameTitle = document.createElement("h3");
-            let friendGameImg = document.createElement("img");
+function appendFriendData(data) {
+    console.log(data);
 
-            friendSlide.className = "splide__slide";
-            friendDiv.className = "friendCard";
-            friendHeader.className = "friendCardHeader";
-            friendPFP.className = "homePFP";
-            friendGameImg.className = "homeGameImg";
+    for (i = 0; i < data.length; i++) {
+        console.log(data[i]);
 
-            mainFriendSplide.appendChild(friendSlide);
-            friendSlide.appendChild(friendDiv);
-            friendDiv.appendChild(friendHeader);
-            friendHeader.appendChild(friendPFP);
-            friendHeader.appendChild(friendUsername);
-            friendDiv.appendChild(friendGameDiv);
-            friendGameDiv.appendChild(friendGameTitle);
-            friendGameDiv.appendChild(friendGameImg);
+        let friendSlide = document.createElement("li");
+        let friendDiv = document.createElement("div");
+        let friendHeader = document.createElement("div");
+        let friendUsername = document.createElement("h2");
+        let friendPFP = document.createElement("img");
+        let friendGameDiv = document.createElement("div");
+        let friendGameTitle = document.createElement("h3");
+        let friendGameImg = document.createElement("img");
 
-            if(data[i].pfp === null) {
-                friendPFP.src = 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2F736x%2F85%2F9a%2Ff7%2F859af748d1eed0d67d5801a6df188a89.jpg&f=1&nofb=1&ipt=133308f7c0b60381e5aea6111f39b9eb5ba8077a2c3f6f247b5895fd1a4363e4&ipo=images';
-            } else {
+        friendSlide.className = "splide__slide";
+        friendDiv.className = "friendCard";
+        friendHeader.className = "friendCardHeader";
+        friendPFP.className = "homePFP";
+        friendGameImg.className = "homeGameImg";
+
+        mainFriendSplide.appendChild(friendSlide);
+        friendSlide.appendChild(friendDiv);
+        friendDiv.appendChild(friendHeader);
+        friendHeader.appendChild(friendPFP);
+        friendHeader.appendChild(friendUsername);
+        friendDiv.appendChild(friendGameDiv);
+        friendGameDiv.appendChild(friendGameTitle);
+        friendGameDiv.appendChild(friendGameImg);
+
+        if (data[i].pfp === null) {
+            friendPFP.src = 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2F736x%2F85%2F9a%2Ff7%2F859af748d1eed0d67d5801a6df188a89.jpg&f=1&nofb=1&ipt=133308f7c0b60381e5aea6111f39b9eb5ba8077a2c3f6f247b5895fd1a4363e4&ipo=images';
+        } else {
             friendPFP.src = data[i].pfp;
-            }
-            friendUsername.innerHTML = data[i].username;
+        }
+        friendUsername.innerHTML = data[i].username;
 
 
-            if(data[i].userGames.length === null) {
+        if (data[i].userGames.length === null) {
+
+        } else {
+            if (data[i].userGames.length === 0) {
 
             } else {
-                if(data[i].userGames.length === 0) {
-
-                } else {
-                    tempGameNumber = Math.floor(Math.random() * data[i].userGames.length);
-                    friendGameTitle.innerHTML = data[i].userGames[tempGameNumber].title;
-                    console.log(friendGameTitle.innerHTML = data[i].userGames[tempGameNumber].title); 
-                }
+                tempGameNumber = Math.floor(Math.random() * data[i].userGames.length);
+                friendGameTitle.innerHTML = data[i].userGames[tempGameNumber].title;
+                console.log(friendGameTitle.innerHTML = data[i].userGames[tempGameNumber].title);
             }
+        }
 
 
 
-            };
+    };
 
-            let splide1 = document.querySelector("#splide1");
-            new Splide( splide1, {
-                focus: 'center',
-               } ).mount();
-        };
+    let splide1 = document.querySelector("#splide1");
+    new Splide(splide1, {
+        focus: 'center',
+    }).mount();
+};
 
 
-    fetchUserData();
-    
-
-  
-    
-
+fetchUserData();
 
 
