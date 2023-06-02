@@ -2,6 +2,9 @@ const getElement = function(className){
     return document.getElementsByClassName(className);
 }
 
+const searchBar = document.getElementById('searchBar');
+const searchButton = document.getElementById('searchButton');
+
 const gameListChildren = [getElement("gameCard1"),getElement("gameCard2"),getElement("gameCard3"),getElement("gameCard4"),getElement("gameCard5"),getElement("gameCard6"),getElement("gameCard7"),getElement("gameCard8"),getElement("gameCard9"),getElement("gameCard10"),getElement("gameCard11"),getElement("gameCard12"),getElement("gameCard13"),getElement("gameCard14"),getElement("gameCard15"),];
 
 const sendData = (favGame) => {
@@ -78,3 +81,10 @@ setCards();
 // };
 
 // window.addEventListener('load', rotateLandingImg());
+
+const searchFriend = function(){
+  const username = searchBar.value;
+  location.href = `/profile/${username}`;
+}
+
+searchButton.addEventListener('click', searchFriend);
