@@ -5,10 +5,13 @@ const fs = require('fs');
 /* ENDPOINT: "/api/user-profile/" */
 
 
-//sends all data in the users table
+// Edits user profile picture
 // ENDPOINT: "/api/user-profile/edit-picture"
 router.post('/edit-picture', async (req, res) => {
     try {
+        console.log("HERE");
+        console.log(req.body.pfp);
+        console.log("HERE");
         if(!req.body.pfp){
             res.status(400).json({ message: "No profile picture included" });
         }
@@ -19,18 +22,41 @@ router.post('/edit-picture', async (req, res) => {
             res.status(400).json({message: "something went wrong, please try again"});
         }
 
-        user.pfp = req.body.pfp;
-        await user.save(`./imgs/profile/${user.dataValues.id}/pfp`);
+        user.pfp = `./imgs/profile/${user.dataValues.id}/pfp.png`;
+        await user.save();
 
-        fs.open(`../../public/imgs/profile/${user.dataValues.id}/pfp`, req.body.pfp, (e) => {
-            e ? console.error(e) : console.log("Profile picture uploaded");
-        })
+        fs.open(`../../public/imgs/profile/${user.dataValues.id}/pfp.png`, req.body.pfp, (e) => {
+            e ? console.error(e) : res.status(200).json({message: "Profile picture changed"});
+        });
     } catch (e) {
         console.error(e);
         res.status(500).json(e);
     }
 });
 
+// Edits user description
+// ENDPOINT: "/api/user-profile/edit-description"
+router.post('/edit-description', async (req, res) => {
+    try {
+        if(!req.body.description){
+            res.status(400).json({ message: "No description included" });
+        }
+
+        const user = await User.findByPk(req.session.userid);
+
+        if(!user){
+            res.status(400).json({message: "something went wrong, please try again"});
+        }
+
+        user.description = req.body.description;
+        await user.save();
+
+        res.json(200).status({message: "Description was changed"});
+    } catch (e) {
+        console.error(e);
+        res.status(500).json(e);
+    }
+});
 
 
 module.exports = router;

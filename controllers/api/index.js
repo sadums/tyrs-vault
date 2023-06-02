@@ -4,10 +4,12 @@ const router = require('express').Router();
 const userRoutes = require('./user-routes');
 const userFriendsRoutes = require('./userfriends-routes');
 const gameRoutes = require('./game-routes');
+const userProfileRoutes = require('./user-profile');
 
 router.use('/user', userRoutes);
 router.use('/userfriends', userFriendsRoutes);
 router.use('/game', gameRoutes);
+router.use('/user-profile', userProfileRoutes);
 
 
 //external apis
