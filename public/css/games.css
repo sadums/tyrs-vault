@@ -29,6 +29,8 @@
 }
 
 
+
+
 #titleCustom {
     font-family: 'Bangers', cursive;
     font-size: 34px;
@@ -59,7 +61,7 @@
     font-size: 30px;
 }
 
-#searchBarGames {
+.searchBarGames {
     text-align: center;
     width: 100%;
     padding-top: 12%;
@@ -70,6 +72,10 @@
 #gamesMain {
     height: 100%;
     background-image: url('../imgs/portal\ 2\ dark\ fr.jpg');
+}
+
+#homeSearch{
+    display: flex;
 }
 
 /* For styling games splide */

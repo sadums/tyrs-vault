@@ -1,13 +1,14 @@
-<div class="ui secondary  menu" id="headerGames">
+<div class="ui secondary  menu" id="headerMain">
   <a class="item" id="titleCustom">
     Tyr's Vault
   </a>
+  {{#if loggedIn}}
   <div class="right menu">
     <a class="ui item" id="friendsLink" href="/friends">
       Friends
     </a>
     <a class="ui item" id="statsLink">
-      Games
+      Stats
     </a>
     <a class="ui item" id="menuProfile">
       Profile
@@ -28,115 +29,124 @@
         .dropdown();
     </script>
   </div>
+  {{else}}
+  <div class="right menu">
+    <a class="ui item" id="loginLink" href="/login">
+      Login
+    </a>
+  </div>
+  {{/if}}
 </div>
-
-
-
-
-
-
 
 <div id="gamesMain">
-<div id="searchBarGames">
-  <h4 class="ui red text" id="gameSearch">Search for a game</h4>
-  <div class="ui action input">
-    <input type="text" id="searchedGame" placeholder="Gamer...">
-    <button class="ui button">Find</button>
-  </div>
-</div>
-
-
-<h1 id="gamesTitle">Browse Games</h1>
-<div id="gameDisplayMain">
-  <div>
-    <section class="splide" id="splide2" aria-label="Splide Basic HTML Example"
-      data-splide='{"type":"loop", "padding":"8rem", "perPage":"4", "perMove":"1", "focus":"0"}'>
-      <div class="splide__track">
-        <ul class="splide__list" id="gameList">
-          <li class="splide__slide">
-            <div class="gameCard gameCard1">
-
-            </div>
-          </li>
-          <li class="splide__slide">
-            <div class="gameCard gameCard2">
-
-            </div>
-          </li>
-          <li class="splide__slide">
-            <div class="gameCard gameCard3">
-
-            </div>
-          </li>
-          <li class="splide__slide">
-            <div class="gameCard gameCard4">
-
-            </div>
-          </li>
-          <li class="splide__slide">
-            <div class="gameCard gameCard5">
-
-            </div>
-          </li>
-          <li class="splide__slide">
-            <div class="gameCard gameCard6">
-
-            </div>
-          </li>
-          <li class="splide__slide">
-            <div class="gameCard gameCard7">
-
-            </div>
-          </li>
-          <li class="splide__slide">
-            <div class="gameCard gameCard8">
-
-            </div>
-          </li>
-          <li class="splide__slide">
-            <div class="gameCard gameCard9">
-
-            </div>
-          </li>
-          <li class="splide__slide">
-            <div class="gameCard gameCard10">
-
-            </div>
-          </li>
-          <li class="splide__slide">
-            <div class="gameCard gameCard11">
-
-            </div>
-          </li>
-          <li class="splide__slide">
-            <div class="gameCard gameCard12">
-
-            </div>
-          </li>
-          <li class="splide__slide">
-            <div class="gameCard gameCard13">
-
-            </div>
-          </li>
-          <li class="splide__slide">
-            <div class="gameCard gameCard14">
-
-            </div>
-          </li>
-          <li class="splide__slide">
-            <div class="gameCard gameCard15">
-
-            </div>
-          </li>
-
-        </ul>
+  <section id="homeSearch"> 
+      <div class="searchBarGames">
+        <h4 id="friendSearch">Search for a player</h4>
+        <div class="ui action input">
+          <input id="searchBar" type="text" placeholder="Gamers Username...">
+          <button id="searchButton" class="ui button">Find</button>
+        </div>
       </div>
-    </section>
-  </div>
-  <script src="./js/gamesPage.js"></script>
-  <script>
-    new Splide('#splide2', {
+      <div class="searchBarGames">
+        <h4 class="ui red text" id="gameSearch">Search for a game</h4>
+        <div class="ui action input">
+          <input type="text" id="searchedGame" placeholder="Gamer...">
+          <button class="ui button">Find</button>
+        </div>
+      </div>
+  </section>
 
-    }).mount();
-  </script>
+
+  <h1 id="gamesTitle">Browse Games</h1>
+  <div id="gameDisplayMain">
+    <div>
+      <section class="splide" id="splide2" aria-label="Splide Basic HTML Example"
+        data-splide='{"type":"loop", "padding":"8rem", "perPage":"4", "perMove":"1", "focus":"0"}'>
+        <div class="splide__track">
+          <ul class="splide__list" id="gameList">
+            <li class="splide__slide">
+              <div class="gameCard gameCard1">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard2">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard3">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard4">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard5">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard6">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard7">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard8">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard9">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard10">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard11">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard12">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard13">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard14">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard15">
+
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </section>
+    </div>
+    <script>
+      new Splide('#splide2', {
+
+      }).mount();
+    </script>
   </div>
