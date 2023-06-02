@@ -43,6 +43,7 @@ User.init(
         pfp: {
             type: DataTypes.STRING,
             allowNull: true,
+            defaultValue: "./imgs/profiles/default-one.png"
         }
     },
     {
