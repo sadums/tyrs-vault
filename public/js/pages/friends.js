@@ -1,6 +1,5 @@
 const logoutButton = document.getElementById('logout');
-const searchBar = document.getElementById('searchBar');
-const searchButton = document.getElementById('searchButton');
+
 
 const friendRequests = document.getElementById('friendRequests');
 
@@ -213,15 +212,5 @@ function appendFriendData(data) {
 
 
 fetchUserData();
-
-
-
-
-const searchFriend = function () {
-    const username = searchBar.value;
-    location.href = `/profile/${username}`;
-}
-
-searchButton.addEventListener('click', searchFriend);
 
 
