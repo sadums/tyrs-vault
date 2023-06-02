@@ -1,0 +1,132 @@
+'use strict';
+
+const User = require('../models/User'); // Adjust the path if needed
+const bcrypt = require('bcrypt')
+
+const seedUserData = [
+  {
+    username: 'user1',
+    email: 'user1@example.com',
+    password: 'password1',
+    description: 'User 1 description',
+  },
+  {
+    username: 'user2',
+    email: 'user2@example.com',
+    password: 'password2',
+    description: 'User 2 description',
+  },
+  {
+    username: 'user3',
+    email: 'user3@example.com',
+    password: 'password3',
+    description: 'User 3 description',
+  },
+  {
+    username: 'user4',
+    email: 'user4@example.com',
+    password: 'password4',
+    description: 'User 4 description',
+  },
+  // Add more User seed data here
+  {
+    username: 'user5',
+    email: 'user5@example.com',
+    password: 'password5',
+    description: 'User 5 description',
+  },
+  {
+    username: 'user6',
+    email: 'user6@example.com',
+    password: 'password6',
+    description: 'User 6 description',
+  },
+  {
+    username: 'user7',
+    email: 'user7@example.com',
+    password: 'password7',
+    description: 'User 7 description',
+  },
+  {
+    username: 'user8',
+    email: 'user8@example.com',
+    password: 'password8',
+    description: 'User 8 description',
+  },
+  {
+    username: 'user9',
+    email: 'user9@example.com',
+    password: 'password9',
+    description: 'User 9 description',
+  },
+  {
+    username: 'user10',
+    email: 'user10@example.com',
+    password: 'password10',
+    description: 'User 10 description',
+  },
+  {
+    username: 'user11',
+    email: 'user11@example.com',
+    password: 'password11',
+    description: 'User 11 description',
+  },
+  {
+    username: 'user12',
+    email: 'user12@example.com',
+    password: 'password12',
+    description: 'User 12 description',
+  },
+  {
+    username: 'user13',
+    email: 'user13@example.com',
+    password: 'password13',
+    description: 'User 13 description',
+  },
+  {
+    username: 'user14',
+    email: 'user14@example.com',
+    password: 'password14',
+    description: 'User 14 description',
+  },
+  {
+    username: 'user15',
+    email: 'user15@example.com',
+    password: 'password15',
+    description: 'User 15 description',
+  },
+  {
+    username: 'user16',
+    email: 'user16@example.com',
+    password: 'password16',
+    description: 'User 16 description',
+  },
+  {
+    username: 'user17',
+    email: 'user17@example.com',
+    password: 'password17',
+    description: 'User 17 description',
+  },
+  {
+    username: 'user18',
+    email: 'user18@example.com',
+    password: 'password18',
+    description: 'User 18 description',
+  },
+  {
+    username: 'user19',
+    email: 'user19@example.com',
+    password: 'password19',
+    description: 'User 19 description',
+  },
+  {
+    username: 'user20',
+    email: 'user20@example.com',
+    password: 'password20',
+    description: 'User 20 description',
+  },
+];
+
+const seedUsers = () => User.bulkCreate(seedUserData);
+
+module.exports = seedUsers;

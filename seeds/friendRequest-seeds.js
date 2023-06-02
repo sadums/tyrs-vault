@@ -1,11 +1,8 @@
-'use strict';
 
-const { FriendRequest } = require('../models'); // Adjust the path if needed
+const FriendRequest = require('../models/FriendRequest'); // Adjust the path if needed
 
-module.exports = {
-  up: async (queryInterface, Sequelize) => {
-    // Seed data for FriendRequest model
-    await queryInterface.bulkInsert('friendRequests', [
+const seedFriendRequestData = 
+[
       {
         targetUserID: 1,
         sentUserID: 2,
@@ -86,11 +83,8 @@ module.exports = {
         targetUserID: 7,
         sentUserID: 9,
       },
-    ], {});
-  },
+    ]
 
-  down: async (queryInterface, Sequelize) => {
-    // Remove all seed data
-    await queryInterface.bulkDelete('friendRequests', null, {});
-  },
-};
+const seedFriendRequest = () => FriendRequest.bulkCreate(seedFriendRequestData)
+
+module.exports = seedFriendRequest
