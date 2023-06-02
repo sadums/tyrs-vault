@@ -1,6 +1,5 @@
 const logoutButton = document.getElementById('logout');
-const searchBar = document.getElementById('searchBar');
-const searchButton = document.getElementById('searchButton');
+
 
 const friendRequests = document.getElementById('friendRequests');
 
@@ -233,11 +232,6 @@ let mainFriendSplide = document.querySelector('#friendDisplay');
 
   
     
-    const searchFriend = function(){
-        const username = searchBar.value;
-        location.href = `/profile/${username}`;
-    }
 
-    searchButton.addEventListener('click', searchFriend);
 
 
