@@ -19,7 +19,14 @@ router.get('/', async (req, res) => {
         });
         const users = userData.map((user) => user.get({ plain: true }));
 
-        res.render('home', {
+        // router.get('/games', async (req, res) => {
+        //     res.render('games', {
+        //         games: true,
+        //     })
+        // })
+
+        res.render('games', {
+            games: true,
             home: true,
             loggedIn: req.session.loggedIn,
             users
@@ -128,11 +135,7 @@ router.get('/profile/:username', async (req, res) => {
 
 // Endpoint: '/games'
 // Renders the games page
-router.get('/games', async (req, res) => {
-    res.render('games', {
-        games: true,
-    })
-})
+
 
 
 
