@@ -32,7 +32,7 @@
 
 
 {{!-- {{ FOR EDIT PROFILE MODAL}} --}}
-{{#if ownPage}}
+{{!-- {{#if ownPage}}
 <div class="ui modal profile">
   <i class="close icon"></i>
   <div class="header">
@@ -99,7 +99,7 @@
     </button>
   </div>
 </div>
-{{/if}}
+{{/if}} --}}
 
 
 <div id="mainProfileDiv">
@@ -114,8 +114,7 @@
         <div class="ui item">
           <h1 id="profileUsername">{{data.username}}</h1>
         </div>
-        {{#if ownPage}}
-        {{#if data.description}}
+      
         <div class="ui secondary right menu">
           <button class="ui item button" id="editProfileBtn">Edit Profile</button>
           <script>
@@ -124,26 +123,24 @@
               .modal('show');
           </script>
         </div>
-        {{/if}}
-        {{else}}
+   
         <div class="ui item right" id="addIconContainer">
           <div id={{data.username}} style="color: white;">
             <i id="addIcon"></i>
           </div>
         </div>
-        {{/if}}
+
       </div>
     </div>
-    {{#if data.description}}
+ 
     <div id="profileDescriptionDiv">
       <h2>Description</h2>
       <div id="profileDescription">
         <p>{{data.description}}</p>
       </div>
     </div>
-    {{else}}
-    {{#if ownPage}}
-    <div class="ui raised rounded card" id="descriptionCard">
+ 
+    {{!-- <div class="ui raised rounded card" id="descriptionCard">
       <div class="content">
         <h4 class="header" style="color: white;">Introduce Yourself:</h4>
         <div class="description" style="color: white;">
@@ -163,11 +160,10 @@
           </script>
         </div>
       </div>
-    </div>
-    {{/if}}
-    {{/if}}
+    </div> --}}
+    
     <div id="profileGamesDiv" class="ui stackable grid">
-      {{#if platforms}}
+ 
       <div class="five wide column">
         <h2 id="profilePlatformsH2">Platforms</h2>
         <div class="ui relaxed list">
@@ -191,31 +187,18 @@
           </div>
         </div>
       </div>
-      {{/if}}
-      {{#if friends}}
+   
       <div class="eleven wide column">
         <h2 id="profilePlatformsH2">Friends</h2>
         <div class="ui horizontal list">
-          <a class="ui item">
-            <h1 id="friendsHotLink">@Carreejoh</h1>
-          </a>
-          <a class="ui item">
-            <h1 id="friendsHotLink">@Sadums</h1>
-          </a>
-          <a class="ui item">
-            <h1 id="friendsHotLink">@XtraGoldfish</h1>
-          </a>
-          <a class="ui item">
-            <h1 id="friendsHotLink">@Lowbrowkid</h1>
-          </a>
-          <a class="ui item">
-            <h1 id="friendsHotLink">@SussyJew</h1>
-          </a>
+         {{#each data.friends as |friends|}}
+         {{> profile-friends-details}}
+         {{/each}}
         </div>
       </div>
-      {{/if}}
+
     </div>
-    {{#if favorites}}
+
     <div id="favoriteGamesProfile">
       <h2 id="favoriteGamesTitle">Favorite Games</h2>
       <ul id="favoriteGamesList">
@@ -282,9 +265,8 @@
           animation: 150
         });
       </script>
-      {{/if}}
-      {{#unless games}}
-      <div class="ui raised rounded card" id="descriptionCard" style="width: 250px;">
+
+      {{!-- <div class="ui raised rounded card" id="descriptionCard" style="width: 250px;">
         <div class="content">
           <p style="color: white;">Metal Gear Rising: Revengeance </p>
           <div class="gameCard" style="color: white;">
@@ -293,8 +275,8 @@
               style="border-radius: 8px">
           </div>
         </div>
-      </div>
-      {{/unless}}
+      </div> --}}
+
     </div>
     {{!-- <script src="/js/games.js"></script> --}}
   </div>
