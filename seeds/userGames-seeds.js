@@ -97,6 +97,8 @@ const seedUserGamesData = [
   // Add more UserGames seed data here
 ];
 
-const seedUserGames = () => UserGames.bulkCreate(seedUserGamesData);
+// const seedUserGames = () => UserGames.bulkCreate(seedUserGamesData);
 
-module.exports = seedUserGames;
+// module.exports = seedUserGames;
+
+module.exports = seedUserGamesData;

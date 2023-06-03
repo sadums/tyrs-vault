@@ -104,6 +104,8 @@ const seedPlatformData = [
   },
 ];
 
-const seedPlatform = () => Platform.bulkCreate(seedPlatformData);
+// const seedPlatform = () => Platform.bulkCreate(seedPlatformData);
 
-module.exports = seedPlatform;
+// module.exports = seedPlatform;
+
+module.exports = seedPlatformData;
