@@ -1,4 +1,4 @@
-const logoutButton = document.getElementById('logout');
+
 
 
 const friendRequests = document.getElementById('friendRequests');
@@ -111,8 +111,8 @@ const createFriendRequest = function (username, pfpSrc) {
 
 getFriendRequests();
 
-
-
+//All logout logic
+const logoutButton = document.getElementById('logout');
 const logout = async () => {
     const response = await fetch('/api/user/logout', {
         method: 'POST'
