@@ -13,7 +13,8 @@ UserGames.init(
         },
         title: {
             type: DataTypes.STRING,
-            allowNull:false,
+            defaultValue: 'Default Title',
+            // allowNull:false,
         },
         image: {
             type: DataTypes.STRING,
