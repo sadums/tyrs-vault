@@ -42,23 +42,24 @@ router.get('/', async (req, res) => {
     try {
 
 
-        //         res.render('home', {
-        //             home: true,
-        //             loggedIn: req.session.loggedIn,
-        //         });
 
 
         const userData = await User.findAll().catch((err) => {
             res.json(err);
         });
+        //console.log(userData)
         const users = userData.map((user) => user.get({ plain: true }));
+        if(req.session.loggedIn){
+            res.render('games', {
+                games: true,
+                home: true,
+                loggedIn: req.session.loggedIn,
+                users
+            });
+        }else{
+            res.redirect('/login')
+        }
 
-        res.render('games', {
-            games: true,
-            home: true,
-            loggedIn: req.session.loggedIn,
-            users
-        });
 
 
     } catch (e) {
