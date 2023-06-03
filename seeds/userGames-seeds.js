@@ -1,5 +1,3 @@
-'use strict';
-
 const UserGames = require('../models/Game'); // Adjust the path if needed
 
 const seedUserGamesData = [
