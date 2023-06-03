@@ -1,22 +1,33 @@
 const router = require('express').Router();
 const User = require('../../models/User');
+const path = require('path');
 const multer = require('multer');
-const upload = multer({dest: '../../public/imgs/profiles'});
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "public/imgs/profiles/");
+    },
+    filename: (req, file, cb) => {
+        console.log(file);
+        cb(null, req.session.userid + path.extname(file.originalname));
+    }
+})
+
+const upload = multer({ storage: storage });
 
 /* ENDPOINT: "/api/user-profile/" */
 
 
 // Edits user profile picture
 // ENDPOINT: "/api/user-profile/edit-picture"
-router.post('/edit-picture', upload.single('profileImage'), async (req, res) => {
+router.post('/edit-picture', upload.single('profilePictureSubmit'), async (req, res) => {
     try {
         const user = await User.findByPk(req.session.userid);
 
-        if(!user){
-            res.status(400).json({message: "something went wrong, please try again"});
+        if (!user) {
+            res.status(400).json({ message: "something went wrong, please try again" });
         }
 
-        user.pfp = `./imgs/profile/${user.dataValues.id}/pfp.png`;
+        user.pfp = `./imgs/profiles/${user.dataValues.id}.png`;
         await user.save();
 
         res.status(200).json({
@@ -32,20 +43,20 @@ router.post('/edit-picture', upload.single('profileImage'), async (req, res) => 
 // ENDPOINT: "/api/user-profile/edit-description"
 router.post('/edit-description', async (req, res) => {
     try {
-        if(!req.body.description){
+        if (!req.body.description) {
             res.status(400).json({ message: "No description included" });
         }
 
         const user = await User.findByPk(req.session.userid);
 
-        if(!user){
-            res.status(400).json({message: "something went wrong, please try again"});
+        if (!user) {
+            res.status(400).json({ message: "something went wrong, please try again" });
         }
 
         user.description = req.body.description;
         await user.save();
 
-        res.json(200).status({message: "Description was changed"});
+        res.json(200).status({ message: "Description was changed" });
     } catch (e) {
         console.error(e);
         res.status(500).json(e);

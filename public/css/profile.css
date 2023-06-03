@@ -1,1 +1,8 @@
 /* Carter use this file for the css specific to the profile page */
+
+#profilePicture{
+    display: block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}

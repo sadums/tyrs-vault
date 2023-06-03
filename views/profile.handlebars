@@ -30,7 +30,6 @@
   </div>
 </div>
 
-
 {{!-- {{ FOR EDIT PROFILE MODAL}} --}}
 {{#if ownPage}}
 <div class="ui modal profile">
@@ -46,14 +45,13 @@
 
           <label>Profile Pic</label>
 
-          <form id="imageUploadForm">
+          <form id="imageUploadForm" enctype="multipart/form-data" method="POST" action="/api/user-profile/edit-picture">
             <label for="imageInput" style="position: relative;">
-              <img src="https://avatars.githubusercontent.com/u/102753505?s=200&v=4"
-                style="width: 100px; border-radius: 50%; display: block;">
+              <img src={{data.pfp}} id="profilePicture">
               <i class="fa-solid fa-circle-plus fa-xl"
                 style="width: 15px; height: 15px; position:absolute; bottom: 0;"></i>
             </label>
-            <input type="file" id="imageInput" accept="image/*" style="display: none;">
+            <input name="profilePictureSubmit" type="file" id="imageInput" accept="image/*" style="display: none;">
           </form>
         </div>
         <div class="sixteen wide field">
@@ -109,12 +107,13 @@
       <div class="ui secondary menu">
         <div class="ui item">
           <img id="userProfilePic"
-            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.1RN7WGcqqqRWWyAME6fWlAHaHa%26pid%3DApi&f=1&ipt=469458bba1c4759f37645150deee4b028ad884e75f85cbca2f15aa59fdc1a67d&ipo=images">
+            src={{data.pfp}}>
         </div>
         <div class="ui item">
           <h1 id="profileUsername">{{data.username}}</h1>
         </div>
       
+        {{#if ownPage}}
         <div class="ui secondary right menu">
           <button class="ui item button" id="editProfileBtn">Edit Profile</button>
           <script>
@@ -123,13 +122,14 @@
               .modal('show');
           </script>
         </div>
-   
+        {{/if}}
+        {{#unless ownPage}}
         <div class="ui item right" id="addIconContainer">
           <div id={{data.username}} style="color: white;">
             <i id="addIcon"></i>
           </div>
         </div>
-
+        {{/unless}}
       </div>
     </div>
  

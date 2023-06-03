@@ -16,31 +16,30 @@ const sendFriendRequest = async function (event, username) {
 
 
 
-let addIconContainer;
-let addIcon;
-
-
 
 const checkFriend = async function (username) {
     await fetch(`/api/userfriends/check-request/${username}`)
-        .then((response) => response.json())
-        .then((data) => {
-            switch (data.message) {
-                case "You are already friends with this user":
-                    addIcon.setAttribute('class', 'fas fa-user-friends fa-3x');
-                    break;
-                case "No request found":
-                    addIcon.setAttribute('class', 'fa-solid fa-user-plus fa-3x');
-                    addIcon.addEventListener('click', (event) => {
-                        sendFriendRequest(event, addIcon.id)
-                    });
-                    break;
-                case "Friend request found":
-                    addIcon.setAttribute('class', 'fa-solid fa-check fa-3x');
-            }
-        });
+    .then((response) => response.json())
+    .then((data) => {
+        switch (data.message) {
+            case "You are already friends with this user":
+                addIcon.setAttribute('class', 'fas fa-user-friends fa-3x');
+                break;
+            case "No request found":
+                addIcon.setAttribute('class', 'fa-solid fa-user-plus fa-3x');
+                addIcon.addEventListener('click', (event) => {
+                    sendFriendRequest(event, addIcon.id)
+                });
+                break;
+            case "Friend request found":
+                addIcon.setAttribute('class', 'fa-solid fa-check fa-3x');
+        }
+    });
 }
 
+
+let addIconContainer;
+let addIcon;
 
 try {
     addIconContainer = document.getElementById("addIconContainer");
@@ -48,13 +47,27 @@ try {
     checkFriend(addIcon.id);
 } catch (e) { }
 
-const pfpChange = async function (event) {
-    const image = event.target.files[0];
 
-    
+
+// Profile picture code
+let pfpForm = document.getElementById('imageUploadForm');
+const pfp = document.getElementById('profilePicture')
+
+const submitPfp = function (event) {
+    event.preventDefault();
 }
 
 const pfpInput = document.getElementById('imageInput');
 pfpInput.addEventListener('change', (event) => {
-    pfpChange(event);
+    pfp.src = URL.createObjectURL(event.target.files[0]);
+    submitChanges();
 });
+
+
+
+
+
+// Save profile changes
+const submitChanges = function () {
+    pfpForm.submit();
+}
