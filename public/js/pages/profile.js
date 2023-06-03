@@ -1,4 +1,5 @@
 
+
 const sendFriendRequest = async function (event, username) {
     event.target.setAttribute('class', 'fa-solid fa-check fa-3x');
     await fetch(`/api/userfriends/friend-request/${username}`, {
@@ -48,27 +49,9 @@ try {
 } catch (e) { }
 
 const pfpChange = async function (event) {
-    const files = event.target.files;
+    const image = event.target.files[0];
+
     
-    console.log(body);
-
-    await fetch(`/api/user-profile/edit-picture`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: body
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data);
-        });
-
-
-
-
-
-
 }
 
 const pfpInput = document.getElementById('imageInput');
