@@ -146,8 +146,8 @@ const deletePlatform = function(event){
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            platform:
-            username: 
+            platform: '',
+            username: '',
         })
     })
     .then((response) => response.json())
