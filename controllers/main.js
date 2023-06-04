@@ -1,49 +1,11 @@
 const router = require('express').Router();
-
-const User = require('../models/User');
-const Game = require('../models/Game');
-const Platform = require('../models/Platform');
-const Friend = require('../models/Friend');
-
-
-// User.belongsToMany(User, {
-//     through: {
-//         model: 'UserFriends',
-//         as: 'friends',
-//         unique: false
-
-//     }
-// });
-// User.hasMany(User, {
-//     through: {
-//         model: 'UserFriends',
-//         as: 'friends',
-//         unique: false,
-//     }
-// });
-// User.hasMany(Platform, {
-//     foreignKey: 'user_id'
-// });
-// Platform.belongsTo(User, {
-//     foreignKey: 'user_id'
-// });
-User.hasMany(Game, {
-    foreignKey: 'user_id'
-});
-Game.belongsTo(User, {
-    foreignKey: 'user_id'
-});
-
+const {User, Game, Platform, Friend} = require('../models');
 
 
 // Endpoint: '/'
 // Renders the main page
 router.get('/', async (req, res) => {
     try {
-
-
-
-
         const userData = await User.findAll().catch((err) => {
             res.json(err);
         });
@@ -128,7 +90,7 @@ router.get('/profile', async (req, res) => {
 
     const user = await User.findByPk(req.session.userid, {
         attributes: { exclude: ['password', 'email'] },
-        include: [Game]
+        include: [{model: Platform},{model: Game}]
     });
     if (!user) {
         res.status(404).json({ message: "Something went wrong, please try again" });
@@ -163,7 +125,7 @@ router.get('/profile/:username', async (req, res) => {
                 username: req.params.username
             },
             attributes: { exclude: ['password', 'email'] },
-            include: [Game]
+            include: [{model: Game}]
         });
 
         if (!user) {

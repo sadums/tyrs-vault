@@ -138,7 +138,6 @@ let mainFriendSplide = document.querySelector('#friendDisplay');
 
 
 function fetchUserData() {
-
     fetch('/api/user', {
         method: 'GET',
         headers: {
