@@ -207,7 +207,11 @@ function appendFriendData(data) {
         if (data[i].userGames.length === null) {
 
         } else if (data[i].userGames.length === 1) {
-            
+            let newGameImgLink = data[i].userGames[0].image;
+                let newGameImg = document.createElement("img");
+                newGameImg.className = "newFriendGameImg";
+                newGameImg.setAttribute("src", newGameImgLink);
+                friendGameList.appendChild(newGameImg);
         } else if (data[i].userGames.length === 2) {
             for (j=0; j<3; j++) {
                 tempImgNumber = Math.floor(Math.random() * 2);
