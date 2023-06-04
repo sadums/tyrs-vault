@@ -163,9 +163,11 @@ function appendFriendData(data) {
         let friendUsername = document.createElement("a");
         let friendPFP = document.createElement("img");
         let friendGameDiv = document.createElement("div");
-        let friendGameTitle = document.createElement("h3");
+        let friendGameTitle = document.createElement("h2");
+        let friendGameList = document.createElement("div");
         let friendGameImg = document.createElement("img");
         let friendPlatformTitle = document.createElement("h2");
+        let friendPlatformList = document.createElement("ul");
 
         friendSlide.className = "splide__slide";
         friendDiv.className = "friendCard";
@@ -174,6 +176,8 @@ function appendFriendData(data) {
         friendGameImg.className = "homeGameImg";
         friendUsername.className = "newFriendLink";
         friendGameDiv.className = "friendGameDiv";
+        friendPlatformList.className = "ui horizontal list friendPlatformList";
+        friendGameList.className = "newFriendGames";
 
         mainFriendSplide.appendChild(friendSlide);
         friendSlide.appendChild(friendDiv);
@@ -182,8 +186,12 @@ function appendFriendData(data) {
         friendHeader.appendChild(friendUsername);
         friendDiv.appendChild(friendGameDiv);
         friendGameDiv.appendChild(friendPlatformTitle);
+        friendGameDiv.appendChild(friendPlatformList);
+        friendPlatformTitle.innerHTML = "Platforms:";
+        friendGameDiv.appendChild(friendGameTitle);
+        friendGameTitle.innerHTML = "Some Games:"
+        friendGameDiv.appendChild(friendGameList);
 
-        friendPlatformTitle.innerHTML = "Platforms";
         // friendGameDiv.appendChild(friendGameTitle);
         // friendGameDiv.appendChild(friendGameImg);
 
@@ -194,18 +202,53 @@ function appendFriendData(data) {
         }
         friendUsername.innerHTML = data[i].username;
 
+        //asdfjasdfadsf
 
         if (data[i].userGames.length === null) {
 
-        } else {
-            if (data[i].userGames.length === 0) {
-
-            } else {
-                tempGameNumber = Math.floor(Math.random() * data[i].userGames.length);
-                friendGameTitle.innerHTML = data[i].userGames[tempGameNumber].title;
-                console.log(friendGameTitle.innerHTML = data[i].userGames[tempGameNumber].title);
+        } else if (data[i].userGames.length === 1) {
+            
+        } else if (data[i].userGames.length === 2) {
+            for (j=0; j<3; j++) {
+                tempImgNumber = Math.floor(Math.random() * 2);
+                let newGameImgLink = data[i].userGames[tempImgNumber].image;
+                let newGameImg = document.createElement("img");
+                newGameImg.className = "newFriendGameImg";
+                newGameImg.setAttribute("src", newGameImgLink);
+                friendGameList.appendChild(newGameImg);
+            }
+        } else if(data[i].userGames.length >= 3) {
+            for (j=0; j<3; j++) {
+                tempImgNumber = Math.floor(Math.random() * data[i].userGames.length);
+                let newGameImgLink = data[i].userGames[tempImgNumber].image;
+                let newGameImg = document.createElement("img");
+                newGameImg.className = "newFriendGameImg";
+                newGameImg.setAttribute("src", newGameImgLink);
+                friendGameList.appendChild(newGameImg);
             }
         }
+
+
+        // let newGameImgLink = data[i].userGames[0].image;
+        // let newGameImg = document.createElement("img");
+        // newGameImg.className = "newFriendGameImg";
+        // newGameImg.setAttribute("src", newGameImgLink);
+        // friendGameList.appendChild(newGameImg);
+
+
+
+
+        // if (data[i].userGames.length === null) {
+
+        // } else {
+        //     if (data[i].userGames.length === 0) {
+
+        //     } else {
+        //         tempGameNumber = Math.floor(Math.random() * data[i].userGames.length);
+        //         friendGameTitle.innerHTML = data[i].userGames[tempGameNumber].title;
+        //         console.log(friendGameTitle.innerHTML = data[i].userGames[tempGameNumber].title);
+        //     }
+        // }
 
 
 
@@ -221,10 +264,10 @@ function appendFriendData(data) {
 fetchUserData();
 
 
-const searchFriend = function(){
+const searchFriend = function () {
     const username = searchBar.value;
     location.href = `/profile/${username}`;
-  }
-  
-  searchButton.addEventListener('click', searchFriend);
+}
+
+searchButton.addEventListener('click', searchFriend);
 

@@ -304,6 +304,18 @@
     color: white;
     font-size: 16px;
     margin-left: 10%;
+    padding-top: 2%;
+}
+
+.friendGameList {
+    background-color: #570bb7;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.newFriendGameImg {
+    width: 33%;
 }
 
 /* For footer */
