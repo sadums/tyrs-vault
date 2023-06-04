@@ -306,16 +306,23 @@
     margin-left: 10%;
     padding-top: 2%;
 }
-
+/* 
 .friendGameList {
     background-color: #570bb7;
     height: 100%;
     display: flex;
     flex-direction: row;
+} */
+
+.newFriendGames {
+    object-fit: cover;
+    height: 50%;
 }
 
 .newFriendGameImg {
+    height: 70%;
     width: 33%;
+    object-fit: cover;
 }
 
 /* For footer */
