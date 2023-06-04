@@ -8,7 +8,7 @@ const Friend = require('../models/Friend');
 
 // User.belongsToMany(User, {
 //     through: {
-//         model: Friend,
+//         model: 'UserFriends',
 //         as: 'friends',
 //         unique: false
 
@@ -16,7 +16,7 @@ const Friend = require('../models/Friend');
 // });
 // User.hasMany(User, {
 //     through: {
-//         model: Friend,
+//         model: 'UserFriends',
 //         as: 'friends',
 //         unique: false,
 //     }
@@ -112,7 +112,9 @@ router.get('/profile', async (req, res) => {
     }
 
     const user = await User.findByPk(req.session.userid, {
-        attributes: { exclude: ['password', 'email'] }
+        attributes: { exclude: ['password', 'email'] },
+        include: [Game]
+        // include: [Platform]
     });
     if (!user) {
         res.status(404).json({ message: "Something went wrong, please try again" });
@@ -137,7 +139,7 @@ router.get('/profile/:username', async (req, res) => {
                 username: req.params.username
             },
             attributes: { exclude: ['password', 'email'] },
-            // include: [Game]
+            include: [Game]
         });
 
         if (!user) {

@@ -160,17 +160,20 @@ function appendFriendData(data) {
         let friendSlide = document.createElement("li");
         let friendDiv = document.createElement("div");
         let friendHeader = document.createElement("div");
-        let friendUsername = document.createElement("h2");
+        let friendUsername = document.createElement("a");
         let friendPFP = document.createElement("img");
         let friendGameDiv = document.createElement("div");
         let friendGameTitle = document.createElement("h3");
         let friendGameImg = document.createElement("img");
+        let friendPlatformTitle = document.createElement("h2");
 
         friendSlide.className = "splide__slide";
         friendDiv.className = "friendCard";
         friendHeader.className = "friendCardHeader";
         friendPFP.className = "homePFP";
         friendGameImg.className = "homeGameImg";
+        friendUsername.className = "newFriendLink";
+        friendGameDiv.className = "friendGameDiv";
 
         mainFriendSplide.appendChild(friendSlide);
         friendSlide.appendChild(friendDiv);
@@ -178,8 +181,11 @@ function appendFriendData(data) {
         friendHeader.appendChild(friendPFP);
         friendHeader.appendChild(friendUsername);
         friendDiv.appendChild(friendGameDiv);
-        friendGameDiv.appendChild(friendGameTitle);
-        friendGameDiv.appendChild(friendGameImg);
+        friendGameDiv.appendChild(friendPlatformTitle);
+
+        friendPlatformTitle.innerHTML = "Platforms";
+        // friendGameDiv.appendChild(friendGameTitle);
+        // friendGameDiv.appendChild(friendGameImg);
 
         if (data[i].pfp === null) {
             friendPFP.src = 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2F736x%2F85%2F9a%2Ff7%2F859af748d1eed0d67d5801a6df188a89.jpg&f=1&nofb=1&ipt=133308f7c0b60381e5aea6111f39b9eb5ba8077a2c3f6f247b5895fd1a4363e4&ipo=images';
