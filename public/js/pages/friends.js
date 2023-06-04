@@ -202,6 +202,7 @@ function appendFriendData(data) {
         }
         friendUsername.innerHTML = data[i].username;
 
+        //asdfjasdfadsf
 
         if (data[i].userGames.length === null) {
 
