@@ -85,6 +85,8 @@ const seedFriendRequestData =
       },
     ]
 
-const seedFriendRequest = () => FriendRequest.bulkCreate(seedFriendRequestData)
+// const seedFriendRequest = () => FriendRequest.bulkCreate(seedFriendRequestData)
 
-module.exports = seedFriendRequest
+// module.exports = seedFriendRequest
+
+module.exports = seedFriendRequestData;
