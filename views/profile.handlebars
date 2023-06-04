@@ -85,21 +85,21 @@
       <div class="two fields">
         <span class="three wide field" style="width: 114px"></span>
         <div id="platformEntries" class="">
-        <div id="platformEntry1">
-          <div class="six wide field" style="display: flex; justify-content: space-between; gap: 10px">
-            <i class="fa-brands fa-xbox fa-2x"></i>
-            <input type="text" id="usernameText" value="" style="width: 500px">
-          </div>
-          <div class="six wide field" style="display: flex; justify-content: space-between; gap: 10px">
-            <i class="fa-brands fa-steam fa-2x"></i>
-            <input type="text" id="usernameText" value="" style="width: 500px">
-          </div>
-          <div class="six wide field" style="display: flex; justify-content: space-between; gap: 10px">
-            <i class="fab fa-playstation fa-2x"></i>
-            <input type="text" id="usernameText" value="" style="width: 500px">
+          <div id="platformEntry1">
+            <div class="six wide field" style="display: flex; justify-content: space-between; gap: 10px">
+              <i class="fa-brands fa-xbox fa-2x"></i>
+              <input type="text" id="usernameText" value="" style="width: 500px">
+            </div>
+            <div class="six wide field" style="display: flex; justify-content: space-between; gap: 10px">
+              <i class="fa-brands fa-steam fa-2x"></i>
+              <input type="text" id="usernameText" value="" style="width: 500px">
+            </div>
+            <div class="six wide field" style="display: flex; justify-content: space-between; gap: 10px">
+              <i class="fab fa-playstation fa-2x"></i>
+              <input type="text" id="usernameText" value="" style="width: 500px">
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </div>
   </div>
@@ -218,62 +218,11 @@
     <div id="favoriteGamesProfile">
       <h2 id="favoriteGamesTitle">Favorite Games</h2>
       <ul id="favoriteGamesList">
-        <li class="listItemGame">
-          <div class="ui horizontal relaxed list listItemGameDiv">
-            <div class="item">
-              <img class="gameListImg"
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flogodix.com%2Flogo%2F45400.jpg&f=1&nofb=1&ipt=eac416f1f82b5dec9a748cd538310e1058f54adcdd592eb9c8503aad88780308&ipo=images">
-            </div>
-            <div class="item">
-              <h2 class="gameListTitle">Fornite</h2>
-            </div>
-            <div class="item">
-              <h2 class="gameListUsername">Username: Carreejoh6</h2>
-            </div>
-          </div>
-        </li>
-        <li class="listItemGame">
-          <div class="ui horizontal relaxed list listItemGameDiv">
-            <div class="item">
-              <img class="gameListImg"
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flogodix.com%2Flogo%2F45400.jpg&f=1&nofb=1&ipt=eac416f1f82b5dec9a748cd538310e1058f54adcdd592eb9c8503aad88780308&ipo=images">
-            </div>
-            <div class="item">
-              <h2 class="gameListTitle">Fornite</h2>
-            </div>
-            <div class="item">
-              <h2 class="gameListUsername">Username: Carreejoh6</h2>
-            </div>
-          </div>
-        </li>
-        <li class="listItemGame">
-          <div class="ui horizontal relaxed list listItemGameDiv">
-            <div class="item">
-              <img class="gameListImg"
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flogodix.com%2Flogo%2F45400.jpg&f=1&nofb=1&ipt=eac416f1f82b5dec9a748cd538310e1058f54adcdd592eb9c8503aad88780308&ipo=images">
-            </div>
-            <div class="item">
-              <h2 class="gameListTitle">Fornite</h2>
-            </div>
-            <div class="item">
-              <h2 class="gameListUsername">Username: Carreejoh6</h2>
-            </div>
-          </div>
-        </li>
-        <li class="listItemGame">
-          <div class="ui horizontal relaxed list listItemGameDiv">
-            <div class="item">
-              <img class="gameListImg"
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flogodix.com%2Flogo%2F45400.jpg&f=1&nofb=1&ipt=eac416f1f82b5dec9a748cd538310e1058f54adcdd592eb9c8503aad88780308&ipo=images">
-            </div>
-            <div class="item">
-              <h2 class="gameListTitle">Fornite</h2>
-            </div>
-            <div class="item">
-              <h2 class="gameListUsername">Username: Carreejoh6</h2>
-            </div>
-          </div>
-        </li>
+
+        {{#each sendDataList as |game|}}
+        {{> favGame-details}}
+        {{/each}}
+
       </ul>
       <script>
         let gamesList = document.querySelector("#favoriteGamesList");

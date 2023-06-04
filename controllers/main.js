@@ -49,14 +49,14 @@ router.get('/', async (req, res) => {
         });
         //console.log(userData)
         const users = userData.map((user) => user.get({ plain: true }));
-        if(req.session.loggedIn){
+        if (req.session.loggedIn) {
             res.render('games', {
                 games: true,
                 home: true,
                 loggedIn: req.session.loggedIn,
                 users
             });
-        }else{
+        } else {
             res.redirect('/login')
         }
 
@@ -103,6 +103,21 @@ router.get('/friends', async (req, res) => {
     }
 });
 
+const generateRandomValues = (min, max) => {
+    const availableValues = max - min;
+    const randomValues = new Set();
+
+    while (randomValues.size < 5 && randomValues.size < availableValues) {
+      const randomValue = Math.floor(Math.random() * availableValues) + min;
+      randomValues.add(randomValue);
+    }
+
+    return Array.from(randomValues);
+  };
+
+
+
+
 // Endpoint: '/profile'
 // Renders the users profile
 router.get('/profile', async (req, res) => {
@@ -114,15 +129,24 @@ router.get('/profile', async (req, res) => {
     const user = await User.findByPk(req.session.userid, {
         attributes: { exclude: ['password', 'email'] },
         include: [Game]
-        // include: [Platform]
     });
     if (!user) {
         res.status(404).json({ message: "Something went wrong, please try again" });
         return;
     }
     const data = user.dataValues;
+    // console.log(data.userGames)
+
+    const userGames = data.userGames.map((game) => game.get({ plain: true }));
+    sendDataList = []
+    const indexOfGames = generateRandomValues(0, userGames.length)
+    for(let i=0; i<indexOfGames.length; i++){
+        sendDataList.push(userGames[indexOfGames[i]])
+    }
+    console.log(sendDataList)
     res.render('profile', {
         data,
+        sendDataList,
         platforms: false, // change to actually send platforms
         favorites: false, //change to actually send favorites
         profile: true,
@@ -151,17 +175,26 @@ router.get('/profile/:username', async (req, res) => {
         }
 
         const data = user.dataValues;
-        console.log(data);
+        const userGames = data.userGames.map((game) => game.get({ plain: true }));
+        sendDataList = []
+        const indexOfGames = generateRandomValues(0, userGames.length)
+        for(let i=0; i<indexOfGames.length; i++){
+            sendDataList.push(userGames[indexOfGames[i]])
+        }
+        console.log(sendDataList)
         res.render('profile', {
             data,
+            sendDataList,
             platforms: false, // change to actually send platforms
             favorites: false, //change to actually send favorites
             profile: true,
             ownPage: false
         });
+        return;
     } catch (e) {
         console.error(e);
         res.status(500).json(e);
+        return;
     }
 });
 
