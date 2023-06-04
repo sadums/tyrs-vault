@@ -202,10 +202,12 @@ function appendFriendData(data) {
         }
         friendUsername.innerHTML = data[i].username;
 
+        let noGamesErr = document.createElement("h2");
+        noGamesErr.innerHTML = "This user hasn't added any games!";
         //asdfjasdfadsf
 
-        if (data[i].userGames.length === null) {
-
+        if (data[i].userGames.length === 0) {
+            friendGameList.appendChild(noGamesErr);
         } else if (data[i].userGames.length === 1) {
             let newGameImgLink = data[i].userGames[0].image;
                 let newGameImg = document.createElement("img");
@@ -253,10 +255,11 @@ function appendFriendData(data) {
         //         console.log(friendGameTitle.innerHTML = data[i].userGames[tempGameNumber].title);
         //     }
         // }
-
+        
 
 
     };
+    
 
     let splide1 = document.querySelector("#splide1");
     new Splide(splide1, {
@@ -274,4 +277,3 @@ const searchFriend = function () {
 }
 
 searchButton.addEventListener('click', searchFriend);
-
