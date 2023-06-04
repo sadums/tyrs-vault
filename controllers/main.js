@@ -8,7 +8,7 @@ const Friend = require('../models/Friend');
 
 // User.belongsToMany(User, {
 //     through: {
-//         model: Friend,
+//         model: 'UserFriends',
 //         as: 'friends',
 //         unique: false
 
@@ -16,7 +16,7 @@ const Friend = require('../models/Friend');
 // });
 // User.hasMany(User, {
 //     through: {
-//         model: Friend,
+//         model: 'UserFriends',
 //         as: 'friends',
 //         unique: false,
 //     }
