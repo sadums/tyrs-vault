@@ -27,7 +27,6 @@
   </div>
 </div>
 
-
 {{!-- {{ FOR EDIT PROFILE MODAL}} --}}
 {{#if ownPage}}
 <div class="ui modal profile">
@@ -43,32 +42,32 @@
 
           <label>Profile Pic</label>
 
-          <form id="imageUploadForm">
+          <form id="imageUploadForm" method="POST" action="/api/user-profile/edit-picture"
+            enctype="multipart/form-data">
             <label for="imageInput" style="position: relative;">
-              <img src="https://avatars.githubusercontent.com/u/102753505?s=200&v=4"
-                style="width: 100px; border-radius: 50%; display: block;">
+              <img src={{data.pfp}} id="profilePicture">
               <i class="fa-solid fa-circle-plus fa-xl"
                 style="width: 15px; height: 15px; position:absolute; bottom: 0;"></i>
             </label>
-            <input type="file" id="imageInput" accept="image/*" style="display: none;">
+            <input name="profilePictureSubmit" type="file" id="imageInput" accept="image/*" style="display: none;">
           </form>
         </div>
         <div class="sixteen wide field">
           <div class="five wide field">
             <label>Username</label>
-            <input type="text" value={{data.username}}>
+            <input type="text" id="usernameText" value="{{data.username}}">
           </div>
           <div class="ui hidden divider"></div>
           <div class="sixteen wide field">
             <label>Description</label>
-            <textarea rows="3" value={{data.description}}></textarea>
+            <textarea id="descriptionTextArea" rows="3">{{data.description}}</textarea>
           </div>
         </div>
-        <div class="ui selection dropdown" style="height: fit-content">
+        <div class="ui selection dropdown" style="height: fit-content" id="platformDropdown">
           <input type="hidden" name="platform">
           <i class="dropdown icon"></i>
           <div class="default text">Add Platform</div>
-          <div class="menu">
+          <div class="menu" id="platformDropdownValues">
             <div class="item" data-value="steam">Steam</div>
             <div class="item" data-value="xbox">Xbox</div>
             <div class="item" data-value="playstation">PlayStation</div>
@@ -82,6 +81,25 @@
           });
         </script>
 
+      </div>
+      <div class="two fields">
+        <span class="three wide field" style="width: 114px"></span>
+        <div id="platformEntries" class="">
+        <div id="platformEntry1">
+          <div class="six wide field" style="display: flex; justify-content: space-between; gap: 10px">
+            <i class="fa-brands fa-xbox fa-2x"></i>
+            <input type="text" id="usernameText" value="" style="width: 500px">
+          </div>
+          <div class="six wide field" style="display: flex; justify-content: space-between; gap: 10px">
+            <i class="fa-brands fa-steam fa-2x"></i>
+            <input type="text" id="usernameText" value="" style="width: 500px">
+          </div>
+          <div class="six wide field" style="display: flex; justify-content: space-between; gap: 10px">
+            <i class="fab fa-playstation fa-2x"></i>
+            <input type="text" id="usernameText" value="" style="width: 500px">
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   </div>
@@ -105,13 +123,13 @@
     <div id="profileHeader">
       <div class="ui secondary menu">
         <div class="ui item">
-          <img id="userProfilePic"
-            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.1RN7WGcqqqRWWyAME6fWlAHaHa%26pid%3DApi&f=1&ipt=469458bba1c4759f37645150deee4b028ad884e75f85cbca2f15aa59fdc1a67d&ipo=images">
+          <img id="userProfilePic" src={{data.pfp}}>
         </div>
         <div class="ui item">
           <h1 id="profileUsername">{{data.username}}</h1>
         </div>
-      
+
+        {{#if ownPage}}
         <div class="ui secondary right menu">
           <button class="ui item button" id="editProfileBtn">Edit Profile</button>
           <script>
@@ -120,23 +138,24 @@
               .modal('show');
           </script>
         </div>
-   
+        {{/if}}
+        {{#unless ownPage}}
         <div class="ui item right" id="addIconContainer">
           <div id={{data.username}} style="color: white;">
             <i id="addIcon"></i>
           </div>
         </div>
-
+        {{/unless}}
       </div>
     </div>
- 
+
     <div id="profileDescriptionDiv">
       <h2>Description</h2>
       <div id="profileDescription">
         <p>{{data.description}}</p>
       </div>
     </div>
- 
+
     {{!-- <div class="ui raised rounded card" id="descriptionCard">
       <div class="content">
         <h4 class="header" style="color: white;">Introduce Yourself:</h4>
@@ -158,9 +177,9 @@
         </div>
       </div>
     </div> --}}
-    
+
     <div id="profileGamesDiv" class="ui stackable grid">
- 
+
       <div class="five wide column">
         <h2 id="profilePlatformsH2">Platforms</h2>
         <div class="ui relaxed list">
@@ -184,13 +203,13 @@
           </div>
         </div>
       </div>
-   
+
       <div class="eleven wide column">
         <h2 id="profilePlatformsH2">Friends</h2>
         <div class="ui horizontal list">
-         {{#each data.friends as |friends|}}
-         {{> profile-friends-details}}
-         {{/each}}
+          {{#each data.friends as |friends|}}
+          {{> profile-friends-details}}
+          {{/each}}
         </div>
       </div>
 
@@ -275,7 +294,7 @@
       </div> --}}
 
     </div>
-    {{!-- <script src="/js/games.js"></script> --}}
+    {{!--
+    <script src="/js/games.js"></script> --}}
   </div>
 </div>
-<h1>{{data.pfp}}</h1>
