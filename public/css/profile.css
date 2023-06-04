@@ -6,3 +6,9 @@
     height: 100px;
     border-radius: 50%;
 }
+
+.platformContainer{
+    display: flex; 
+    justify-content: space-between; 
+    gap: 5px;
+}

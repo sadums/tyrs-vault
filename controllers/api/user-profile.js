@@ -2,6 +2,7 @@ const router = require('express').Router();
 const User = require('../../models/User');
 const path = require('path');
 const multer = require('multer');
+const Platform = require('../../models/Platform');
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, "public/imgs/profiles/");
@@ -93,6 +94,71 @@ router.post('/edit-username', async (req, res) => {
     }
 });
 
+router.post('/add-platform', async (req, res) => {
+    try {
+        if (!req.body.platform || !req.body.username) {
+            res.status(400).json({ message: "req.body is not correct" });
+            return;
+        }
+
+        const user = await User.findByPk(req.session.userid);
+
+        if (!user) {
+            res.status(404).json({ message: "Something went wrong, please try again" });
+            return;
+        }
+
+        const addedPlatform = await Platform.create({
+            user_id: user.dataValues.id,
+            platform_name: req.body.platform,
+            platform_username: req.body.username
+        });
+
+        if (!addedPlatform) {
+            res.status(400).json({ message: "failed to add platform" });
+            return;
+        }
+
+        res.status(200).json({
+            message: "Platform added successfully",
+            platform: addedPlatform
+        });
+
+    } catch (e) {
+        console.error(e);
+        res.status(500).json(e);
+    }
+});
+
+router.delete('/delete-platform', async (req, res) => {
+    try {
+        if (!req.body.platform || !req.body.username) {
+            res.status(400).json({ message: "req.body is not correct" });
+            return;
+        }
+
+        const user = await User.findByPk(req.session.userid);
+
+        if (!user) {
+            res.status(404).json({ message: "Something went wrong, please try again" });
+            return;
+        }
+
+        await Platform.destroy({
+            where: {
+                user_id: user.dataValues.id,
+                platform_name: req.body.platform,
+                platform_username: req.body.username
+            }
+        });
+
+
+        res.status(200).json({message: "Platform deleted successfully"});
+    } catch (e) {
+        console.error(e);
+        res.status(500).json(e);
+    }
+});
 
 
 module.exports = router;

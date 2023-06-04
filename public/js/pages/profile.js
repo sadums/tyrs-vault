@@ -110,18 +110,84 @@ const submitUsername = function(username){
 
 // Platform code
 
-// const platformData = {
-//     xbox: ,
-//     fortnite: ,
-
-// }
+const platformData = {
+    xbox: {
+        icon: "fa-brands fa-xbox fa-2x",
+        placeholder: "X-Box username"
+    },
+    steam: {
+        icon: "fa-brands fa-steam fa-2x",
+        placeholder: "Steam username"
+    },
+    playstation: {
+        icon: "fab fa-playstation fa-2x",
+        placeholder: "PlayStation username"
+    },
+    chess: {
+        icon: "fas fa-chess-knight fa-2x",
+        placeholder: "Chess.com username"
+    },
+    fortnite: {
+        icon: "fa-solid fa-person-rifle fa-2x",
+        placeholder: "Fortnite username"
+    },
+}
 
 
 const platformDropdown = document.getElementById('platformDropdown');
 const dropdownValues = document.querySelector('input[name="platform"]');
 
+const platformEditSections = document.getElementById('platformEdits');
+
+const deletePlatform = function(event){
+    fetch(`/api/user-profile/delete-platform`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            platform:
+            username: 
+        })
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data);
+    });
+    if(event.target.parentElement.id != 'platformContainer'){
+        event.target.parentElement.parentElement.remove();
+    }else{
+        event.target.parentElement.remove();
+    }
+}
+
+
 platformDropdown.addEventListener('change', (event) => {
-    console.log(dropdownValues.value);
+    const currentPlatform = dropdownValues.value;
+
+    const platformContainer = document.createElement('div');
+    platformContainer.setAttribute('class', 'six wide field platformContainer');
+    platformContainer.setAttribute('id', 'platformContainer');
+
+    const platformIcon = document.createElement("i");
+    platformIcon.setAttribute('class', platformData[currentPlatform].icon);
+
+    const platformInput = document.createElement('input');
+    platformInput.setAttribute('type', 'text');
+    platformInput.setAttribute('placeholder', platformData[currentPlatform].placeholder);
+
+
+    const denyButton = document.createElement('button');
+    denyButton.setAttribute('class', 'ui button red');
+    denyButton.innerHTML = `<i class="fa-solid fa-xmark fa-lg" id=${currentPlatform}></i>`;
+    denyButton.setAttribute('id', currentPlatform);
+    denyButton.addEventListener('click', deletePlatform);
+
+    platformContainer.appendChild(platformIcon);
+    platformContainer.appendChild(platformInput);
+    platformContainer.appendChild(denyButton);
+
+    platformEditSections.appendChild(platformContainer);
 });
 
 // Save profile changes

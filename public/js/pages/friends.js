@@ -138,7 +138,6 @@ let mainFriendSplide = document.querySelector('#friendDisplay');
 
 
 function fetchUserData() {
-
     fetch('/api/user', {
         method: 'GET',
         headers: {
@@ -218,7 +217,7 @@ fetchUserData();
 const searchFriend = function(){
     const username = searchBar.value;
     location.href = `/profile/${username}`;
-  }
-  
-  searchButton.addEventListener('click', searchFriend);
+}
+
+searchButton.addEventListener('click', searchFriend);
 
