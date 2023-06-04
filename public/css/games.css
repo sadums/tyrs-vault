@@ -118,3 +118,7 @@
     -ms-transition: all .5s ease;
     transition: all .5s ease;
 }
+
+#gamesFooter {
+    margin-top: 3%;
+}
