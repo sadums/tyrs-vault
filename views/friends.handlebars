@@ -41,6 +41,11 @@
   <div class="ui raised rounded card" id="mainFriendRequestCard">
     <div class="content" id="friendRequests">
       <h4 class="header" style="color: white;">Friend Requests:</h4>
+      <div>
+        {{#each data as |request|}}
+        {{> friendReq-details}}
+        {{/each}}
+      </div>
     </div>
   </div>
 </section>

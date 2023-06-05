@@ -4,11 +4,26 @@ const searchButton = document.getElementById('searchButton');
 
 const friendRequests = document.getElementById('friendRequests');
 
+const acceptButtons = document.querySelectorAll('.accept-button');
+const rejectButtons = document.querySelectorAll('.reject-button');
 
-const deleteFriendRequest = async function (event) {
-    let name = event.target.id;
-    console.log(name);
-    await fetch(`/api/userfriends/delete-request/${name}`, {
+// acceptButtons.forEach(button => {
+//   button.addEventListener('click', function(event) {
+//     const username = this.closest('section').querySelector('.friendRequestTitle').textContent.trim();
+//     acceptFriendRequest(username);
+//   });
+// });
+
+// rejectButtons.forEach(button => {
+//   button.addEventListener('click', function(event) {
+//     const username = this.closest('section').querySelector('.friendRequestTitle').textContent.trim();
+//     deleteFriendRequest(username);
+//   });
+// });
+
+const deleteFriendRequest = async function (username) {
+    console.log(username);
+    await fetch(`/api/userfriends/delete-request/${username}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
@@ -20,9 +35,9 @@ const deleteFriendRequest = async function (event) {
         });
 }
 
-const acceptFriendRequest = async function (event) {
-    let name = event.target.id;
-    await fetch(`/api/userfriends/accept-friend/${name}`, {
+const acceptFriendRequest = async function (username) {
+    console.log(username)
+    await fetch(`/api/userfriends/accept-friend/${username}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -35,18 +50,58 @@ const acceptFriendRequest = async function (event) {
 }
 
 
-const getFriendRequests = function () {
-    fetch(`/api/userfriends/get-requests`)
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data)
-            data.forEach((request) => {
-                let name = request.user.username
-                let pfp = request.user.pfp
-                createFriendRequest(name, pfp)
-            });
-        });
-}
+
+
+// const createFriendRequest = function (username, pfpSrc) {
+//     const friendRequestContainer = document.createElement('div');
+//     friendRequestContainer.setAttribute('class', 'friendRequestCard');
+
+//     const acceptButton = document.createElement('button');
+//     const denyButton = document.createElement('button');
+//     acceptButton.setAttribute('class', 'ui button green');
+//     denyButton.setAttribute('class', 'ui button red');
+//     acceptButton.innerHTML = `<i class="fa-solid fa-check fa-lg" id=${username}></i>`;
+//     denyButton.innerHTML = `<i class="fa-solid fa-xmark fa-lg" id=${username}></i>`;
+//     acceptButton.setAttribute('id', username);
+//     denyButton.setAttribute('id', username);
+
+//     const profilePictureLink = document.createElement('a');
+//     const profilePicture = document.createElement('img');
+//     profilePicture.setAttribute('src', pfpSrc);
+//     profilePictureLink.setAttribute('href', `/profile/${username}`);
+//     profilePicture.setAttribute('class', 'friendRequestProfilePicture');
+//     profilePictureLink.appendChild(profilePicture);
+
+//     const friendRequestTitle = document.createElement('div');
+//     friendRequestTitle.setAttribute('class', 'friendRequestTitle');
+//     friendRequestTitle.textContent = `Friend request from ${username}`;
+
+//     //get these to work
+//     acceptButton.addEventListener('click', acceptFriendRequest);
+//     denyButton.addEventListener('click', deleteFriendRequest);
+
+//     friendRequestContainer.appendChild(profilePictureLink);
+//     friendRequestContainer.appendChild(friendRequestTitle);
+//     friendRequestContainer.appendChild(acceptButton);
+//     friendRequestContainer.appendChild(denyButton);
+
+//     friendRequests.appendChild(friendRequestContainer)
+// }
+
+
+
+// const getFriendRequests = function () {
+//     fetch(`/api/userfriends/get-requests`)
+//         .then((response) => response.json())
+//         .then((data) => {
+//             console.log(data)
+//             data.forEach((request) => {
+//                 let name = request.user.username
+//                 let pfp = request.user.pfp
+//                 createFriendRequest(name, pfp)
+//             });
+//         });
+// }
 
 const getFriends = function () {
     fetch(`/api/userfriends/friends`)
@@ -58,75 +113,27 @@ const getFriends = function () {
         });
 }
 
-const removeFriend = function (event) {
-    let id = event.target.id;
-    fetch(`/api/userfriends/remove-friend/${id}`, {
-        method: "DELETE",
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data);
-        });
-}
-
-
-
-const createFriendRequest = function (username, pfpSrc) {
-    const friendRequestContainer = document.createElement('div');
-    friendRequestContainer.setAttribute('class', 'friendRequestCard');
-
-    const acceptButton = document.createElement('button');
-    const denyButton = document.createElement('button');
-    acceptButton.setAttribute('class', 'ui button green');
-    denyButton.setAttribute('class', 'ui button red');
-    acceptButton.innerHTML = `<i class="fa-solid fa-check fa-lg" id=${username}></i>`;
-    denyButton.innerHTML = `<i class="fa-solid fa-xmark fa-lg" id=${username}></i>`;
-    acceptButton.setAttribute('id', username);
-    denyButton.setAttribute('id', username);
-
-    const profilePictureLink = document.createElement('a');
-    const profilePicture = document.createElement('img');
-    profilePicture.setAttribute('src', pfpSrc);
-    profilePictureLink.setAttribute('href', `/profile/${username}`);
-    profilePicture.setAttribute('class', 'friendRequestProfilePicture');
-    profilePictureLink.appendChild(profilePicture);
-
-    const friendRequestTitle = document.createElement('div');
-    friendRequestTitle.setAttribute('class', 'friendRequestTitle');
-    friendRequestTitle.textContent = `Friend request from ${username}`;
-
-
-    acceptButton.addEventListener('click', acceptFriendRequest);
-    denyButton.addEventListener('click', deleteFriendRequest);
-
-    friendRequestContainer.appendChild(profilePictureLink);
-    friendRequestContainer.appendChild(friendRequestTitle);
-    friendRequestContainer.appendChild(acceptButton);
-    friendRequestContainer.appendChild(denyButton);
-
-    friendRequests.appendChild(friendRequestContainer)
-}
+// const removeFriend = function (event) {
+//     let id = event.target.id;
+//     fetch(`/api/userfriends/remove-friend/${id}`, {
+//         method: "DELETE",
+//     })
+//         .then((response) => response.json())
+//         .then((data) => {
+//             console.log(data);
+//         });
+// }
 
 
 
 
-getFriendRequests();
 
-//All logout logic
-const logoutButton = document.getElementById('logout');
-const logout = async () => {
-    const response = await fetch('/api/user/logout', {
-        method: 'POST'
-    });
 
-    if (response.ok) {
-        document.location.replace('/login');
-    } else {
-        alert('Something went wrong, please try again');
-    }
-}
 
-logoutButton.addEventListener('click', logout);
+
+// getFriendRequests();
+
+
 
 
 
@@ -257,6 +264,26 @@ function appendFriendData(data) {
 
 fetchUserData();
 
+
+
+
+
+
+//All logout logic
+const logoutButton = document.getElementById('logout');
+const logout = async () => {
+    const response = await fetch('/api/user/logout', {
+        method: 'POST'
+    });
+
+    if (response.ok) {
+        document.location.replace('/login');
+    } else {
+        alert('Something went wrong, please try again');
+    }
+}
+
+logoutButton.addEventListener('click', logout);
 
 const searchFriend = function () {
     const username = searchBar.value;

@@ -154,42 +154,43 @@ router.post('/friend-request/:username', async (req, res) => {
 
 // receive all of a users friend requests
 // ENDPOINT: "/api/userfriends/get-requests/"
-router.get('/get-requests', async (req, res) => {
-  try {
-    const friendRequests = await FriendRequest.findAll({
-      where: {
-        targetUserID: req.session.userid
-      },
-    });
-    const data = []
+// router.get('/get-requests', async (req, res) => {
+//   try {
+//     const friendRequests = await FriendRequest.findAll({
+//       where: {
+//         targetUserID: req.session.userid
+//       },
+//     });
+//     const data = []
 
-    for (let i = 0; i < friendRequests.length; i++) {
-      let currentRequest = friendRequests[i];
-      let sentUser = await User.findByPk(currentRequest.dataValues.sentUserID, {
-        attributes: { exclude: ['password', 'email'] }
-      })
-      data.push({
-        request: currentRequest.dataValues,
-        user: sentUser.dataValues
-      });
-    }
+//     for (let i = 0; i < friendRequests.length; i++) {
+//       let currentRequest = friendRequests[i];
+//       let sentUser = await User.findByPk(currentRequest.dataValues.sentUserID, {
+//         attributes: { exclude: ['password', 'email'] }
+//       })
+//       data.push({
+//         request: currentRequest.dataValues,
+//         user: sentUser.dataValues
+//       });
+//     }
 
-    if (!friendRequests) {
-      res.status(400).json({ message: "Nobody wants to be your friend! LOL!" });
-      return;
-    }
+//     if (!friendRequests) {
+//       res.status(400).json({ message: "Nobody wants to be your friend! LOL!" });
+//       return;
+//     }
 
-    res.status(200).json(data);
-  } catch (e) {
-    console.error(e);
-    res.status(500).json(e);
-  }
-});
+//     res.status(200).json(data);
+//   } catch (e) {
+//     console.error(e);
+//     res.status(500).json(e);
+//   }
+// });
 
 // Delete a friend request
 // ENDPOINT: "/api/userfriends/delete-request/:id"
 router.delete('/delete-request/:username', async (req, res) => {
   try {
+    console.log('delete send' + req.params.username)
     const sentUser = await User.findOne({
       where: {
         username: req.params.username
@@ -233,6 +234,7 @@ router.delete('/delete-request/:username', async (req, res) => {
 // ENDPOINT: "/api/userfriends/accept-friend/:id"
 router.post('/accept-friend/:username', async (req, res) => {
   try {
+    console.log('accept send' + req.params.username)
     const user = await User.findByPk(req.session.userid);
     if (!user) {
       res.status(404).json({ message: "Something went wrong, please try again" });
