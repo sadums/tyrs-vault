@@ -187,6 +187,9 @@ function appendFriendData(data) {
             friendPFP.src = data[i].pfp;
         }
         friendUsername.innerHTML = data[i].username;
+        friendUsername.addEventListener('click', () => {
+            console.log(data[i].username)
+        })
 
 
         if (data[i].userGames.length === null) {
@@ -195,6 +198,7 @@ function appendFriendData(data) {
             if (data[i].userGames.length === 0) {
 
             } else {
+                //This is the random
                 tempGameNumber = Math.floor(Math.random() * data[i].userGames.length);
                 friendGameTitle.innerHTML = data[i].userGames[tempGameNumber].title;
                 console.log(friendGameTitle.innerHTML = data[i].userGames[tempGameNumber].title);
