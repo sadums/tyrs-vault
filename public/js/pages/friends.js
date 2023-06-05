@@ -232,31 +232,6 @@ function appendFriendData(data) {
                 friendGameList.appendChild(newGameImg);
             }
         }
-
-
-        // let newGameImgLink = data[i].userGames[0].image;
-        // let newGameImg = document.createElement("img");
-        // newGameImg.className = "newFriendGameImg";
-        // newGameImg.setAttribute("src", newGameImgLink);
-        // friendGameList.appendChild(newGameImg);
-
-
-
-
-        // if (data[i].userGames.length === null) {
-
-        // } else {
-        //     if (data[i].userGames.length === 0) {
-
-        //     } else {
-        //         tempGameNumber = Math.floor(Math.random() * data[i].userGames.length);
-        //         friendGameTitle.innerHTML = data[i].userGames[tempGameNumber].title;
-        //         console.log(friendGameTitle.innerHTML = data[i].userGames[tempGameNumber].title);
-        //     }
-        // }
-        
-
-
     };
     
 
