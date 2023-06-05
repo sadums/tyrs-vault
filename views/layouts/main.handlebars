@@ -50,7 +50,12 @@
   <script src="/js/pages/friends.js"></script>
   {{/if}}
   {{#if profile}}
+  {{#if ownPage}}
   <script src="/js/pages/profile.js"></script>
+  {{/if}}
+  {{#unless ownPage}}
+  <script src="/js/pages/other-profile.js"></script>
+  {{/unless}}
   {{/if}}
   {{#if games}}
   <script src="/js/pages/games.js"></script>

@@ -29,7 +29,7 @@ router.post('/edit-picture', upload.single('profilePictureSubmit'), async (req, 
             res.status(400).json({ message: "something went wrong, please try again" });
         }
 
-        user.pfp = `./imgs/profiles/${user.dataValues.id}.png`;
+        user.pfp = `/imgs/profiles/${user.dataValues.id}.png`;
         await user.save();
 
         res.status(200).json({
