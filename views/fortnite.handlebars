@@ -1,0 +1,21 @@
+<h1>{{ username }}</h1>
+
+<h2>Player Stats</h2>
+{{#each stats}}
+  <p>{{ label }}: {{ value }}</p>
+{{/each}}
+
+<h2>Item Shop</h2>
+{{#each itemShop}}
+  <div>
+    <img src="{{ imageUrl }}" alt="{{ name }}">
+    <p>{{ name }}</p>
+    <p>{{ price }}</p>
+  </div>
+{{/each}}
+
+<h2>Challenges</h2>
+{{#each challenges}}
+  <p>{{ name }}</p>
+  <p>{{ description }}</p>
+{{/each}}
