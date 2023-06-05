@@ -1,37 +1,58 @@
-require('dotenv').config();
 const express = require('express');
+const expressHandlebars = require('express-handlebars');
+const Fortnite = require('fortnite-api-io');
+
+require('dotenv').config();
+
 const app = express();
-const axios = require('axios');
-const { Client, Events, GatewayIntentBits } = require('discord.js');
-const fortniteRouter = require('./controllers/api/fortnite-routes');
-app.use('/fortnite', fortniteRouter);
-
-const client = new Client({
-    intents: [
-        GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMembers,
-    ],
-});
-
-client.once(Events.ClientReady, () => {
-    console.log(`Bot is ready!`);
-});
-
-app.use(express.static('public'));
-
-app.get('/bot/stats', (req, res) => {
-    const stats = {
-        username: client.user.username,
-        guilds: client.guilds.cache.size,
-        members: client.guilds.cache.reduce((total, guild) => total + guild.memberCount, 0),
-    };
-
-    res.json(stats);
-});
-
-client.login(process.env.DISCORD_TOKEN);
-
 const port = process.env.PORT || 3000;
+
+// Initialize the Fortnite API wrapper to more easily display and access data
+const fortniteAPI = new Fortnite({
+  apiKey: process.env.FORTNITE_API_KEY,
+});
+
+const handlebars = expressHandlebars.create({});
+
+app.engine('handlebars', handlebars.engine);
+app.set('view engine', 'handlebars');
+
+// Middleware to pass the Fortnite API wrapper to routes
+app.use((req, res, next) => {
+  req.fortniteAPI = fortniteAPI;
+  next();
+});
+
+// Routes for home and profile pages
+app.get('/', (req, res) => {
+  res.render('fortnite');
+});
+
+app.get('/profile/:username', async (req, res) => {
+  const { username } = req.params;
+
+  try {
+    // Get player stats
+    const playerStats = await req.fortniteAPI.getStatsBR(username);
+
+    // Get item shop information
+    const itemShop = await req.fortniteAPI.getItemShop();
+
+    // Get challenges information
+    const challenges = await req.fortniteAPI.getChallenges();
+
+    res.render('profile', {
+      username,
+      stats: playerStats.data,
+      itemShop: itemShop.data,
+      challenges: challenges.data,
+    });
+  } catch (error) {
+    console.log(error);
+    res.render('error', { error: 'Failed to retrieve player data' });
+  }
+});
+
 app.listen(port, () => {
-    console.log(`Server listening on port ${port}`);
+  console.log(`Server is running on port ${port}`);
 });
