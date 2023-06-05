@@ -97,7 +97,7 @@ router.get('/profile', async (req, res) => {
         return;
     }
     const data = user.dataValues;
-    // console.log(data.userGames)
+    console.log(data);
 
     const userGames = data.userGames.map((game) => game.get({ plain: true }));
     sendDataList = []
