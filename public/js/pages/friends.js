@@ -150,6 +150,21 @@ function fetchUserData() {
     });
 };
 
+
+const generateRandomValues = (min, max) => {
+    const availableValues = max - min;
+    const randomValues = new Set();
+
+    while (randomValues.size < 3 && randomValues.size < availableValues) {
+      const randomValue = Math.floor(Math.random() * availableValues) + min;
+      randomValues.add(randomValue);
+    }
+
+    return Array.from(randomValues);
+  };
+
+
+
 function appendFriendData(data) {
     console.log(data);
 
@@ -200,32 +215,30 @@ function appendFriendData(data) {
             friendPFP.src = data[i].pfp;
         }
         friendUsername.innerHTML = data[i].username;
+        const index = i
+        friendUsername.addEventListener('click', () => {
+            let profLocation = data[index].username
+            location.href = `/profile/${profLocation}`
+        })
 
         let noGamesErr = document.createElement("h2");
         noGamesErr.innerHTML = "This user hasn't added any games!";
-        //asdfjasdfadsf
 
         if (data[i].userGames.length === 0) {
             friendGameList.appendChild(noGamesErr);
-        } else if (data[i].userGames.length === 1) {
-            let newGameImgLink = data[i].userGames[0].image;
-                let newGameImg = document.createElement("img");
-                newGameImg.className = "newFriendGameImg";
-                newGameImg.setAttribute("src", newGameImgLink);
-                friendGameList.appendChild(newGameImg);
-        } else if (data[i].userGames.length === 2) {
-            for (j=0; j<3; j++) {
-                tempImgNumber = Math.floor(Math.random() * 2);
-                let newGameImgLink = data[i].userGames[tempImgNumber].image;
+        } 
+        else if(data[i].userGames.length <= 3){
+            for(let j=0; j<data[i].userGames.length; j++){
+                let newGameImgLink = data[i].userGames[j].image;
                 let newGameImg = document.createElement("img");
                 newGameImg.className = "newFriendGameImg";
                 newGameImg.setAttribute("src", newGameImgLink);
                 friendGameList.appendChild(newGameImg);
             }
-        } else if(data[i].userGames.length >= 3) {
-            for (j=0; j<3; j++) {
-                tempImgNumber = Math.floor(Math.random() * data[i].userGames.length);
-                let newGameImgLink = data[i].userGames[tempImgNumber].image;
+        }else{
+            const indexArray = generateRandomValues(0, data[i].userGames.length)
+            for(let j=0; j<indexArray.length; j++){
+                let newGameImgLink = data[i].userGames[indexArray[j]].image;
                 let newGameImg = document.createElement("img");
                 newGameImg.className = "newFriendGameImg";
                 newGameImg.setAttribute("src", newGameImgLink);
