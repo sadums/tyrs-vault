@@ -1,21 +1,30 @@
-<h1>{{ username }}</h1>
+<!-- Profile Section -->
+<div class="profile-section">
+  <h2>Profile</h2>
+  <p>Username: {{username}}</p>
+  <ul>
+    {{#each playerStats}}
+    <li>{{this.statName}}: {{this.value}}</li>
+    {{/each}}
+  </ul>
+</div>
 
-<h2>Player Stats</h2>
-{{#each stats}}
-  <p>{{ label }}: {{ value }}</p>
-{{/each}}
+<!-- Item Shop Section -->
+<div class="item-shop-section">
+  <h2>Item Shop</h2>
+  <ul>
+    {{#each itemShop}}
+    <li>{{this.itemName}} - {{this.itemPrice}}</li>
+    {{/each}}
+  </ul>
+</div>
 
-<h2>Item Shop</h2>
-{{#each itemShop}}
-  <div>
-    <img src="{{ imageUrl }}" alt="{{ name }}">
-    <p>{{ name }}</p>
-    <p>{{ price }}</p>
-  </div>
-{{/each}}
-
-<h2>Challenges</h2>
-{{#each challenges}}
-  <p>{{ name }}</p>
-  <p>{{ description }}</p>
-{{/each}}
+<!-- Challenges Section -->
+<div class="challenges-section">
+  <h2>Challenges</h2>
+  <ul>
+    {{#each challenges}}
+    <li>{{this.challengeName}}</li>
+    {{/each}}
+  </ul>
+</div>

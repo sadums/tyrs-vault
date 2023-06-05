@@ -10,10 +10,9 @@ dotenv.config();
 
 // Initialize the Fortnite API wrapper to more easily display and access data
 const client = new Client({
-    language: Language.English,
-    apiKey: process.env.FORTNITE_API_KEY,
-  });
-  
+  language: Language.English,
+  apiKey: process.env.FORTNITE_API_KEY,
+});
 
 const handlebars = expressHandlebars.create({});
 
@@ -22,13 +21,28 @@ app.set('view engine', 'handlebars');
 
 // Middleware to pass the Fortnite API wrapper to routes
 app.use((req, res, next) => {
-    req.fortniteAPI = client;
-    next();
-  });
+  req.fortniteAPI = client;
+  next();
+});
 
 // Routes for home and profile pages
-app.get('/', (req, res) => {
-  res.render('fortnite');
+app.get('/', async (req, res) => {
+  try {
+    // Get item shop information
+    const itemShop = await req.fortniteAPI.itemShop();
+
+    // Get challenges information
+    const challenges = await req.fortniteAPI.challenges();
+
+    res.render('fortnite', {
+      username: 'YourUsername',
+      itemShop,
+      challenges,
+    });
+  } catch (error) {
+    console.error('Error retrieving data:', error);
+    res.status(500).send('Error retrieving data');
+  }
 });
 
 app.get('/profile/:username', async (req, res) => {
@@ -44,10 +58,15 @@ app.get('/profile/:username', async (req, res) => {
     // Get challenges information
     const challenges = await req.fortniteAPI.challenges();
 
-    res.render('profile', { username, playerStats, itemShop, challenges });
+    res.render('fortnite', {
+      username,
+      playerStats,
+      itemShop,
+      challenges,
+    });
   } catch (error) {
-    console.error('Error retrieving player stats:', error);
-    res.status(500).send('Error retrieving player stats');
+    console.error('Error retrieving data:', error);
+    res.status(500).send('Error retrieving data');
   }
 });
 
