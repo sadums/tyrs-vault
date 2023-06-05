@@ -343,10 +343,16 @@
 }
 
 .newFriendGameImg {
-    height: 70%;
+    height: 65%;
     width: 33%;
     object-fit: cover;
 }
+
+.userPlatforms {
+    display: flex;
+    flex-direction: row;
+}
+
 
 /* For footer */
 

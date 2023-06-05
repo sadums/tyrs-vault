@@ -245,6 +245,62 @@ function appendFriendData(data) {
                 friendGameList.appendChild(newGameImg);
             }
         }
+
+
+        if (data[i].platforms.length === 0) {
+            console.log(data[i].platforms.length);
+            //Works
+            let noPlatforms = document.createElement("li");
+            friendPlatformList.appendChild(noPlatforms);
+            noPlatforms.textContent = "This User hasn't added any platforms!";
+        } else {
+            for(j=0; j<data[i].platforms.length; j++) {
+                if(data[i].platforms[j].platform_name === "steam") {
+                    let steamPlatformDiv = document.createElement("div");
+                    steamPlatformDiv.className = "item";
+                    let steamIcon = document.createElement("i");
+                    steamIcon.className = "ui large steam icon";
+                    steamIcon.setAttribute("style", "color: white;");
+                    let steamUser = document.createElement("div");
+                    steamUser.setAttribute("style", "color: white; font-size: 15px;");
+                    steamUser.className = "content";
+                    steamUser.innerHTML = data[i].platforms[j].platform_username;
+
+                    friendPlatformList.appendChild(steamPlatformDiv);
+                    steamPlatformDiv.appendChild(steamIcon);
+                    steamPlatformDiv.appendChild(steamUser);
+                } else if(data[i].platforms[j].platform_name === "xbox") {
+                    let steamPlatformDiv = document.createElement("div");
+                    steamPlatformDiv.className = "item";
+                    let steamIcon = document.createElement("i");
+                    steamIcon.className = "ui large xbox icon";
+                    steamIcon.setAttribute("style", "color: white;");
+                    let steamUser = document.createElement("div");
+                    steamUser.setAttribute("style", "color: white; font-size: 15px;");
+                    steamUser.className = "content";
+                    steamUser.innerHTML = data[i].platforms[j].platform_username;
+
+                    friendPlatformList.appendChild(steamPlatformDiv);
+                    steamPlatformDiv.appendChild(steamIcon);
+                    steamPlatformDiv.appendChild(steamUser);
+                } else if(data[i].platforms[j].platform_name === "playstation") {
+                    let steamPlatformDiv = document.createElement("div");
+                    steamPlatformDiv.className = "item";
+                    let steamIcon = document.createElement("i");
+                    steamIcon.className = "ui large playstation icon";
+                    steamIcon.setAttribute("style", "color: white;");
+                    let steamUser = document.createElement("div");
+                    steamUser.setAttribute("style", "color: white; font-size: 15px;");
+                    steamUser.className = "content";
+                    steamUser.innerHTML = data[i].platforms[j].platform_username;
+
+                    friendPlatformList.appendChild(steamPlatformDiv);
+                    steamPlatformDiv.appendChild(steamIcon);
+                    steamPlatformDiv.appendChild(steamUser);
+                }
+            }
+        }
+
     };
     
 
