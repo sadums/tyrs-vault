@@ -1,17 +1,17 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Platform extends Model {}
+class Platform extends Model { }
 
 Platform.init(
     {
-        id:{
+        id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true
         },
-        user_id:{
+        user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
@@ -20,27 +20,21 @@ Platform.init(
                 unique: false
             }
         },
-        platform_name:{
+        platform_name: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        platform_username:{
+        platform_username: {
             type: DataTypes.STRING,
             allowNull: false
         }
     },
     {
-        hooks: {
-            async beforeCreate(newUserData) {
-              newUserData.password = await bcrypt.hash(newUserData.password, 10);
-              return newUserData;
-            },
-          },
-          sequelize,
-          timestamps: false,
-          freezeTableName: true,
-          underscored: true,
-          modelName: 'platform',
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'platform',
     }
 );
 

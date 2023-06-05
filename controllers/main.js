@@ -130,10 +130,12 @@ router.get('/profile/:username', async (req, res) => {
 
         if (!user) {
             res.status(400).json({ message: "No user found!" });
+            return;
         }
 
         if (user.dataValues.id === req.session.userid) {
             res.redirect('/profile');
+            return;
         }
 
         const data = user.dataValues;
@@ -152,7 +154,6 @@ router.get('/profile/:username', async (req, res) => {
             profile: true,
             ownPage: false
         });
-        return;
     } catch (e) {
         console.error(e);
         res.status(500).json(e);

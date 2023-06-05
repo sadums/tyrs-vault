@@ -94,6 +94,27 @@ router.post('/edit-username', async (req, res) => {
     }
 });
 
+
+router.get('/get-platforms', async (req, res) => {
+    try{
+        const platforms = await Platform.findAll({
+            where: {
+                user_id: req.session.userid
+            }
+        });
+
+        if(!platforms){
+            res.status(200).json({message: "User has no platforms"});
+            return;
+        }
+
+        res.status(200).json(platforms);
+    }catch(e){
+        console.error(e);
+        res.status(500).json(e);
+    }
+});
+
 router.post('/add-platform', async (req, res) => {
     try {
         if (!req.body.platform || !req.body.username) {
@@ -129,6 +150,40 @@ router.post('/add-platform', async (req, res) => {
         res.status(500).json(e);
     }
 });
+
+router.put('/edit-platform', async(req, res) => {
+    try{
+        if (!req.body.platform || !req.body.username) {
+            res.status(400).json({ message: "req.body is not correct" });
+            return;
+        }
+
+        const user = await User.findByPk(req.session.userid);
+
+        if (!user) {
+            res.status(404).json({ message: "Something went wrong, please try again" });
+            return;
+        }
+
+        const updatedPlatform = await Platform.findOne({
+            where: {
+                user_id: user.dataValues.id,
+                platform_name: req.body.platform,
+            }
+        });
+
+        updatedPlatform.platform_username = req.body.username;
+
+        await updatedPlatform.save();
+
+        res.status(200).json({message: "Platform updated successfully"});
+
+    }catch(e){
+        console.error(e);
+        res.status(500).json(e);
+    }
+})
+
 
 router.delete('/delete-platform', async (req, res) => {
     try {
