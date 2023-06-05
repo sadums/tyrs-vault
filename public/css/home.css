@@ -204,6 +204,7 @@
     font-family: 'Bangers', cursive;
     font-weight: 200;
     font-size: 30px;
+    padding-top: 4%;
 }
 
 #searchBarMain {
@@ -232,6 +233,15 @@
     /* background-color: var(--moderngray); */
 }
 
+
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+  }
+
 /* For Cards */
 
 .friendCard {
@@ -255,16 +265,28 @@
 } */
 
 .newFriendLink {
-    width: 12%;
+    width: 80%;
     margin-left: 4%;
     font-family: 'Bangers', cursive;
-    color: white;
+    color: rgb(255, 255, 255);
     font-weight: 300;
     font-size: 50px;
     padding: 6%;
     padding-top: 7.5%;
     /* border: solid var(--hotpink);
     border-width: 0px 0px 2px 0px ; */
+    background: linear-gradient(to right top, var(--lightblue), var(--lightpurple) 40%, white 30%);
+    background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  background-position: 100%;
+  transition: background-position 275ms ease;
+}
+
+.newFriendLink:hover {
+    cursor: pointer;
+    background-position: 0 100%;
 }
 
 .friendsCardFacts {
