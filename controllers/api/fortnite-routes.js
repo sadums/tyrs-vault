@@ -5,18 +5,13 @@ require('dotenv').config();
 
 const apiKey = process.env.API_KEY_FORTNITE;
 
-router.get('/:accoutid', (req, res) => {
-  accountId = req.params.accoutid
-  const requestUrl = `https://fortnite-api.com/v2/stats/br/v2/?name=${accountId}`
-  axios.get(requestUrl, {
-    headers: {
-      'x-api-key': apiKey
-    }
-  })
-    //.then((response) =>  response.json())
+router.get('/:accountid', (req, res) => {
+  const accountId = req.params.accountid;
+  const requestUrl = `https://fortnite-api.com/v2/stats/br/v2/${accountId}`;
 
-    axios
-        .get(requestUrl, {
+    //.then((response) =>  response.json())
+  axios
+    .get(requestUrl, {
             headers: {
                 'x-api-key': apiKey
             }
