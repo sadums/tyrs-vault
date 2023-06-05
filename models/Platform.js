@@ -20,7 +20,7 @@ Platform.init(
                 unique: false
             }
         },
-        link:{
+        platform_name:{
             type: DataTypes.STRING,
             allowNull: false
         },

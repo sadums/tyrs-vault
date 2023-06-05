@@ -8,23 +8,23 @@ const sequelize = require('../config/connection');
 
 
 
-User.hasMany(User, {
-    through: {
-        model: Friend,
-        unique: false
-    }
-});
-User.belongsToMany(User, {
-    through: {
-        model: Friend,
-        unique: false
-    }
-});
+// User.hasMany(User, {
+//     through: {
+//         model: Friend,
+//         unique: false
+//     }
+// });
+// User.belongsToMany(User, {
+//     through: {
+//         model: Friend,
+//         unique: false
+//     }
+// });
 
 User.hasMany(FriendRequest, {
     foreignKey: 'targetUserID'
 });
-FriendRequest.hasMany(User, {
+FriendRequest.belongsTo(User, {
     foreignKey: 'targetUserID'
 });
 
