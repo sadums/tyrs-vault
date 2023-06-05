@@ -3,6 +3,8 @@ const express = require('express');
 const app = express();
 const axios = require('axios');
 const { Client, Events, GatewayIntentBits } = require('discord.js');
+const fortniteRouter = require('./controllers/api/fortnite-routes');
+app.use('/fortnite', fortniteRouter);
 
 const client = new Client({
     intents: [

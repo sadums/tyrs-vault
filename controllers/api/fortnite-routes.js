@@ -14,15 +14,22 @@ router.get('/:accoutid', (req, res) => {
     }
   })
     //.then((response) =>  response.json())
-    .then((data) => {
-      const temp = data.data
-      res.json(temp)
-    })
-    .catch(err => {
-      
-      console.error(err);
-    });
-})
+
+    axios
+        .get(requestUrl, {
+            headers: {
+                'x-api-key': apiKey
+            }
+        })
+        .then((response) => {
+            const temp = response.data;
+            res.json(temp);
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).json({ error: 'An error occurred while retrieving Fortnite stats.' });
+        });
+});
 
 
 // router.get('/:accoutid', (req, res) => {
