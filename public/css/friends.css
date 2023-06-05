@@ -152,11 +152,17 @@
     border-width: 0px 0px 3px 0px; */
 };
 
-#profileDescription {
+#profileDescription  {
     color: #ffffff;
     font-size: 16px;
     background-color: var(--darkblue);
 }
+
+#profileDescriptionP {
+    color: #ffffff;
+    font-size: 16px;
+    background-color: var(--darkblue);
+} 
 
 /* for friends list and platforms */
 

@@ -1,3 +1,6 @@
+
+
+
 <div class="ui secondary  menu" id="headerProfile">
   <a class="item" id="titleCustom" href="/">
     Tyr's Vault
@@ -26,6 +29,10 @@
     </script>
   </div>
 </div>
+{{!-- 
+<video autoplay muted loop id="myVideo">
+  <source src="./imgs/cyberpunkResize.mp4" type="video/mp4">
+</video> --}}
 
 {{!-- {{ FOR EDIT PROFILE MODAL}} --}}
 {{#if ownPage}}
@@ -128,7 +135,7 @@
         {{#unless ownPage}}
         <div class="ui item right" id="addIconContainer">
           <div id={{data.username}} style="color: white;">
-            <i id="addIcon"></i>
+            <i id="addIcon" class="fa-solid fa-user-plus fa-2x"></i>
           </div>
         </div>
         {{/unless}}
@@ -138,7 +145,7 @@
     <div id="profileDescriptionDiv">
       <h2>Description</h2>
       <div id="profileDescription">
-        <p>{{data.description}}</p>
+        <p id="profileDescriptionP">{{data.description}}</p>
       </div>
     </div>
 
