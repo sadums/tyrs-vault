@@ -1,16 +1,19 @@
 const express = require('express');
 const expressHandlebars = require('express-handlebars');
-const Fortnite = require('fortnite-api-io');
-
-require('dotenv').config();
+const { Client, Language } = require('fnapicom');
+const dotenv = require('dotenv');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
+dotenv.config();
+
 // Initialize the Fortnite API wrapper to more easily display and access data
-const fortniteAPI = new Fortnite({
-  apiKey: process.env.FORTNITE_API_KEY,
-});
+const client = new Client({
+    language: Language.English,
+    apiKey: process.env.FORTNITE_API_KEY,
+  });
+  
 
 const handlebars = expressHandlebars.create({});
 
@@ -19,9 +22,9 @@ app.set('view engine', 'handlebars');
 
 // Middleware to pass the Fortnite API wrapper to routes
 app.use((req, res, next) => {
-  req.fortniteAPI = fortniteAPI;
-  next();
-});
+    req.fortniteAPI = client;
+    next();
+  });
 
 // Routes for home and profile pages
 app.get('/', (req, res) => {
@@ -32,24 +35,19 @@ app.get('/profile/:username', async (req, res) => {
   const { username } = req.params;
 
   try {
-    // Get player stats
-    const playerStats = await req.fortniteAPI.getStatsBR(username);
+    // Get player stats using wrapper
+    const playerStats = await req.fortniteAPI.playerStats(username);
 
     // Get item shop information
-    const itemShop = await req.fortniteAPI.getItemShop();
+    const itemShop = await req.fortniteAPI.itemShop();
 
     // Get challenges information
-    const challenges = await req.fortniteAPI.getChallenges();
+    const challenges = await req.fortniteAPI.challenges();
 
-    res.render('profile', {
-      username,
-      stats: playerStats.data,
-      itemShop: itemShop.data,
-      challenges: challenges.data,
-    });
+    res.render('profile', { username, playerStats, itemShop, challenges });
   } catch (error) {
-    console.log(error);
-    res.render('error', { error: 'Failed to retrieve player data' });
+    console.error('Error retrieving player stats:', error);
+    res.status(500).send('Error retrieving player stats');
   }
 });
 
