@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {User, Game, Platform, Friend} = require('../models');
+const { User, Game, Platform, Friend, FriendRequest } = require('../models');
 
 
 // Endpoint: '/'
@@ -52,12 +52,33 @@ router.get('/login', (req, res) => {
 // Renders the friends page
 router.get('/friends', async (req, res) => {
     try {
+        const friendRequests = await FriendRequest.findAll({
+            where: {
+              targetUserID: req.session.userid
+            },
+          });
+          const data = []
+      
+          for (let i = 0; i < friendRequests.length; i++) {
+            let currentRequest = friendRequests[i];
+            let sentUser = await User.findByPk(currentRequest.dataValues.sentUserID, {
+              attributes: { exclude: ['password', 'email'] }
+            })
+            data.push({
+              request: currentRequest.dataValues,
+              user: sentUser.dataValues
+            });
+          }
+          
+        //console.log(userData.dataValues)
+        //const userFriendRequest = userData.dataValues.friendRequests
         if (!req.session.loggedIn) {
             res.redirect('/');
             return;
         }
         res.render('friends', {
             friends: true,
+            data,
         });
     } catch (e) {
         console.error(e);
@@ -70,12 +91,12 @@ const generateRandomValues = (min, max) => {
     const randomValues = new Set();
 
     while (randomValues.size < 5 && randomValues.size < availableValues) {
-      const randomValue = Math.floor(Math.random() * availableValues) + min;
-      randomValues.add(randomValue);
+        const randomValue = Math.floor(Math.random() * availableValues) + min;
+        randomValues.add(randomValue);
     }
 
     return Array.from(randomValues);
-  };
+};
 
 
 
@@ -90,7 +111,7 @@ router.get('/profile', async (req, res) => {
 
     const user = await User.findByPk(req.session.userid, {
         attributes: { exclude: ['password', 'email'] },
-        include: [{model: Platform},{model: Game}]
+        include: [{ model: Platform }, { model: Game }]
     });
     if (!user) {
         res.status(404).json({ message: "Something went wrong, please try again" });
@@ -102,7 +123,7 @@ router.get('/profile', async (req, res) => {
     const userGames = data.userGames.map((game) => game.get({ plain: true }));
     sendDataList = []
     const indexOfGames = generateRandomValues(0, userGames.length)
-    for(let i=0; i<indexOfGames.length; i++){
+    for (let i = 0; i < indexOfGames.length; i++) {
         sendDataList.push(userGames[indexOfGames[i]])
     }
     console.log(sendDataList)
@@ -125,7 +146,7 @@ router.get('/profile/:username', async (req, res) => {
                 username: req.params.username
             },
             attributes: { exclude: ['password', 'email'] },
-            include: [{model: Game}]
+            include: [{ model: Game }]
         });
 
         if (!user) {
@@ -142,7 +163,7 @@ router.get('/profile/:username', async (req, res) => {
         const userGames = data.userGames.map((game) => game.get({ plain: true }));
         sendDataList = []
         const indexOfGames = generateRandomValues(0, userGames.length)
-        for(let i=0; i<indexOfGames.length; i++){
+        for (let i = 0; i < indexOfGames.length; i++) {
             sendDataList.push(userGames[indexOfGames[i]])
         }
         console.log(sendDataList)
