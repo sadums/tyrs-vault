@@ -1,5 +1,3 @@
-// const { response } = require("express");
-
 const sendFriendRequest = async function (event, username) {
     event.target.setAttribute('class', 'fa-solid fa-check fa-3x');
     await fetch(`/api/userfriends/friend-request/${username}`, {
