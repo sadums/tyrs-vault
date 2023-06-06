@@ -349,10 +349,41 @@
 }
 
 
-/* For footer */
-
-footer {
-    padding: 1.2%;
+/* Footer CSS */
+.footer {
+    padding: 10px 0px;
+    font-family: 'Play', sans-serif;
+    text-align: center;
+  }
+  
+  .footer .row {
     width: 100%;
-    background-color: rgb(49, 49, 49);
-}
+    margin: 0.5% 0%;
+    padding: 0.5% 0%;
+    color: gray;
+    font-size: 0.8em;
+  }
+  
+  .footer .row a {
+    text-decoration: none;
+    color: gray;
+    transition: 0.5s;
+  }
+  
+  .footer .row a:hover {
+    color: #fff;
+  }
+  
+  .footer .row ul {
+    width: 100%;
+  }
+  
+  .footer .row ul li {
+    display: inline-block;
+    margin: 0px 30px;
+  }
+  
+  .footer .row a i {
+    font-size: 2em;
+    margin: 0% 1%;
+  }
