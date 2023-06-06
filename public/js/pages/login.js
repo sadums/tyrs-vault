@@ -148,11 +148,11 @@ var i = 0;
 function rotateLandingImg() { setInterval(function() {
     if(i === 4) {
         i = 0;
-        $('#main').attr("style", "background-image: url('../imgs/fortnite\ dark\ v2.jpg')");
+        $('#main').attr("style", "background-image: url('../imgs/call\ of\ duty\ dark.jpg')");
     } else if (i == 1){
         $('#main').attr("style", "background-image: url('../imgs/steam\ lib\ dark\ v2.jpg')");
     } else if (i == 2) {
-        $('#main').attr("style", "background-image: url('../imgs/call\ of\ duty\ dark.jpg')");
+        $('#main').attr("style", "background-image: url('../imgs/fortnite\ dark\ v2.jpg')");
     } 
     i++;
 }, 6500);
