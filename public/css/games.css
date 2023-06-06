@@ -31,21 +31,21 @@
 
 
 
-#titleCustom {
+/* #titleCustom {
     font-family: 'Bangers', cursive;
     font-size: 34px;
     color: var(--hotpink);
     padding: 4px;
     overflow: hidden;
 
-    background: linear-gradient(to right, var(--hotpink), var(--lightblue) 50%, var(--hotpink) 50%);
+    background: linear-gradient(to right top, var(--hotpink), var(--lightblue) 50%, var(--hotpink) 50%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-size: 200% 100%;
     background-position: 100%;
     transition: background-position 275ms ease;
-}
+} */
 
 
 #titleCustom:hover {
