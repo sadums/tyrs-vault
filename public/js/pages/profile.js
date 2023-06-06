@@ -263,6 +263,7 @@ const appendFriendDiv = function(username, pfpSource){
 
     const friendPfp = document.createElement('img');
     friendPfp.setAttribute('src', pfpSource);
+    friendPfp.setAttribute('style', 'width: 100px; height: 100px');
 
     const friendUsername = document.createElement('h4');
     friendUsername.textContent = username;
