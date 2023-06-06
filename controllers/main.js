@@ -88,7 +88,7 @@ const generateRandomValues = (min, max) => {
     const availableValues = max - min;
     const randomValues = new Set();
 
-    while (randomValues.size < 5 && randomValues.size < availableValues) {
+    while (randomValues.size < 4 && randomValues.size < availableValues) {
         const randomValue = Math.floor(Math.random() * availableValues) + min;
         randomValues.add(randomValue);
     }
@@ -144,7 +144,7 @@ router.get('/profile/:username', async (req, res) => {
                 username: req.params.username
             },
             attributes: { exclude: ['password', 'email'] },
-            include: [{ model: Game }]
+            include: [{ model: Game }, { model: Platform}],
         });
 
         if (!user) {
@@ -160,13 +160,19 @@ router.get('/profile/:username', async (req, res) => {
         const data = user.dataValues;
         const userGames = data.userGames.map((game) => game.get({ plain: true }));
         sendDataList = []
+        userPlatforms = []
         const indexOfGames = generateRandomValues(0, userGames.length)
         for (let i = 0; i < indexOfGames.length; i++) {
             sendDataList.push(userGames[indexOfGames[i]])
         }
-        console.log(sendDataList)
+        for(i=0; i<data.platforms.length; i++) {
+            userPlatforms.push(data.platforms[i].dataValues)
+        }
+        console.log(userPlatforms);
+        // console.log(sendDataList)
         res.render('profile', {
             data,
+            userPlatforms,
             sendDataList,
             platforms: false, // change to actually send platforms
             favorites: false, //change to actually send favorites

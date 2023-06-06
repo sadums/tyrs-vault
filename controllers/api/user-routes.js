@@ -41,7 +41,7 @@ router.get('/:id', async (req, res) => {
             },
             attributes: { exclude: ['password', 'email'] },
             //we should include the users friends
-            //include: [Friend]
+            // include: [Platform]
         });
         res.status(200).json(response);
     } catch (error) {

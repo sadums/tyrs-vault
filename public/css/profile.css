@@ -13,3 +13,7 @@
     gap: 5px;
 }
 
+.platformProfileDiv {
+    display: flex;
+    flex-direction: row;
+}

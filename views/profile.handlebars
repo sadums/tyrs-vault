@@ -149,52 +149,19 @@
       </div>
     </div>
 
-    {{!-- <div class="ui raised rounded card" id="descriptionCard">
-      <div class="content">
-        <h4 class="header" style="color: white;">Introduce Yourself:</h4>
-        <div class="description" style="color: white;">
-          <p>Hello there! We'd love to get to know you better. Take a moment to describe yourself and share a glimpse
-            into your life. Tell us about your background, interests, and passions. What makes you unique? Feel free to
-            include details about your hobbies, accomplishments, or any experiences that have shaped you. We're excited
-            to learn more about the wonderful person you are, so go ahead and paint a picture of yourself with words.
-            Take your time and write a description about yourself.</p>
-        </div>
-        <div class="ui secondary right menu">
-          <button class="ui item button" id="editProfileBtn"
-            style="color: rgb(41, 69, 180); border: solid 2px var(--hotpink);">Edit Profile</button>
-          <script>
-            $('.ui.modal')
-              .modal('attach events', '#editProfileBtn')
-              .modal('show');
-          </script>
-        </div>
-      </div>
-    </div> --}}
 
     <div id="profileGamesDiv" class="ui stackable grid">
 
       <div class="five wide column">
         <h2 id="profilePlatformsH2">Platforms</h2>
-        {{!-- <div class="ui relaxed list">
-          <div class="ui item">
-            <i class="steam large inverted icon"></i>
-            <div class="content">
-              <div class="header" id="steamUsername">@CRJ4637</div>
-            </div>
-          </div>
-          <div class="ui item">
-            <i class="playstation inverted large icon"></i>
-            <div class="content">
-              <div class="header" id="ps4Username">@Carreejoh</div>
-            </div>
-          </div>
-          <div class="ui item">
-            <i class="xbox inverted large icon"></i>
-            <div class="content">
-              <div class="header" id="xboxUsername">@Whater_idk</div>
-            </div>
-          </div>
-        </div> --}}
+        <div class="ui horizontal list" id="profilePlatformsDiv">
+          {{!-- {{#each data.platforms as |platforms|}}
+          {{> profilePlatforms}}
+          {{/each}} --}}
+          {{#each userPlatforms as |platform|}}
+          {{> profilePlatforms-details}}
+          {{/each}}
+        </div>
       </div>
 
       <div class="eleven wide column">
@@ -210,7 +177,7 @@
 
     <div id="favoriteGamesProfile">
       <h2 id="favoriteGamesTitle">Favorite Games</h2>
-      <ul id="favoriteGamesList">
+      <ul id="favoriteGamesList" class="ui horizontal list">
 
         {{#each sendDataList as |game|}}
         {{> favGame-details}}
@@ -223,20 +190,24 @@
           animation: 150
         });
       </script>
-
-      {{!-- <div class="ui raised rounded card" id="descriptionCard" style="width: 250px;">
-        <div class="content">
-          <p style="color: white;">Metal Gear Rising: Revengeance </p>
-          <div class="gameCard" style="color: white;">
-            <img
-              src="https://m.media-amazon.com/images/M/MV5BNmE2ZjM1YmItMjBlYy00MDI1LTg0YTAtNTcxNDZkZDdjNWVlXkEyXkFqcGdeQXVyMTk2OTAzNTI@._V1_UX200_CR0,0,200,200_AL_.jpg"
-              style="border-radius: 8px">
-          </div>
-        </div>
-      </div> --}}
-
     </div>
     
     {{!-- <script src="./js/games.js"></script> --}}
   </div>
+  <footer >
+    <div class="ui secondary centered menu">
+      <a class="ui icon item" href="https://github.com/sadums">
+        <i class="github large icon"></i> Sadums
+      </a>
+      <a class="ui icon item" href="https://github.com/kolelam">
+        <i class="github large icon"></i> Kolelam
+      </a>
+      <a class="ui icon item" href="https://github.com/carreejoh">
+        <i class="github large icon"></i> Carreejoh
+      </a>
+      <a class="ui icon item" href="https://github.com/jonny258">
+        <i class="github large icon"></i> Jonny258
+      </a>
+    </div>
+  </footer>
 </div>
