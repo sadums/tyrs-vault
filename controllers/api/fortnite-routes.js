@@ -5,25 +5,27 @@ require('dotenv').config();
 
 const apiKey = process.env.API_KEY_FORTNITE;
 
-router.get('/:accountid', (req, res) => {
-  const accountId = req.params.accountid;
-  const requestUrl = `https://fortnite-api.com/v2/stats/br/v2/${accountId}`;
+router.get('/profile/:username', (req, res) => {
+  const username = req.params.username;
+  const requestUrl = `https://fortnite-api.com/v2/stats/br/v2/${username}`;
 
     //.then((response) =>  response.json())
-  axios
+    axios
     .get(requestUrl, {
-            headers: {
-                'x-api-key': apiKey
-            }
-        })
-        .then((response) => {
-            const temp = response.data;
-            res.json(temp);
-        })
-        .catch((err) => {
-            console.error(err);
-            res.status(500).json({ error: 'An error occurred while retrieving Fortnite stats.' });
-        });
+      headers: {
+        'x-api-key': apiKey,
+      },
+    })
+    .then((response) => {
+      const fortniteData = response.data.data;
+      res.json(fortniteData);
+    })
+    .catch((err) => {
+      console.error(err);
+      res
+        .status(500)
+        .json({ error: 'An error occurred while retrieving Fortnite stats.' });
+    });
 });
 
 
