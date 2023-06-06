@@ -1,3 +1,4 @@
+const { get } = require("sortablejs");
 
 
 // Profile picture code
@@ -250,3 +251,6 @@ const logout = async () => {
 }
 
 logoutButton.addEventListener('click', logout);
+
+
+//For appending platforms 

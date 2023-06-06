@@ -40,7 +40,7 @@ router.get('/:id', async (req, res) => {
                 id: req.params.id
             },
             //we should include the users friends
-            //include: [Friend]
+            // include: [Platform]
         });
         res.status(200).json(response);
     } catch (error) {

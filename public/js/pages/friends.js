@@ -257,9 +257,11 @@ function appendFriendData(data) {
         if (data[i].platforms.length === 0) {
             console.log(data[i].platforms.length);
             //Works
-            let noPlatforms = document.createElement("li");
+            let noPlatforms = document.createElement("div");
+            noPlatforms.className = "item";
             friendPlatformList.appendChild(noPlatforms);
             noPlatforms.textContent = "This User hasn't added any platforms!";
+            noPlatforms.setAttribute("style", "color: white; font-size: 15px;");
         } else {
             for(j=0; j<data[i].platforms.length; j++) {
                 if(data[i].platforms[j].platform_name === "steam") {

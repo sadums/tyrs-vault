@@ -201,11 +201,19 @@
 
 /* for favorite games */
 
-#favoriteGamesProfile {
-    padding-left: 3%;
+.listItemGame {
+    width: 80%;
 }
 
-#favoriteGamesList {}
+#favoriteGamesProfile {
+    padding-left: 3%;
+    margin-top: 0%;
+    padding-bottom: 6%;
+}
+
+#favoriteGamesList {
+    width: 100%;
+}
 
 #favoriteGamesTitle {
     margin-left: 2%;
@@ -238,4 +246,19 @@
 .gameListUsername {
     color: white;
     font-size: 20px;
+}
+
+.platformProfileDiv {
+    display: flex;
+    flex-direction: row;
+}
+
+.platformUsername {
+    margin-top: 0%;
+    color: white;
+}
+
+.platformName {
+    margin-bottom: 0%;
+    color: #2edbef;
 }

@@ -1,3 +1,4 @@
+// const { response } = require("express");
 
 const sendFriendRequest = async function (event, username) {
     event.target.setAttribute('class', 'fa-solid fa-check fa-3x');
@@ -45,5 +46,6 @@ try {
     addIcon = addIconContainer.children[0];
     checkFriend(addIcon.id);
 } catch (e) { }
+
 
 
