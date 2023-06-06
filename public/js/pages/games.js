@@ -54,9 +54,10 @@ const setCards = function(){
                     sendData(favGame)
                 })
     
-                currentClone.appendChild(addButton);
+                
                 currentClone.appendChild(title);
                 currentClone.appendChild(image);
+                currentClone.appendChild(addButton);
             }
        
         }

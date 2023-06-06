@@ -1,5 +1,6 @@
 
 
+
 // Profile picture code
 let pfpForm = document.getElementById('imageUploadForm');
 const pfp = document.getElementById('profilePicture');
