@@ -45,7 +45,11 @@ fetch(`/api/rawg/search/${gameTitleInfo}`)
     let i = 0;
     const tagArray = gameData.tags
     while(tagsCount < 3){
+        if(i == tagArray.length -1){
+            break;
+        }
         const currentTag = tagArray[i];
+        console.log(currentTag);
         if(currentTag.language == 'eng'){
             tagsCount++;
             selectedTags.push(currentTag.name);
