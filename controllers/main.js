@@ -168,6 +168,8 @@ router.get('/profile/:username', async (req, res) => {
         const userGames = data.userGames.map((game) => game.get({ plain: true }));
         sendDataList = []
         userPlatforms = []
+        userFriends = []
+        console.log(data)
         const indexOfGames = generateRandomValues(0, userGames.length)
         for (let i = 0; i < indexOfGames.length; i++) {
             sendDataList.push(userGames[indexOfGames[i]])
