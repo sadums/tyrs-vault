@@ -50,7 +50,7 @@ app.get('/profile/:username', async (req, res) => {
 
   try {
     // Get player stats using wrapper
-    const playerStats = await req.fortniteAPI.playerStats(username);
+    const fortniteData = await req.fortniteAPI.playerStats(username);
 
     // Get item shop information
     const itemShop = await req.fortniteAPI.itemShop();
@@ -58,9 +58,9 @@ app.get('/profile/:username', async (req, res) => {
     // Get challenges information
     const challenges = await req.fortniteAPI.challenges();
 
-    res.render('fortnite', {
+    res.render('profile', {
       username,
-      playerStats,
+      fortniteData,
       itemShop,
       challenges,
     });
