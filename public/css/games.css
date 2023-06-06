@@ -93,7 +93,7 @@
 }
 
 .gameCard {
-    height: 32.5vh;
+    height: 36.5vh;
 }
 
 .gameCard img {
@@ -101,8 +101,9 @@
     object-fit: cover;
     background-color: #5c5e60;
     border: solid black;
-    border-width: 0px 3px 0px 2px;
+    border-width: 0px 1px 0px 1px;
     -webkit-filter: brightness(100%);
+    height: 24.5vh;
 }
 
 .gameCard h2 {
@@ -112,13 +113,26 @@
 
 .gameCard:hover {
     -webkit-filter: brightness(50%);
-    -webkit-transition: all .5s ease;
-    -moz-transition: all .5s ease;
-    -o-transition: all .5s ease;
-    -ms-transition: all .5s ease;
-    transition: all .5s ease;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    transition: all .3s ease;
 }
 
 #gamesFooter {
     margin-top: 5%;
+}
+
+.addGame {
+    width: 100%;
+    border: solid black;
+    border-width: 0px 1px 0px 1px;
+    height: 4vh;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.addGame:hover {
+    cursor: pointer;
 }
