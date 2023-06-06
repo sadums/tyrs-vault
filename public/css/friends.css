@@ -119,7 +119,8 @@
 
 #editProfileBtn {
     background-color: white;
-
+    color: var(--purple);
+    margin-right: 20px;
 }
 
 /* For edit profile modal */

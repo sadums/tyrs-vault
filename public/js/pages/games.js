@@ -84,8 +84,8 @@ setCards();
 // window.addEventListener('load', rotateLandingImg());
 
 const searchFriend = function(){
-  const username = searchBar.value;
-  location.href = `/profile/${username}`;
+  const game = searchBar.value;
+  location.href = `/game/${game}`;
 }
 
 searchButton.addEventListener('click', searchFriend);

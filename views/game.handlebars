@@ -1,0 +1,91 @@
+{{!-- Render a single game --}}
+<div class="ui secondary menu" id="headerMain">
+    <a class="item" id="titleCustom" href="/">
+        Tyr's Vault
+    </a>
+    {{#if loggedIn}}
+    <div class="right menu">
+        <a class="ui item" id="friendsLink" href="/friends">
+            Friends
+        </a>
+        <a class="ui item" id="menuProfile" href="/profile">
+            Profile
+        </a>
+
+        <a class="ui item">
+            <div class="ui icon top left pointing dropdown inverted button" id="themeBtn">
+                <i class="wrench icon"></i>
+                <div class="menu">
+                    <div class="item">
+                        <button id="logout">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <script>
+            $('#themeBtn')
+                .dropdown();
+        </script>
+    </div>
+    {{else}}
+    <div class="right menu">
+        <a class="ui item" id="loginLink" href="/login">
+            Login
+        </a>
+    </div>
+    {{/if}}
+</div>
+<div style="display: none;" id="gameTitleInfo">{{gameTitle}}</div>
+<video id="backgroundVideo" src="/imgs/city-background.mp4" muted loop autoplay></video>
+
+    <div class="card" id="gameCard">
+        <div class="content-container">
+            <div class="game-image-container">
+                <img class="game-image"
+                    id="gameImage">
+            </div>
+            <div class="text-content-container">
+                <h1 class="game-title-container">
+                    <div class="game-title" id="gameTitle"></div>
+                    <div class="game-platforms" id="gamePlatforms">
+                        <i class="fa-brands fa-playstation fa-lg"></i>
+                        <i class="fa-brands fa-steam fa-lg"></i>
+                        <i class="fa-brands fa-xbox fa-lg"></i>
+                    </div>
+                </h1>
+                <div class="game-info-container">
+                    <div class="game-rating" id="gameRating"></div>
+                    <div class="game-tags" id="gameTags"></div>
+                    <div class="game-release-date" id="gameReleaseDate"></div>
+                </div>
+                <a class="add-game-button" id="addGameButton">Add Game</a>
+            </div>
+        </div>
+    </div>
+
+<footer>
+    <div class="footer">
+        <div class="row">
+            <a href="https://github.com/sadums">
+                <i class="fa-brands fa-github"></i>
+                Sadums
+            </a>
+            <a href="https://github.com/kolelam">
+                <i class="fa-brands fa-github"></i>
+                Kolelam
+            </a>
+            <a href="https://github.com/carreejoh">
+                <i class="fa-brands fa-github"></i>
+                Carreejoh
+            </a>
+            <a href="https://github.com/jonny258">
+                <i class="fa-brands fa-github"></i>
+                Jonny258
+            </a>
+        </div>
+
+        <div class="row">
+            Made by Omega Gamers
+        </div>
+    </div>
+</footer>
