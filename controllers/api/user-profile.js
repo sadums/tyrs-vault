@@ -101,6 +101,32 @@ router.get('/get-platforms', async (req, res) => {
                 user_id: req.session.userid
             }
         });
+        
+        if(!platforms){
+            res.status(200).json({message: "User has no platforms"});
+            return;
+        }
+        
+        res.status(200).json(platforms);
+    }catch(e){
+        console.error(e);
+        res.status(500).json(e);
+    }
+});
+
+router.get('/get-platforms/:username', async (req, res) => {
+    try{
+        const selectedUser = await User.findOne({
+            where:{
+                username: req.params.username
+            }
+        })
+
+        const platforms = await Platform.findAll({
+            where: {
+                user_id: selectedUser.dataValues.id
+            }
+        });
 
         if(!platforms){
             res.status(200).json({message: "User has no platforms"});

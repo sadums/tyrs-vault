@@ -198,5 +198,21 @@ router.get('/profile/:username', async (req, res) => {
 
 
 
+// Endpoint: '/game.:game'
+// Renders a single game
+
+router.get('/game/:game', async (req, res) => {
+    try{
+        res.render('game', {
+            game: true,
+            gameTitle: req.params.game,
+            loggedIn: req.session.loggedIn
+        });
+    }catch(e){
+        console.error(e);
+        res.status(500).json(e);
+    }
+});
+
 
 module.exports = router

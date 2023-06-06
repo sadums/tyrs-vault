@@ -66,6 +66,8 @@ const platformEditSections = document.getElementById('platformEdits');
 const currentPlatforms = {};
 const submittedPlatforms = {};
 
+const profilePlatformsSection = document.getElementById('profilePlatformsDiv')
+
 fetch(`/api/user-profile/get-platforms`)
 .then((response) => response.json())
 .then((data) => {
@@ -73,6 +75,7 @@ fetch(`/api/user-profile/get-platforms`)
     for(let i = 0; i < data.length; i++){
         currentPlatforms[data[i].platform_name] = data[i].platform_username;
         addPlatformEditElement(data[i].platform_name, data[i].platform_username);
+        addPlatformElement(data[i].platform_name, data[i].platform_username);
     }
 });
 
@@ -110,6 +113,23 @@ const deletePlatformElement = function(event){
         event.target.parentElement.remove()
     }
     delete submittedPlatforms[targetID];
+}
+
+const addPlatformElement = function(platform, username){
+    const currentPlatformContainer = document.createElement('div');
+    currentPlatformContainer.setAttribute("style", 'display: flex; color: white; align-items: center; gap: 15px')
+
+    const currentPlatformIcon = document.createElement('i');
+    currentPlatformIcon.setAttribute('class', platformData[platform].icon);
+
+    const currentPlatformUsername = document.createElement('h3');
+    currentPlatformUsername.setAttribute('style', "align-self: center; flex-basis: 70%; margin-bottom: 26px;");
+    currentPlatformUsername.textContent = username;
+
+    currentPlatformContainer.appendChild(currentPlatformIcon);
+    currentPlatformContainer.appendChild(currentPlatformUsername);
+
+    profilePlatformsSection.appendChild(currentPlatformContainer);
 }
 
 const addPlatformEditElement = function(currentPlatform, defaultInput){
@@ -260,12 +280,14 @@ const username = document.getElementById('profileUsername').textContent;
 
 const appendFriendDiv = function(username, pfpSource){
     const friendContainer = document.createElement('div');
+    friendContainer.setAttribute('style', 'display: flex; color: white; align-items: center; gap: 15px; background-color: #101434; padding: 0 10px 0; border-radius: 5px; margin-bottom: 8px')
 
     const friendPfp = document.createElement('img');
     friendPfp.setAttribute('src', pfpSource);
-    friendPfp.setAttribute('style', 'width: 100px; height: 100px');
+    friendPfp.setAttribute('class', 'profilePicture');
 
     const friendUsername = document.createElement('h4');
+    friendUsername.setAttribute('style', 'align-self: center; flex-basis: 70%; margin-bottom: 26px;')
     friendUsername.textContent = username;
 
     friendContainer.appendChild(friendPfp);

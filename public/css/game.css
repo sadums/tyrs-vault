@@ -1,0 +1,191 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+}
+
+:root {
+  --dark-blue: rgba(12, 20, 51);
+  --dark-grey: rgba(32, 32, 32, .9);
+}
+
+#background-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  transform: translateX(-50%) translateY(-50%);
+  background: #fff;
+  background-size: cover;
+}
+
+/* Main CSS */
+.card {
+  display: none;
+  position: absolute; 
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+  margin-top: -95vh;
+
+  height: 80%;
+  width: 60%;
+  background-image: linear-gradient(0deg, rgb(0, 0, 0),rgb(0, 0, 0),rgb(0, 0, 0),rgb(0, 6, 34),#102466,#0f2366,#0f256d);
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.content-container {
+  height: 100%;
+  color: white;
+  padding: 0;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.game-image-container {
+  height: 600px;
+  width: 100%;
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.game-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.text-content-container {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), black, black, black, black);
+  padding: 10px;
+  margin-top: 500px;
+  grid-area: 1 / 1 / 2 / 2;
+  display: grid;
+  grid-template-areas:
+    "title"
+    "button";
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr auto;
+}
+
+.game-info-container {
+  margin-top: 10px;
+  font-size: 18px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  align-self: flex-end;
+}
+
+.game-title-container {
+  grid-area: title;
+  flex-basis: 40%;
+  display: flex;
+  margin-left: 20px;
+}
+
+.game-title {
+  flex-basis: fit-content;
+  align-self: center;
+  font-family: 'Bangers', cursive;
+  font-size: 50px;
+  padding: 4px;
+}
+
+.game-tags {
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  align-self: flex-end;
+  padding-bottom: 15px;
+}
+
+.game-release-date {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #777;
+  align-self: flex-end;
+  padding-bottom: 15px;
+}
+
+.game-rating{
+  padding-bottom: 15px;
+}
+
+.game-platforms {
+  width: fit-content;
+  font-size: 25px;
+  flex-basis: fit-content;
+  margin-right: 10px;
+  margin-left: 25px;
+  align-self: center;
+  justify-self: end;
+  grid-area: details;
+}
+
+
+.add-game-button {
+  height: fit-content;
+  margin-left: 20px;
+  text-align: center;
+  width: 25%;
+  display: inline-block;
+  padding: 20px 0px 20px 0px;
+  background-color: #4CAF50;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  grid-area: button;
+}
+
+/* Footer CSS */
+.footer {
+  background-color: var(--dark-grey);
+  padding: 10px 0px;
+  font-family: 'Play', sans-serif;
+  text-align: center;
+}
+
+.footer .row {
+  width: 100%;
+  margin: 0.5% 0%;
+  padding: 0.5% 0%;
+  color: gray;
+  font-size: 0.8em;
+}
+
+.footer .row a {
+  text-decoration: none;
+  color: gray;
+  transition: 0.5s;
+}
+
+.footer .row a:hover {
+  color: #fff;
+}
+
+.footer .row ul {
+  width: 100%;
+}
+
+.footer .row ul li {
+  display: inline-block;
+  margin: 0px 30px;
+}
+
+.footer .row a i {
+  font-size: 2em;
+  margin: 0% 1%;
+}

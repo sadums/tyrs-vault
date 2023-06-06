@@ -119,6 +119,7 @@
 
 #editProfileBtn {
     background-color: white;
+    color: var(--purple);
     margin-right: 10%;
 }
 

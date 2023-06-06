@@ -53,12 +53,14 @@ const username = document.getElementById('profileUsername').textContent;
 
 const appendFriendDiv = function(username, pfpSource){
     const friendContainer = document.createElement('div');
+    friendContainer.setAttribute('style', 'display: flex; color: white; align-items: center; gap: 15px; background-color: #101434; padding: 0 10px 0; border-radius: 5px;')
 
     const friendPfp = document.createElement('img');
     friendPfp.setAttribute('src', pfpSource);
-    friendPfp.setAttribute('style', 'width: 100px; height: 100px');
+    friendPfp.setAttribute('class', 'profilePicture');
 
     const friendUsername = document.createElement('h4');
+    friendUsername.setAttribute('style', 'align-self: center; flex-basis: 70%; margin-bottom: 26px;')
     friendUsername.textContent = username;
 
     friendContainer.appendChild(friendPfp);
@@ -81,3 +83,65 @@ const getUserFriends = function(username){
 
 getUserFriends(username);
 
+
+
+
+
+
+
+
+
+
+
+// Platforms
+
+const profilePlatformsSection = document.getElementById('profilePlatformsDiv')
+
+fetch(`/api/user-profile/get-platforms/${username}`)
+.then((response) => response.json())
+.then((data) => {
+    console.log(data)
+    for(let i = 0; i < data.length; i++){
+        addPlatformElement(data[i].platform_name, data[i].platform_username);
+    }
+});
+
+const platformData = {
+    xbox: {
+        icon: "fa-brands fa-xbox fa-2x",
+        placeholder: "X-Box username"
+    },
+    steam: {
+        icon: "fa-brands fa-steam fa-2x",
+        placeholder: "Steam username"
+    },
+    playstation: {
+        icon: "fab fa-playstation fa-2x",
+        placeholder: "PlayStation username"
+    },
+    chesscom: {
+        icon: "fas fa-chess-knight fa-2x",
+        placeholder: "Chess.com username"
+    },
+    fortnite: {
+        icon: "fa-solid fa-person-rifle fa-2x",
+        placeholder: "Fortnite username"
+    },
+}
+
+const addPlatformElement = function(platform, username){
+    const currentPlatformContainer = document.createElement('div');
+    currentPlatformContainer.setAttribute("style", 'display: flex; color: white; align-items: center; gap: 15px')
+
+    const currentPlatformIcon = document.createElement('i');
+    currentPlatformIcon.setAttribute('class', platformData[platform].icon);
+
+    const currentPlatformUsername = document.createElement('h3');
+    currentPlatformUsername.setAttribute('style', "align-self: center; flex-basis: 70%; margin-bottom: 26px;");
+    currentPlatformUsername.textContent = username;
+
+    currentPlatformContainer.appendChild(currentPlatformIcon);
+    currentPlatformContainer.appendChild(currentPlatformUsername);
+
+    profilePlatformsSection.appendChild(currentPlatformContainer);
+}
