@@ -7,6 +7,9 @@ const friendRequests = document.getElementById('friendRequests');
 const acceptButtons = document.querySelectorAll('.accept-button');
 const rejectButtons = document.querySelectorAll('.reject-button');
 
+const friendRequestsContainer = document.getElementById('friendRequestContainer');
+const mainFriendRequestContainer = document.getElementById('mainFriendRequestCard');
+
 // acceptButtons.forEach(button => {
 //   button.addEventListener('click', function(event) {
 //     const username = this.closest('section').querySelector('.friendRequestTitle').textContent.trim();
@@ -22,7 +25,7 @@ const rejectButtons = document.querySelectorAll('.reject-button');
 // });
 
 const deleteFriendRequest = async function (username) {
-    console.log(username);
+    document.getElementById(username).remove();
     await fetch(`/api/userfriends/delete-request/${username}`, {
         method: "DELETE",
         headers: {
@@ -33,10 +36,13 @@ const deleteFriendRequest = async function (username) {
         .then((data) => {
             console.log(data);
         });
+    if (friendRequestsContainer.children.length == 0) {
+        mainFriendRequestContainer.setAttribute('style', 'display: none;');
+    }
 }
 
 const acceptFriendRequest = async function (username) {
-    console.log(username)
+    document.getElementById(username).remove();
     await fetch(`/api/userfriends/accept-friend/${username}`, {
         method: "POST",
         headers: {
@@ -47,6 +53,9 @@ const acceptFriendRequest = async function (username) {
         .then((data) => {
             console.log(data);
         });
+    if (friendRequestsContainer.children.length == 0) {
+        mainFriendRequestContainer.setAttribute('style', 'display: none;');
+    }
 }
 
 
@@ -163,12 +172,12 @@ const generateRandomValues = (min, max) => {
     const randomValues = new Set();
 
     while (randomValues.size < 3 && randomValues.size < availableValues) {
-      const randomValue = Math.floor(Math.random() * availableValues) + min;
-      randomValues.add(randomValue);
+        const randomValue = Math.floor(Math.random() * availableValues) + min;
+        randomValues.add(randomValue);
     }
 
     return Array.from(randomValues);
-  };
+};
 
 
 
@@ -233,18 +242,18 @@ function appendFriendData(data) {
 
         if (data[i].userGames.length === 0) {
             friendGameList.appendChild(noGamesErr);
-        } 
-        else if(data[i].userGames.length <= 3){
-            for(let j=0; j<data[i].userGames.length; j++){
+        }
+        else if (data[i].userGames.length <= 3) {
+            for (let j = 0; j < data[i].userGames.length; j++) {
                 let newGameImgLink = data[i].userGames[j].image;
                 let newGameImg = document.createElement("img");
                 newGameImg.className = "newFriendGameImg";
                 newGameImg.setAttribute("src", newGameImgLink);
                 friendGameList.appendChild(newGameImg);
             }
-        }else{
+        } else {
             const indexArray = generateRandomValues(0, data[i].userGames.length)
-            for(let j=0; j<indexArray.length; j++){
+            for (let j = 0; j < indexArray.length; j++) {
                 let newGameImgLink = data[i].userGames[indexArray[j]].image;
                 let newGameImg = document.createElement("img");
                 newGameImg.className = "newFriendGameImg";
@@ -261,8 +270,8 @@ function appendFriendData(data) {
             friendPlatformList.appendChild(noPlatforms);
             noPlatforms.textContent = "This User hasn't added any platforms!";
         } else {
-            for(j=0; j<data[i].platforms.length; j++) {
-                if(data[i].platforms[j].platform_name === "steam") {
+            for (j = 0; j < data[i].platforms.length; j++) {
+                if (data[i].platforms[j].platform_name === "steam") {
                     let steamPlatformDiv = document.createElement("div");
                     steamPlatformDiv.className = "item";
                     let steamIcon = document.createElement("i");
@@ -276,7 +285,7 @@ function appendFriendData(data) {
                     friendPlatformList.appendChild(steamPlatformDiv);
                     steamPlatformDiv.appendChild(steamIcon);
                     steamPlatformDiv.appendChild(steamUser);
-                } else if(data[i].platforms[j].platform_name === "xbox") {
+                } else if (data[i].platforms[j].platform_name === "xbox") {
                     let steamPlatformDiv = document.createElement("div");
                     steamPlatformDiv.className = "item";
                     let steamIcon = document.createElement("i");
@@ -290,7 +299,7 @@ function appendFriendData(data) {
                     friendPlatformList.appendChild(steamPlatformDiv);
                     steamPlatformDiv.appendChild(steamIcon);
                     steamPlatformDiv.appendChild(steamUser);
-                } else if(data[i].platforms[j].platform_name === "playstation") {
+                } else if (data[i].platforms[j].platform_name === "playstation") {
                     let steamPlatformDiv = document.createElement("div");
                     steamPlatformDiv.className = "item";
                     let steamIcon = document.createElement("i");
@@ -309,7 +318,7 @@ function appendFriendData(data) {
         }
 
     };
-    
+
 
     let splide1 = document.querySelector("#splide1");
     new Splide(splide1, {
