@@ -1,5 +1,3 @@
-// const { response } = require("express");
-
 const sendFriendRequest = async function (event, username) {
     event.target.setAttribute('class', 'fa-solid fa-check fa-3x');
     await fetch(`/api/userfriends/friend-request/${username}`, {
@@ -48,4 +46,38 @@ try {
 } catch (e) { }
 
 
+
+
+const userFriendsContainer = document.getElementById('friendsListContainer');
+const username = document.getElementById('profileUsername').textContent;
+
+const appendFriendDiv = function(username, pfpSource){
+    const friendContainer = document.createElement('div');
+
+    const friendPfp = document.createElement('img');
+    friendPfp.setAttribute('src', pfpSource);
+    friendPfp.setAttribute('style', 'width: 100px; height: 100px');
+
+    const friendUsername = document.createElement('h4');
+    friendUsername.textContent = username;
+
+    friendContainer.appendChild(friendPfp);
+    friendContainer.appendChild(friendUsername);
+
+    userFriendsContainer.append(friendContainer);
+}
+
+const getUserFriends = function(username){
+    fetch(`/api/userfriends/friends/${username}`)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        for(let i = 0; i < data.length; i++){
+            const currentFriend = data[i];
+            appendFriendDiv(currentFriend.username, currentFriend.pfp);
+        }
+    });
+}
+
+getUserFriends(username);
 

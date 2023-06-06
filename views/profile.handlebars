@@ -1,6 +1,3 @@
-
-
-
 <div class="ui secondary  menu" id="headerProfile">
   <a class="item" id="titleCustom" href="/">
     Tyr's Vault
@@ -29,7 +26,7 @@
     </script>
   </div>
 </div>
-{{!-- 
+{{!--
 <video autoplay muted loop id="myVideo">
   <source src="./imgs/cyberpunkResize.mp4" type="video/mp4">
 </video> --}}
@@ -166,10 +163,10 @@
 
       <div class="eleven wide column">
         <h2 id="profilePlatformsH2">Friends</h2>
-        <div class="ui horizontal list">
-          {{#each data.friends as |friends|}}
-          {{> profile-friends-details}}
-          {{/each}}
+        <div class="ui horizontal list" id="friendsListContainer">
+          <section id="friendRequestList">
+            
+          </section>
         </div>
       </div>
 
@@ -191,10 +188,11 @@
         });
       </script>
     </div>
-    
-    {{!-- <script src="./js/games.js"></script> --}}
+
+    {{!--
+    <script src="./js/games.js"></script> --}}
   </div>
-  <footer >
+  <footer>
     <div class="ui secondary centered menu">
       <a class="ui icon item" href="https://github.com/sadums">
         <i class="github large icon"></i> Sadums

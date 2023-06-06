@@ -20,6 +20,74 @@ router.get('/', async (req, res) => {
 
 // Get all of a users friends
 // ENDPOINT: "/api/userfriends/friends"
+router.get('/friends/:username', async (req, res) => {
+  try {
+    const mainUser = await User.findOne({
+      where:{
+        username: req.params.username
+      }
+    })
+
+    const friends1 = await UserFriends.findAll({
+      where: {
+        user_id1: mainUser.dataValues.id,
+      }
+    });
+    const friends2 = await UserFriends.findAll({
+      where: {
+        user_id2: mainUser.dataValues.id
+      }
+    });
+
+
+
+    const data = []
+
+    for (let i = 0; i < friends1.length; i++) {
+      let currentFriend = friends1[i];
+
+      if (currentFriend.dataValues.user_id1 === mainUser.dataValues.id) {
+        // the friend is user_id2
+        const friend = await User.findByPk(currentFriend.dataValues.user_id2, {
+          attributes: { exclude: ['password', 'email'] }
+        });
+        data.push(friend.dataValues);
+      } else {
+        // the friend is user_id1
+        const friend = await User.findByPk(currentFriend.dataValues.user_id1, {
+          attributes: { exclude: ['password', 'email'] }
+        });
+        data.push(friend.dataValues);
+      }
+    }
+
+    for (let i = 0; i < friends2.length; i++) {
+      let currentFriend = friends2[i];
+
+      if (currentFriend.dataValues.user_id1 === mainUser.dataValues.id) {
+        // the friend is user_id2
+        const friend = await User.findByPk(currentFriend.dataValues.user_id2, {
+          attributes: { exclude: ['password', 'email'] }
+        });
+        data.push(friend.dataValues);
+      } else {
+        // the friend is user_id1
+        const friend = await User.findByPk(currentFriend.dataValues.user_id1, {
+          attributes: { exclude: ['password', 'email'] }
+        });
+        data.push(friend.dataValues);
+      }
+    }
+
+    res.status(200).json(data);
+  } catch (e) {
+    console.error(e);
+    res.status(500).json(e);
+  }
+});
+
+// Get all of the current users friends
+// ENDPOINT: "/api/userfriends/friends"
 router.get('/friends', async (req, res) => {
   try {
     const friends1 = await UserFriends.findAll({
