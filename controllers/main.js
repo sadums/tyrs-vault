@@ -122,13 +122,18 @@ router.get('/profile', async (req, res) => {
 
     const userGames = data.userGames.map((game) => game.get({ plain: true }));
     sendDataList = []
+    userPlatforms = []
     const indexOfGames = generateRandomValues(0, userGames.length)
     for (let i = 0; i < indexOfGames.length; i++) {
         sendDataList.push(userGames[indexOfGames[i]])
     }
+    for(i=0; i<data.platforms.length; i++) {
+        userPlatforms.push(data.platforms[i].dataValues)
+    }
     console.log(sendDataList)
     res.render('profile', {
         data,
+        userPlatforms,
         sendDataList,
         platforms: false, // change to actually send platforms
         favorites: false, //change to actually send favorites
