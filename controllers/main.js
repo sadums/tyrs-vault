@@ -8,6 +8,7 @@ router.get('/', async (req, res) => {
     try {
         const userData = await User.findAll().catch((err) => {
             res.json(err);
+            
         });
         //console.log(userData)
         const users = userData.map((user) => user.get({ plain: true }));
@@ -21,9 +22,6 @@ router.get('/', async (req, res) => {
         } else {
             res.redirect('/login')
         }
-
-
-
     } catch (e) {
         console.error(e);
         res.status(500).json(e);

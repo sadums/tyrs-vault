@@ -94,7 +94,6 @@ router.post('/edit-username', async (req, res) => {
     }
 });
 
-
 router.get('/get-platforms', async (req, res) => {
     try{
         const platforms = await Platform.findAll({

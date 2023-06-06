@@ -23,8 +23,8 @@ Platform.belongsTo(User, {
 router.get('/', async (req, res) => {
     try {
         const response = await User.findAll({
+            attributes: { exclude: ['password', 'email'] },
             include: [Game, Platform],
-            // include: [Platform]
         });
         res.status(200).json(response);
     } catch (error) {
@@ -39,6 +39,7 @@ router.get('/:id', async (req, res) => {
             where: {
                 id: req.params.id
             },
+            attributes: { exclude: ['password', 'email'] },
             //we should include the users friends
             // include: [Platform]
         });

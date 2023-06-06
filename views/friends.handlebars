@@ -42,18 +42,22 @@
     </div>
   </div>
 
-  <section id="friendRequestList">
-    <div class="ui raised rounded card" id="mainFriendRequestCard">
-      <div class="content" id="friendRequests">
-        <h4 class="header" style="color: white;">Friend Requests:</h4>
-        <div>
-          {{#each data as |request|}}
-          {{> friendReq-details}}
-          {{/each}}
-        </div>
+
+{{#if data}}
+<section id="friendRequestList">
+  <div class="ui raised rounded card" id="mainFriendRequestCard">
+    <div class="content" id="friendRequests">
+      <h4 class="header" style="color: white;">Friend Requests:</h4>
+      <div id="friendRequestContainer">
+        {{#each data as |request|}}
+        {{> friendReq-details}}
+        {{/each}}
       </div>
     </div>
-  </section>
+  </div>
+</section>
+{{/if}}
+
   <h1 id="yourFriendsTitle">Find friends</h1>
   <div id="friendDisplayMain">
     <div id="friendListDiv">
