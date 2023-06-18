@@ -59,6 +59,12 @@
                     <div class="game-release-date" id="gameReleaseDate"></div>
                 </div>
                 <a class="add-game-button" id="addGameButton">Add Game</a>
+                <script>
+                    let addGameButtonCheck = document.querySelector("#addGameButton");
+                    addGameButtonCheck.addEventListener("click", function() {
+                        addGameButtonCheck.classList.add("ui checkmark icon")
+                    })
+                </script>
             </div>
         </div>
     </div>
