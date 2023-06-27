@@ -357,18 +357,28 @@ html {
 
 
 /* Footer CSS */
-.footer {
+
+#gamesFooter {
+    height: 7vh;
+}
+
+#friendsFooter {
+    height: 7vh;
+    background-color: rgba(32, 32, 32, 1);
+}
+
+/* footer {
     padding: 10px 0px;
     font-family: 'Play', sans-serif;
     text-align: center;
   }
   
-  .footer .row {
+  footer .row {
     width: 100%;
 
     background-color: rgb(49, 49, 49);
     margin-bottom: 0%;
-}
+} */
 
 @media (max-width: 700px) {
     #homeSearch {
@@ -379,17 +389,28 @@ html {
     }
     #headerMain {
         width: 100%;
-       
+    }
+    #mainDiv {
+        padding-top: 45%;
+    }
+    .newFriendLink {
+        font-size: 30px;
+    }
+    #friendDisplayMain {
+        height: 40vh;
+    }
+    .friendCard {
+        height: 39.4vh;
     }
 }
 
-    margin: 0.5% 0%;
+    /* margin: 0.5% 0%;
     padding: 0.5% 0%;
     color: gray;
     font-size: 0.8em;
-  }
+  } */
   
-  .footer .row a {
+  /* .footer .row a {
     text-decoration: none;
     color: gray;
     transition: 0.5s;
@@ -411,5 +432,5 @@ html {
   .footer .row a i {
     font-size: 2em;
     margin: 0% 1%;
-  }
+  } */
 
