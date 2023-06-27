@@ -1,15 +1,107 @@
-<section class="col-md-12">
-    
-</section>
-<section class="col-md-12 m-5">
-    <form class="d-flex m-5">
-      <input class="form-control me-sm-2" type="text" placeholder="Enter username" id="friend-search-text">
-      <button class="btn btn-outline-success my-2 my-sm-0" id="friend-search-button">Add Friend</button>
-    </form>
-    <h2 class="col-md-12">Friend Requests: </h2>
-    <div class="row justify-content-center align-items-center g-2" id="friends-request-list" style="width: 50%">
+{{!-- <video autoplay muted loop id="myVideo">
+  <source src="./imgs/synthMountainResized.mp4" type="video/mp4">
+</video> --}}
+
+
+<div class="ui secondary  menu" id="headerMain">
+  <a class="item headerLink" id="titleCustom" href="/">
+    Tyr's Vault
+  </a>
+  <div class="right menu">
+    <a class="ui item headerLink" id="friendsLink" href="/friends">
+      Friends
+    </a>
+    <a class="ui item headerLink" id="menuProfile" href="/profile">
+      Profile
+    </a>
+
+    <a class="ui item">
+      <div class="ui icon top left pointing dropdown inverted button" id="themeBtn">
+        <i class="wrench icon"></i>
+        <div class="menu">
+          <div class="item">
+            <button id="logout">Logout</button>
+          </div>
+        </div>
+      </div>
+    </a>
+    <script>
+      $('#themeBtn')
+        .dropdown();
+    </script>
+  </div>
+</div>
+
+
+<div id="mainDiv">
+  <div id="searchBarMain">
+    <h4 id="friendSearch">Search for a player</h4>
+    <div class="ui action input">
+      <input type="text" placeholder="Gamers Username..." id="searchBar">
+      <button class="ui button" id="searchButton">Find</button>
     </div>
-    <h2 class="col-md-12">Friends: </h2>
-    <div class="row justify-content-center align-items-center g-2" id="friends-list" style="width: 50%">
+  </div>
+
+
+  {{#if data}}
+  <section id="friendRequestList">
+    <div class="ui raised rounded card" id="mainFriendRequestCard">
+      <div class="content" id="friendRequests">
+        <h4 class="header" style="color: white;">Friend Requests:</h4>
+        <div id="friendRequestContainer">
+          {{#each data as |request|}}
+          {{> friendReq-details}}
+          {{/each}}
+        </div>
+      </div>
     </div>
-</section>
+  </section>
+  {{/if}}
+
+  <h1 id="yourFriendsTitle">Find friends</h1>
+  <div id="friendDisplayMain">
+    <div id="friendListDiv">
+      <section class="splide" id="splide1" aria-label="Splide Basic HTML Example"
+        data-splide='{"type":"loop", "padding":"5rem", "perPage":"4", "perMove":"1", "focus":"0" }'>
+        <div class="splide__track">
+          <ul class="splide__list" id="friendDisplay">
+
+          </ul>
+        </div>
+      </section>
+
+    </div>
+    <script>
+
+    </script>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer" style="background-color: rgba(32, 32, 32, .9);">
+    <div class="row">
+      <a href="https://github.com/sadums">
+        <i class="fa-brands fa-github"></i>
+        Sadums
+      </a>
+      <a href="https://github.com/kolelam">
+        <i class="fa-brands fa-github"></i>
+        Kolelam
+      </a>
+      <a href="https://github.com/carreejoh">
+        <i class="fa-brands fa-github"></i>
+        Carreejoh
+      </a>
+      <a href="https://github.com/jonny258">
+        <i class="fa-brands fa-github"></i>
+        Jonny258
+      </a>
+    </div>
+
+    <div class="row">
+      Made by Omega Gamers
+    </div>
+  </div>
+</footer>
+</div>

@@ -1,1 +1,257 @@
 /* Carter use this file for the css specific to the friends page */
+* {
+    font-family: 'Bangers', cursive;
+    font-family: 'Barlow', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Mono', monospace;
+    font-family: 'Tillana', cursive;
+    font-family: 'Turret Road', cursive;
+}
+
+:root {
+    --purple: #570bb7;
+    --lightpurple: #d042f8;
+    --lightblue: #2edbef;
+    --darkblue: rgb(12, 20, 51);
+    --lightgreen: #3aefb6;
+    --hotpink: #f10983;
+    --moderngray: #5c5e60;
+}
+
+/* for header */
+#headerProfile {
+    width: 101%;
+    padding: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+    display: flex;
+    /* background-color: rgb(95, 95, 99, 1); */
+    background-color: rgba(12, 20, 51);
+    border: solid var(--darkblue);
+    border-width: 0px 0px 3px 0px;
+    position: fixed;
+}
+
+
+/* #titleCustom {
+    font-family: 'Bangers', cursive;
+    font-size: 34px;
+    color: var(--hotpink);
+    padding: 4px;
+    overflow: hidden;
+
+    background: linear-gradient(to right top, var(--hotpink), var(--lightblue) 50%, var(--hotpink) 50%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    background-position: 200%;
+    transition: background-position 275ms ease;
+} */
+
+
+#titleCustom:hover {
+    background-position: 0 100%;
+}
+
+#addIconContainer{
+    margin-right: 2%;
+}
+#addIcon{
+    color: white
+}
+
+/* FOR MAIN CONTENT (profile) */
+
+#mainProfileDiv {
+    background-image: url('../imgs/jellyfish\ dark.jpg');
+    /* height: 100%; */
+    background-size: cover;
+}
+
+#profileSection {
+    width: 50%;
+    margin-left: 25%;
+    height: 100%;
+    /* background-color: rgba(18, 29, 66, 0.8); */
+    background-image: linear-gradient(to bottom right, rgba(12, 20, 51, 0.8), 80%, rgba(76, 20, 179, 0.8));
+    border: solid 3px var(--darkblue);
+    padding-top: 5%;
+}
+/* 
+#descriptionCard {
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 5%;
+    height: fit-content;
+    background-color: rgb(12, 20, 51);
+    border: solid 2px var(--hotpink);
+    padding: 5px;
+} */
+
+#profileDescription {
+    width: 100%;
+}
+
+/* for profile header */
+
+#profileHeader {
+    margin-top: 2%;
+    width: 90%;
+    margin-left: 5%;
+    background-color: rgb(12, 20, 51);
+}
+
+#userProfilePic {
+    height: 120px;
+    width: 120px;
+    border: solid 2px var(--hotpink);
+    border-radius: 100%;
+}
+
+#profileUsername {
+    font-family: 'Bangers', cursive;
+    font-size: 60px;
+    font-weight: 400;
+    color: white;
+}
+
+#profileHeaderExtra {
+    color: white;
+    font-size: 18px;
+}
+
+#editProfileBtn {
+    background-color: white;
+    color: var(--purple);
+    margin-right: 25px;
+}
+
+/* For edit profile modal */
+
+#editProfileModuleMain {
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 2%;
+}
+
+#otherLabelModal {
+    margin-bottom: 2%;
+}
+
+/* profile main */
+
+#profileDescriptionDiv {
+    margin-top: 3%;
+    width: 90%;
+    margin-left: 5%;
+}
+
+#profileDescriptionDiv h2 {
+    width: 12%;
+    margin-left: 5%;
+    font-family: 'Bangers', cursive;
+    color: white;
+    font-weight: 300;
+    /* border: solid var(--hotpink);
+    border-width: 0px 0px 3px 0px; */
+};
+
+#profileDescription  {
+    color: #ffffff;
+    font-size: 16px;
+    background-color: var(--darkblue);
+}
+
+#profileDescriptionP {
+    color: #ffffff;
+    font-size: 16px;
+    background-color: var(--darkblue);
+} 
+
+/* for friends list and platforms */
+
+#profileGamesDiv {
+    padding: 5%;
+}
+
+#profilePlatformsH2 {
+    color: white;
+    font-family: 'Bangers', cursive;
+    font-weight: 300;
+    /* border: solid var(--hotpink);
+    border-width: 0px 0px 3px 0px; */
+}
+
+.platformUsername {
+    margin-top: 0%;
+    color: white;
+}
+
+.platformName {
+    margin-bottom: 0%;
+    color: #888d8d;
+}
+
+/* for favorite games */
+
+
+#favoriteGamesProfile {
+    padding-left: 3%;
+    margin-top: 0%;
+    padding-bottom: 6%;
+    padding-right: 3%;
+}
+
+#favoriteGamesList {
+    /* width: 100%; */
+}
+
+#favoriteGamesTitle {
+    margin-left: 2%;
+    color: white;
+    font-family: 'Bangers', cursive;
+    font-weight: 300;
+}
+
+.listItemGame {
+    margin-bottom: 1%;
+    margin-top: 1%;
+}
+
+/* .listItemGameDiv {
+    width: 100%;
+    border: solid 2px black;
+    display: flex;
+    flex-direction: row;
+} */
+
+.gameImgContainer {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 1%;
+    margin-right: 1%;
+    width: 25%;
+    padding: 2px;
+}
+
+.gameListImg {
+    height: 70px;
+    width: 120px;
+}
+
+.gameListTitle {
+    color: white;
+    font-size: 30px;
+}
+
+.gameListUsername {
+    color: white;
+    font-size: 20px;
+}
+
+.platformProfileDiv {
+    display: flex;
+    flex-direction: row;
+}
+

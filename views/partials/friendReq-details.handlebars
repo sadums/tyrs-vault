@@ -1,0 +1,13 @@
+<section id="{{user.username}}">
+    <div>
+        <a href='/profile/{{user.username}}'>
+            <img src={{user.pfp}} class="friendRequestProfilePicture">
+        </a>
+        <div class="friendRequestTitle">
+            Friend request from {{user.username}}
+        </div>
+        <button onclick="acceptFriendRequest('{{user.username}}')" class="ui button green accept-button"><i class="fa-solid fa-check fa-lg"></i></button>
+        <button onclick="deleteFriendRequest('{{user.username}}')" class="ui button red reject-button"><i class="fa-solid fa-xmark fa-lg"></i></button>
+    </div>
+
+</section>

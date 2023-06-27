@@ -1,39 +1,50 @@
 const User = require('./User');
 const Game = require('./Game');
-const UserGames = require('./UserGames');
 const Friend = require('./Friend');
 const FriendRequest = require('./FriendRequest');
+const Platform = require('./Platform');
+const sequelize = require('../config/connection');
 
-User.hasMany(Game, {
-    through: {
-        model: UserGames,
-        unique: false
-    }
-});
-Game.belongsToMany(User, {
-    through: {
-        model: UserGames,
-        unique: false
-    }
-});
 
-User.hasMany(User, {
-    through: {
-        model: Friend,
-        unique: false
-    }
-});
-User.belongsToMany(User, {
-    through: {
-        model: Friend,
-        unique: false
-    }
-});
+
+
+// User.hasMany(User, {
+//     through: {
+//         model: Friend,
+//         unique: false
+//     }
+// });
+// User.belongsToMany(User, {
+//     through: {
+//         model: Friend,
+//         unique: false
+//     }
+// });
 
 User.hasMany(FriendRequest, {
-    onDelete: 'CASCADE'
+    foreignKey: 'targetUserID'
+});
+FriendRequest.belongsTo(User, {
+    foreignKey: 'targetUserID'
 });
 
-FriendRequest.belongsTo(User);
+User.hasMany(Platform, {
+    foreignKey: 'user_id'
+});
+Platform.belongsTo(User, {
+    foreignKey: 'user_id'
+});
 
-module.exports = {User, Game, UserGames, Friend}
+
+User.hasMany(Game, {
+    foreignKey: 'user_id'
+});
+Game.belongsTo(User, {
+    foreignKey: 'user_id'
+});
+
+
+
+
+
+module.exports = { User, Game, Friend, FriendRequest, Platform }

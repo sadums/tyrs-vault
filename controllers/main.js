@@ -1,40 +1,42 @@
 const router = require('express').Router();
-// TODO: import required models
+const { User, Game, Platform, Friend, FriendRequest } = require('../models');
 
-// TODO: create required routes
 
-//For Handlebars if logged in on load 
-const User = require('../models/User');
-
+// Endpoint: '/'
+// Renders the main page
 router.get('/', async (req, res) => {
-    try{
-
-    const userData = await User.findAll().catch((err) => {
-        res.json(err);
-    });
-    const users = userData.map((user) => user.get({ plain: true }));
-
-    res.render('home', {
-        home: true,
-        loggedIn: req.session.loggedIn,
-        users
-    });
-
-    }catch(e){
+    try {
+        const userData = await User.findAll().catch((err) => {
+            res.json(err);
+            
+        });
+        //console.log(userData)
+        const users = userData.map((user) => user.get({ plain: true }));
+        if (req.session.loggedIn) {
+            res.render('games', {
+                games: true,
+                home: true,
+                loggedIn: req.session.loggedIn,
+                users
+            });
+        } else {
+            res.redirect('/login')
+        }
+    } catch (e) {
         console.error(e);
         res.status(500).json(e);
     }
 });
 
-
-
+// Endpoint: '/login'
+// Renders the login page
 router.get('/login', (req, res) => {
     try {
         if (req.session.loggedIn) {
             res.redirect('/');
             return;
         }
-    
+
         res.render('login', {
             login: true
         });
@@ -44,91 +46,173 @@ router.get('/login', (req, res) => {
     }
 });
 
+// Endpoint: '/friends'
+// Renders the friends page
 router.get('/friends', async (req, res) => {
-    try{
-        if(!req.session.loggedIn){
+    try {
+        const friendRequests = await FriendRequest.findAll({
+            where: {
+              targetUserID: req.session.userid
+            },
+          });
+          const data = []
+      
+          for (let i = 0; i < friendRequests.length; i++) {
+            let currentRequest = friendRequests[i];
+            let sentUser = await User.findByPk(currentRequest.dataValues.sentUserID, {
+              attributes: { exclude: ['password', 'email'] }
+            })
+            data.push({
+              request: currentRequest.dataValues,
+              user: sentUser.dataValues
+            });
+          }
+          
+        //console.log(userData.dataValues)
+        //const userFriendRequest = userData.dataValues.friendRequests
+        if (!req.session.loggedIn) {
             res.redirect('/');
             return;
         }
-
         res.render('friends', {
-            loggedIn: req.session.loggedIn,
-            friends: true
+            friends: true,
+            data,
+        });
+    } catch (e) {
+        console.error(e);
+        res.status(500).json(e);
+    }
+});
+
+const generateRandomValues = (min, max) => {
+    const availableValues = max - min;
+    const randomValues = new Set();
+
+    while (randomValues.size < 4 && randomValues.size < availableValues) {
+        const randomValue = Math.floor(Math.random() * availableValues) + min;
+        randomValues.add(randomValue);
+    }
+
+    return Array.from(randomValues);
+};
+
+
+
+
+// Endpoint: '/profile'
+// Renders the users profile
+router.get('/profile', async (req, res) => {
+    if (!req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
+
+    const user = await User.findByPk(req.session.userid, {
+        attributes: { exclude: ['password', 'email'] },
+        include: [{ model: Platform }, { model: Game }]
+    });
+    if (!user) {
+        res.status(404).json({ message: "Something went wrong, please try again" });
+        return;
+    }
+    const data = user.dataValues;
+    console.log(data);
+
+    const userGames = data.userGames.map((game) => game.get({ plain: true }));
+    sendDataList = []
+    userPlatforms = []
+    const indexOfGames = generateRandomValues(0, userGames.length)
+    for (let i = 0; i < indexOfGames.length; i++) {
+        sendDataList.push(userGames[indexOfGames[i]])
+    }
+    for(i=0; i<data.platforms.length; i++) {
+        userPlatforms.push(data.platforms[i].dataValues)
+    }
+    console.log(sendDataList)
+    res.render('profile', {
+        data,
+        userPlatforms,
+        sendDataList,
+        platforms: false, // change to actually send platforms
+        favorites: false, //change to actually send favorites
+        profile: true,
+        ownPage: true
+    });
+});
+
+// Endpoint: '/profile/:username'
+// Renders a specific users profile
+router.get('/profile/:username', async (req, res) => {
+    try {
+        const user = await User.findOne({
+            where: {
+                username: req.params.username
+            },
+            attributes: { exclude: ['password', 'email'] },
+            include: [{ model: Game }, { model: Platform}],
+        });
+
+        if (!user) {
+            res.status(400).json({ message: "No user found!" });
+            return;
+        }
+
+        if (user.dataValues.id === req.session.userid) {
+            res.redirect('/profile');
+            return;
+        }
+
+        const data = user.dataValues;
+        const userGames = data.userGames.map((game) => game.get({ plain: true }));
+        sendDataList = []
+        userPlatforms = []
+        userFriends = []
+        console.log(data)
+        const indexOfGames = generateRandomValues(0, userGames.length)
+        for (let i = 0; i < indexOfGames.length; i++) {
+            sendDataList.push(userGames[indexOfGames[i]])
+        }
+        for(i=0; i<data.platforms.length; i++) {
+            userPlatforms.push(data.platforms[i].dataValues)
+        }
+        console.log(userPlatforms);
+        // console.log(sendDataList)
+        res.render('profile', {
+            data,
+            userPlatforms,
+            sendDataList,
+            platforms: false, // change to actually send platforms
+            favorites: false, //change to actually send favorites
+            profile: true,
+            ownPage: false
+        });
+    } catch (e) {
+        console.error(e);
+        res.status(500).json(e);
+        return;
+    }
+});
+
+// Endpoint: '/games'
+// Renders the games page
+
+
+
+// Endpoint: '/game.:game'
+// Renders a single game
+
+router.get('/game/:game', async (req, res) => {
+    try{
+        res.render('game', {
+            game: true,
+            gameTitle: req.params.game,
+            loggedIn: req.session.loggedIn
         });
     }catch(e){
         console.error(e);
         res.status(500).json(e);
     }
 });
-
-// Renders the users profile
-router.get('/profile', async (req, res) => {
-    if(!req.session.loggedIn){
-        res.redirect('/');
-        return;
-    }
-
-    const user = await User.findByPk(req.session.userid);
-    if(!user){
-        res.status(404).json({ message : "Something went wrong, please try again"});
-        return;
-    }
-    res.render('profile', {
-        user: user.dataValues
-    });
-});
-
-// Render a specific users profile
-router.get('/profile/:id', async (req, res) => {
-    const user = await User.findByPk(req.params.id);
-    if(!user){
-        res.status(404).json({ message : "Something went wrong, please try again"});
-        return;
-    }
-    const loggedIn = req.session.loggedIn;
-    // const loggedInUser = req.session.userid;
-    // const requestUser = req.params.username;
-    //res.send('profile-login')
-    try {
-        if (loggedIn){ //change the validation here
-            res.send('profile-login')
-        }else{
-            console.log('it got to not login')
-            res.send('profile-not-login')
-        }
-    }
-    catch (err){
-        console.log(err)
-        res.status(500).json()
-    }
-});
-
-//Need a button that takes you to a custom url based on the user session
-
-
-router.get('/profile/:username', async (req, res) => {
-    try {
-        const loggedIn = req.session.loggedIn;
-        const loggedInUser = req.session.userid;
-        const requestUser = req.params.username;
-        const selectUser = await User.findOne({ where: { username: requestUser}})
-        console.log(selectUser)
-        console.log(requestUser)
-        console.log(loggedInUser)
-        res.json(selectUser)
-        if (selectUser.username === loggedInUser){
-            res.send('profile-login')
-        }else{
-            console.log('it got to not login')
-            res.send('profile-not-login')
-        }
-    }
-    catch (err) {
-        console.log(err)
-        res.status(500).json('err')
-    }
-});
-
 
 
 module.exports = router

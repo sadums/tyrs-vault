@@ -1,0 +1,172 @@
+{{!-- <video autoplay muted loop id="myVideo">
+  <source src="./imgs/synthMountainResized.mp4" type="video/mp4">
+</video> --}}
+
+<div class="ui secondary  menu" id="headerMain">
+  <a class="item" id="titleCustom" href="/">
+    Tyr's Vault
+  </a>
+  {{#if loggedIn}}
+  <div class="right menu">
+    <a class="ui item" id="friendsLink" href="/friends">
+      Friends
+    </a>
+    <a class="ui item" id="menuProfile" href="/profile">
+      Profile
+    </a>
+
+    <a class="ui item">
+      <div class="ui icon top left pointing dropdown inverted button" id="themeBtn">
+        <i class="wrench icon"></i>
+        <div class="menu">
+          <div class="item">
+            <button id="logout">Logout</button>
+          </div>
+        </div>
+      </div>
+    </a>
+    <script>
+      $('#themeBtn')
+        .dropdown();
+    </script>
+  </div>
+  {{else}}
+  <div class="right menu">
+    <a class="ui item" id="loginLink" href="/login">
+      Login
+    </a>
+  </div>
+  {{/if}}
+</div>
+
+<div id="gamesMain">
+  <section id="homeSearch">
+    <div class="searchBarGames">
+      <h4 id="friendSearch">Search for a game</h4>
+      <div class="ui action input">
+        <input id="searchBar" type="text" placeholder="Game Title...">
+        <button id="searchButton" class="ui button">Find</button>
+      </div>
+    </div>
+  </section>
+
+
+  <h1 id="gamesTitle">Browse Games</h1>
+  <div id="gameDisplayMain">
+    <div>
+      <section class="splide" id="splide2" aria-label="Splide Basic HTML Example"
+        data-splide='{"type":"loop", "padding":"8rem", "perPage":"4", "perMove":"1", "focus":"0"}'>
+        <div class="splide__track">
+          <ul class="splide__list" id="gameList">
+            <li class="splide__slide">
+              <div class="gameCard gameCard1">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard2">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard3">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard4">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard5">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard6">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard7">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard8">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard9">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard10">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard11">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard12">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard13">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard14">
+
+              </div>
+            </li>
+            <li class="splide__slide">
+              <div class="gameCard gameCard15">
+
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </section>
+    </div>
+    <footer>
+      <div class="footer">
+        <div class="row">
+          <a href="https://github.com/sadums">
+            <i class="fa-brands fa-github"></i>
+            Sadums
+          </a>
+          <a href="https://github.com/kolelam">
+            <i class="fa-brands fa-github"></i>
+            Kolelam
+          </a>
+          <a href="https://github.com/carreejoh">
+            <i class="fa-brands fa-github"></i>
+            Carreejoh
+          </a>
+          <a href="https://github.com/jonny258">
+            <i class="fa-brands fa-github"></i>
+            Jonny258
+          </a>
+        </div>
+
+        <div class="row">
+          Made by Omega Gamers
+        </div>
+      </div>
+    </footer>
+    <script>
+      new Splide('#splide2', {
+
+      }).mount();
+    </script>
+  </div>

@@ -14,7 +14,9 @@
     --darkblue: #0f2364;
     --lightgreen: #3aefb6;
     --hotpink: #f10983;
-    --moderngray: #5c5e60;
+    /* --moderngray: #5c5e60; */
+    --moderngray: RGBA(12, 13, 12, 1);
+
 }
 
 /* FOR MAIN CONTENT MENU */
@@ -27,26 +29,27 @@
     padding-right: 5%;
     display: flex;
     z-index: 5;
-    background-color: rgb(95, 95, 99, .7);
+    /* background-color: rgb(95, 95, 99, .7); */
+    background-color: rgba(32, 32, 32, .9);
     position: fixed;
 }
 
 
-#titleCustom {
+/* #titleCustom {
     font-family: 'Bangers', cursive;
     font-size: 34px;
     color: var(--hotpink);
     padding: 4px;
     overflow: hidden;
 
-    background: linear-gradient(to right, var(--hotpink), var(--lightblue) 50%, var(--hotpink) 50%);
+    background: linear-gradient(to right top, var(--hotpink), var(--lightblue) 50%, var(--hotpink) 50%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-size: 200% 100%;
     background-position: 100%;
     transition: background-position 275ms ease;
-}
+} */
 
 
 #titleCustom:hover {
@@ -60,14 +63,14 @@
     font-weight: 300;
     color: white;
     font-size: 26px;
-    border: solid var(--lightgreen);
+    border: solid var(--lightblue);
     padding: 5px;
     border-width: 0px 0px 3px 0px;
     border-radius: 0px;
 
     /* for hover to work */
 
-    background: linear-gradient(to right top, var(--lightgreen), var(--lightgreen) 40%, white 30%);
+    background: linear-gradient(to right top, var(--lightblue), var(--lightblue) 40%, white 30%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -162,9 +165,40 @@
     /* background-image: linear-gradient(20deg, var(--darkblue), 60%, var(--lightpurple)); */
     /* background-color: #333232; */
     /* background-image: url('https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fhdwpro.com%2Fwp-content%2Fuploads%2F2017%2F10%2FFree-Space-Background.png&f=1&nofb=1&ipt=6f1cf7ecbd789ac814a930726a9bc8e9ae831404fa8593ce2a45557a404ec6e5&ipo=images'); */
-    background-color: #0f2364;
+    
+    background-image: url('https://getwallpapers.com/wallpaper/full/3/e/1/398089.jpg');
+    /* background-image: url('image.png'); */
     background-size: cover;
 }
+
+/* For Friend Request cards */
+
+#mainFriendRequestCard {
+    width: fit-content;
+    margin-left: 25%;
+    margin-top: 5%;
+    height: fit-content;
+    background-color: rgb(12, 20, 51);
+    border: solid 2px var(--hotpink);
+    padding: 3px;
+}
+.friendRequestCard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+.friendRequestTitle{
+    color: white;
+    size: 15px;
+}
+.friendRequestProfilePicture{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
 
 /* for search bar */
 
@@ -173,19 +207,21 @@
     font-family: 'Bangers', cursive;
     font-weight: 200;
     font-size: 30px;
+    padding-top: 4%;
 }
 
 #searchBarMain {
     text-align: center;
     width: 100%;
     padding-top: 2%;
-    padding-bottom: 2%;
+    /* Original padding-bottom: 2%;*/
 }
 
 /* for displaying friends list */
 
 #yourFriendsTitle {
-    color: var(--lightgreen);
+    padding-top: 7%;
+    color: var(--lightblue);
     font-family: 'Bangers', cursive;
     font-weight: 200;
     font-size: 30px;
@@ -196,26 +232,56 @@
     width: 100%;
     height: 33vh;
     margin-bottom: 5%;
-    border: solid var(--lightgreen);
+    border: solid var(--lightblue);
     border-width: 4px 0px 4px 0px;
     /* background-color: var(--moderngray); */
 }
+
+
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: 0;
+  }
 
 /* For Cards */
 
 .friendCard {
     height: 32.5vh;
-    background-color: var(--moderngray);
+    /* background-color: var(--moderngray); */
+    background-color: rgba(32, 32, 32, 0.9); 
     width: 90%;
-    border: solid 2px var(--lightgreen);
+    border: solid 2px var(--lightblue);
     border-radius: 10px;
 }
 
-.friendCard h2 {
+
+.newFriendLink {
+    width: 80%;
+    margin-left: 4%;
     font-family: 'Bangers', cursive;
-    font-weight: 200;
-    text-align: center;
-    color: black;
+    color: rgb(255, 255, 255);
+    font-weight: 300;
+    font-size: 40px;
+    padding: 6%;
+    padding-top: 7.5%;
+    /* border: solid var(--hotpink);
+    border-width: 0px 0px 2px 0px ; */
+    background: linear-gradient(to right top, var(--lightblue), var(--lightpurple) 40%, white 30%);
+    background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  background-position: 100%;
+  transition: background-position 275ms ease;
+}
+
+.newFriendLink:hover {
+    cursor: pointer;
+    background-position: 0 100%;
 }
 
 .friendsCardFacts {
@@ -223,27 +289,101 @@
     margin-left: 5%;
 }
 
-/* for displaying stats */
+.homePFP {
+    width: 60px;
+    height: 60px;
+    border: solid 2px black;
+    border-radius: 100%;
+    margin-left: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
 
-#statsDisplayMain {
-    height: 33vh;
+.friendCardHeader {
+    display: flex;
+    flex-direction: row;
     border: solid var(--lightblue);
-    border-width: 4px 0px 4px 0px;
-    /* background-color: var(--moderngray); */
+    border-width: 0px 0px 3px 0px;
+    /* background-color: rgba(158, 9, 106, 0.9); */
+    /* background-color: rgba(250, 239, 239, 0.3); */
+    background-color: rgba(49, 49, 49, 0.9);
+    border-radius: 8px 8px 0px 0px;
 }
 
-#statsTitle {
-    color: var(--lightblue);
-    font-family: 'Bangers', cursive;
-    font-weight: 200;
-    font-size: 30px;
+.friendGameDiv {
+     /* background-color: rgba(78, 78, 78, 0.9);
+     border: solid var(--hotpink);
+     border-width: 0px 0px 0px 0px ;
+     border-radius: 0px 0px 8px 8px; */
+     height: 90%;
+}
+
+.friendGameDiv h2 {
+    color: white;
+    font-size: 16px;
     margin-left: 10%;
+    padding-top: 2%;
+}
+/* 
+.friendGameList {
+    background-color: #570bb7;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+} */
+
+.newFriendGames {
+    object-fit: cover;
+    height: 50%;
 }
 
-/* For footer */
+.newFriendGameImg {
+    height: 65%;
+    width: 33%;
+    object-fit: cover;
+}
 
-footer {
-    padding: 1.2%;
+.userPlatforms {
+    display: flex;
+    flex-direction: row;
+}
+
+
+/* Footer CSS */
+.footer {
+    padding: 10px 0px;
+    font-family: 'Play', sans-serif;
+    text-align: center;
+  }
+  
+  .footer .row {
     width: 100%;
-    background-color: var(--moderngray);
-}
+    margin: 0.5% 0%;
+    padding: 0.5% 0%;
+    color: gray;
+    font-size: 0.8em;
+  }
+  
+  .footer .row a {
+    text-decoration: none;
+    color: gray;
+    transition: 0.5s;
+  }
+  
+  .footer .row a:hover {
+    color: #fff;
+  }
+  
+  .footer .row ul {
+    width: 100%;
+  }
+  
+  .footer .row ul li {
+    display: inline-block;
+    margin: 0px 30px;
+  }
+  
+  .footer .row a i {
+    font-size: 2em;
+    margin: 0% 1%;
+  }

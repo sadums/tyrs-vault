@@ -36,6 +36,15 @@ User.init(
                 len: [8,24],
             }
         },
+        description: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        pfp: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            defaultValue: "./imgs/profiles/default-one.png"
+        }
     },
     {
         hooks: {

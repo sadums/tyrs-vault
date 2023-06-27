@@ -1,0 +1,138 @@
+* {
+    font-family: 'Bangers', cursive;
+    font-family: 'Barlow', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Mono', monospace;
+    font-family: 'Tillana', cursive;
+    font-family: 'Turret Road', cursive;
+}
+
+:root {
+    --purple: #570bb7;
+    --lightpurple: #d042f8;
+    --lightblue: #2edbef;
+    --darkblue: rgb(12, 20, 51);
+    --lightgreen: #3aefb6;
+    --hotpink: #f10983;
+    --moderngray: #5c5e60;
+}
+
+/* for header */ 
+#headerGames {
+    width: 101%;
+    padding: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+    display: flex;
+    background-color: rgb(95, 95, 99, .85);
+    position: fixed;
+}
+
+
+
+
+/* #titleCustom {
+    font-family: 'Bangers', cursive;
+    font-size: 34px;
+    color: var(--hotpink);
+    padding: 4px;
+    overflow: hidden;
+
+    background: linear-gradient(to right top, var(--hotpink), var(--lightblue) 50%, var(--hotpink) 50%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+    transition: background-position 275ms ease;
+} */
+
+
+#titleCustom:hover {
+    background-position: 0 100%;
+}
+
+/* For Game Search */
+
+#gameSearch {
+    color: white;
+    font-family: 'Bangers', cursive;
+    font-weight: 200;
+    font-size: 30px;
+}
+
+.searchBarGames {
+    text-align: center;
+    width: 100%;
+    padding-top: 6%;
+    /* Original padding-bottom: 2%;*/
+    padding-bottom: 7%;
+}
+
+#gamesMain {
+    height: 100%;
+    background-image: url('../imgs/portal\ 2\ dark\ fr.jpg');
+}
+
+#homeSearch{
+    display: flex;
+}
+
+/* For styling games splide */
+
+#gameDisplayMain {
+    
+}
+
+#gamesTitle {
+    color: white;
+    font-family: 'Bangers', cursive;
+    font-weight: 200;
+    font-size: 30px;
+    margin-left: 10%;
+}
+
+.gameCard {
+    height: 36.5vh;
+}
+
+.gameCard img {
+    width: 100%;
+    object-fit: cover;
+    background-color: #5c5e60;
+    border: solid black;
+    border-width: 0px 1px 0px 1px;
+    -webkit-filter: brightness(100%);
+    height: 24.5vh;
+}
+
+.gameCard h2 {
+    color: white;
+    margin-left: 5%;
+}
+
+.gameCard:hover {
+    -webkit-filter: brightness(50%);
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+#gamesFooter {
+    margin-top: 5%;
+}
+
+.addGame {
+    width: 100%;
+    border: solid black;
+    border-width: 0px 1px 0px 1px;
+    height: 4vh;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.addGame:hover {
+    cursor: pointer;
+}

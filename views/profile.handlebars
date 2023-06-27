@@ -1,0 +1,216 @@
+<div class="ui secondary  menu" id="headerProfile">
+  <a class="item" id="titleCustom" href="/">
+    Tyr's Vault
+  </a>
+  <div class="right menu">
+    <a class="ui item" id="friendsLink" href="/friends">
+      Friends
+    </a>
+    <a class="ui item" id="menuProfile" href="/profile">
+      Profile
+    </a>
+
+    <a class="ui item">
+      <div class="ui icon top left pointing dropdown inverted button" id="themeBtn">
+        <i class="wrench icon"></i>
+        <div class="menu">
+          <div class="item">
+            <button id="logout">Logout</button>
+          </div>
+        </div>
+      </div>
+    </a>
+    <script>
+      $('#themeBtn')
+        .dropdown();
+    </script>
+  </div>
+</div>
+{{!--
+<video autoplay muted loop id="myVideo">
+  <source src="./imgs/cyberpunkResize.mp4" type="video/mp4">
+</video> --}}
+
+{{!-- {{ FOR EDIT PROFILE MODAL}} --}}
+{{#if ownPage}}
+<div class="ui modal profile">
+  <i class="close icon"></i>
+  <div class="header">
+    Edit Profile
+  </div>
+
+  <div id="editProfileModuleMain">
+    <div class="ui form">
+      <div class="three fields">
+        <div class="three wide field">
+
+          <label>Profile Pic</label>
+
+          <form id="imageUploadForm" method="POST" action="/api/user-profile/edit-picture"
+            enctype="multipart/form-data">
+            <label for="imageInput" style="position: relative;">
+              <img src={{data.pfp}} id="profilePicture">
+              <i class="fa-solid fa-circle-plus fa-xl"
+                style="width: 15px; height: 15px; position:absolute; bottom: 0;"></i>
+            </label>
+            <input name="profilePictureSubmit" type="file" id="imageInput" accept="image/*" style="display: none;">
+          </form>
+        </div>
+        <div class="sixteen wide field">
+          <div class="five wide field">
+            <label>Username</label>
+            <input type="text" id="usernameText" value="{{data.username}}">
+          </div>
+          <div class="ui hidden divider"></div>
+          <div class="sixteen wide field">
+            <label>Description</label>
+            <textarea id="descriptionTextArea" rows="3">{{data.description}}</textarea>
+          </div>
+        </div>
+        <div class="ui selection dropdown" style="height: fit-content" id="platformDropdown">
+          <input type="hidden" name="platform">
+          <i class="dropdown icon"></i>
+          <div class="default text">Add Platform</div>
+          <div class="menu" id="platformDropdownValues">
+            <div class="item" data-value="steam">Steam</div>
+            <div class="item" data-value="xbox">Xbox</div>
+            <div class="item" data-value="playstation">PlayStation</div>
+            <div class="item" data-value="chesscom">Chess.com</div>
+            <div class="item" data-value="fortnite">Fortnite</div>
+          </div>
+        </div>
+        <script>
+          $(document).ready(function () {
+            $('.ui.dropdown').dropdown();
+          });
+        </script>
+      </div>
+      <div class="two fields">
+        <span class="three wide field" style="width: 114px"></span>
+        <section id="platformEdits" class="fourteen wide field" style="display: flex; flex-wrap: wrap; gap:10px;">
+
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="ui black deny button">
+      Cancel
+    </button>
+    <button id="submit-form-button" class="ui positive right labeled icon button">
+      Confirm
+      <i class="checkmark icon"></i>
+    </button>
+  </div>
+</div>
+{{/if}}
+
+
+<div id="mainProfileDiv">
+  <div id="profileSection">
+
+    <div id="profileHeader">
+      <div class="ui secondary menu">
+        <div class="ui item">
+          <img id="userProfilePic" src={{data.pfp}}>
+        </div>
+        <div class="ui item">
+          <h1 id="profileUsername">{{data.username}}</h1>
+        </div>
+
+        {{#if ownPage}}
+        <div class="ui secondary right menu">
+          <button class="ui icon inverted item button" id="editProfileBtn"><i
+              class="ui large  settings icon"></i></button>
+          <script>
+            $('.ui.modal')
+              .modal('attach events', '#editProfileBtn')
+              .modal('show');
+          </script>
+        </div>
+        {{/if}}
+        {{#unless ownPage}}
+        <div class="ui item right" id="addIconContainer">
+          <div id={{data.username}} style="color: white;">
+            <i id="addIcon" class=""></i>
+          </div>
+        </div>
+        {{/unless}}
+      </div>
+    </div>
+
+    <div id="profileDescriptionDiv">
+      <h2>Description</h2>
+      <div id="profileDescription">
+        <p id="profileDescriptionP">{{data.description}}</p>
+      </div>
+    </div>
+
+
+    <div id="profileGamesDiv" class="ui stackable grid">
+
+      <div class="five wide column">
+        <h2 id="profilePlatformsH2">Platforms</h2>
+        <div class="ui vertical list" id="profilePlatformsDiv">
+
+        </div>
+      </div>
+
+      <div class="eleven wide column">
+        <h2 id="profilePlatformsH2">Friends</h2>
+        <div class="ui horizontal list" id="friendsListContainer">
+          <section id="friendRequestList">
+          </section>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="favoriteGamesProfile">
+      <h2 id="favoriteGamesTitle">Favorite Games</h2>
+      <ul id="favoriteGamesList" class="ui list">
+
+        {{#each sendDataList as |game|}}
+        {{> favGame-details}}
+        {{/each}}
+
+      </ul>
+      <script>
+        let gamesList = document.querySelector("#favoriteGamesList");
+        new Sortable(gamesList, {
+          animation: 150
+        });
+      </script>
+    </div>
+
+    {{!--
+    <script src="./js/games.js"></script> --}}
+  </div>
+  <footer>
+    <div class="footer">
+      <div class="row">
+        <a href="https://github.com/sadums">
+          <i class="fa-brands fa-github"></i>
+          Sadums
+        </a>
+        <a href="https://github.com/kolelam">
+          <i class="fa-brands fa-github"></i>
+          Kolelam
+        </a>
+        <a href="https://github.com/carreejoh">
+          <i class="fa-brands fa-github"></i>
+          Carreejoh
+        </a>
+        <a href="https://github.com/jonny258">
+          <i class="fa-brands fa-github"></i>
+          Jonny258
+        </a>
+      </div>
+
+      <div class="row">
+        Made by Omega Gamers
+      </div>
+    </div>
+  </footer>
+</div>

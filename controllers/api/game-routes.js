@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const Game = require('../../models/Game');
 
-//sends all data in the game table
+
+
 router.get('/', async (req, res) => {
     try {
       const response = await Game.findAll();
@@ -24,5 +25,21 @@ router.get('/', async (req, res) => {
       res.status(404).json(error);
     }
   });
+
+  router.post('/add', async (req, res) => {
+    try{
+      const { favGame } = req.body;
+    const newGame = await Game.create({
+      title: favGame.title,
+      image: favGame.image,
+      user_id: req.session.userid,
+    })
+    console.log(req.session.userid)
+    res.json(newGame)
+    }
+    catch(err){
+      res.status(400).json(err)
+    }
+  })
 
 module.exports = router;
