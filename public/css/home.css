@@ -19,11 +19,18 @@
 
 }
 
+
+html {
+    width: 100vw;
+    height: 100%;
+    margin-right: 0px;
+    margin-bottom: 0.1px;
+}
 /* FOR MAIN CONTENT MENU */
 
 
 #headerMain {
-    width: 101%;
+    width: 100%;
     padding: 1%;
     padding-left: 5%;
     padding-right: 5%;
@@ -355,4 +362,18 @@ footer {
     padding: 1.2%;
     width: 100%;
     background-color: rgb(49, 49, 49);
+    margin-bottom: 0%;
+}
+
+@media (max-width: 700px) {
+    #homeSearch {
+        padding-top: 45%;
+    }
+    footer a{
+        font-size: 15px;
+    }
+    #headerMain {
+        width: 100%;
+       
+    }
 }

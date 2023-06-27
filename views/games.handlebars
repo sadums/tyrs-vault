@@ -2,7 +2,7 @@
   <source src="./imgs/synthMountainResized.mp4" type="video/mp4">
 </video> --}}
 
-<div class="ui secondary  menu" id="headerMain">
+<div class="ui stackable secondary  menu" id="headerMain">
   <a class="item" id="titleCustom" href="/">
     Tyr's Vault
   </a>
@@ -40,14 +40,14 @@
 </div>
 
 <div id="gamesMain">
-  <section id="homeSearch"> 
-      <div class="searchBarGames">
-        <h4 id="friendSearch">Search for a game</h4>
-        <div class="ui action input">
-          <input id="searchBar" type="text" placeholder="Game Title...">
-          <button id="searchButton" class="ui button">Find</button>
-        </div>
+  <section id="homeSearch">
+    <div class="searchBarGames">
+      <h4 id="friendSearch">Search for a game</h4>
+      <div class="ui action input">
+        <input id="searchBar" type="text" placeholder="Game Title...">
+        <button id="searchButton" class="ui button">Find</button>
       </div>
+    </div>
   </section>
 
 
@@ -139,24 +139,31 @@
       </section>
     </div>
     <footer id="gamesFooter">
-    <div class="ui secondary centered menu">
-      <a class="ui icon item" href="https://github.com/sadums">
-        <i class="github large icon"></i> Sadums
-      </a>
-      <a class="ui icon item" href="https://github.com/kolelam">
-        <i class="github large icon"></i> Kolelam
-      </a>
-      <a class="ui icon item" href="https://github.com/carreejoh">
-        <i class="github large icon"></i> Carreejoh
-      </a>
-      <a class="ui icon item" href="https://github.com/jonny258">
-        <i class="github large icon"></i> Jonny258
-      </a>
-    </div>
-  </footer>
+      <div class="ui secondary centered menu">
+        <a class="ui icon item" href="https://github.com/sadums">
+          <i class="github large icon"></i> Sadums
+        </a>
+        <a class="ui icon item" href="https://github.com/kolelam">
+          <i class="github large icon"></i> Kolelam
+        </a>
+        <a class="ui icon item" href="https://github.com/carreejoh">
+          <i class="github large icon"></i> Carreejoh
+        </a>
+        <a class="ui icon item" href="https://github.com/jonny258">
+          <i class="github large icon"></i> Jonny258
+        </a>
+      </div>
+    </footer>
     <script>
       new Splide('#splide2', {
-
+        perPage: 4,
+        breakpoints: {
+          640: {
+            perPage: 2,
+            padding: "0rem",
+          },
+        }
       }).mount();
     </script>
   </div>
+</div>
