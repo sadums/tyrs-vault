@@ -33,18 +33,18 @@
 
 
 
+let headerMain = document.querySelector("#headerMain");
 
+const checkView = function() {
+    if(window.innerWidth <= 700) {
+        headerMain.className = "ui stackable centered secondary menu"
+    } else if (window.innerWidth > 700) {
+        headerMain.className = "ui stackable secondary menu"
+    } else {
 
-// let checkView = function() {
-//     if(window.location.pathname === '/friends') {
-//         resizeFriends();
-//     } else if (window.location.pathname === '/profile') {
-//         console.log("at profile");
-//     } else {
+    }
+}
 
-//     }
-// }
-
-// window.addEventListener('load', checkView);
-// window.addEventListener('resize', checkView);
+window.addEventListener('load', checkView);
+window.addEventListener('resize', checkView);
 

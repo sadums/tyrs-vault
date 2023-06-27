@@ -255,3 +255,6 @@
     flex-direction: row;
 }
 
+#addGameButton:hover {
+    cursor: pointer;
+}
