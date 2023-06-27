@@ -109,6 +109,9 @@
 .gameCard h2 {
     color: white;
     margin-left: 5%;
+    font-size: 1.4em;
+    overflow: hidden;
+    white-space:nowrap;
 }
 
 .gameCard:hover {
@@ -131,6 +134,7 @@
     height: 4vh;
     font-size: 20px;
     font-weight: 400;
+    margin-bottom: 0%;
 }
 
 .addGame:hover {

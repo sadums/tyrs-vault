@@ -325,6 +325,13 @@ function appendFriendData(data) {
     let splide1 = document.querySelector("#splide1");
     new Splide(splide1, {
         focus: 'center',
+        perPage: 4,
+        breakpoints: {
+          640: {
+            perPage: 1,
+            padding: "2rem",
+          },
+        }
     }).mount();
 };
 
